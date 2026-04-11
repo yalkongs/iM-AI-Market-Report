@@ -48,7 +48,9 @@ def send_to_telegram(file_path):
 
 def update_portal():
     """public/reports 폴더를 스캔하여 리포트 포털(index.html)을 생성합니다."""
-    output_dir = "public/reports"
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root = os.path.dirname(current_dir)
+        output_dir = os.path.join(project_root, "public", "reports")
     if not os.path.exists(output_dir): os.makedirs(output_dir)
     
     files = glob.glob(os.path.join(output_dir, "morning_report_*.html"))
@@ -134,7 +136,9 @@ def main():
         generator = ReportGenerator()
         raw_report = generator.generate_report(market_data, news_list, is_krx_open=is_open)
         html_report = clean_html_response(raw_report)
-        output_dir = "public/reports"
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root = os.path.dirname(current_dir)
+        output_dir = os.path.join(project_root, "public", "reports")
         if not os.path.exists(output_dir): os.makedirs(output_dir)
         timestamp = datetime.now().strftime("%Y%m%d_%H%M")
         filename = f"morning_report_{timestamp}.html"
