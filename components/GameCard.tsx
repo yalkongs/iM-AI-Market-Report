@@ -11,9 +11,10 @@ interface GameCardProps {
   deadlineLabel: string  // 마감 시각 표시용 (예: "12:00")
   isNextDay?: boolean    // true이면 다음 거래일 베팅 (15:30 이후)
   dayLabel?: string      // "오늘" | "내일" | "4월 13일(월)" 등 — 캘린더 기반 정확한 표현
+  hideHeader?: boolean   // 리포트 임베드용: 제목 등 헤더 숨기기
 }
 
-export default function GameCard({ todayDate, isOpen, isClosed, deadlineLabel, isNextDay = false, dayLabel }: GameCardProps) {
+export default function GameCard({ todayDate, isOpen, isClosed, deadlineLabel, isNextDay = false, dayLabel, hideHeader = false }: GameCardProps) {
   // dayLabel이 없으면 isNextDay 기반으로 fallback
   const _dayLabel = dayLabel ?? (isNextDay ? '다음 거래일' : '오늘')
   const { user, profile, signIn, refreshProfile, loading: authLoading } = useAuth()
@@ -260,19 +261,21 @@ export default function GameCard({ todayDate, isOpen, isClosed, deadlineLabel, i
   return (
     <>
       <div className="overflow-hidden rounded-2xl shadow-sm border border-gray-100">
-        <div className="bg-white px-6 pt-6 pb-4 text-center border-b border-gray-100">
-          {isNextDay && (
-            <p className="text-xs text-indigo-500 font-bold mb-1 tracking-wide">
-              📅 {_dayLabel} KOSPI 예측
-            </p>
-          )}
-          <h2 className="text-xl font-black text-gray-900 leading-snug">
-            {_dayLabel} KOSPI가<br />오를까요, 내릴까요?
-          </h2>
-          {isOpen && timeLeft && (
-            <p className="text-sm font-mono text-orange-400 mt-2">⏰ 마감까지 {timeLeft}</p>
-          )}
-        </div>
+        {!hideHeader && (
+          <div className="bg-white px-6 pt-6 pb-4 text-center border-b border-gray-100">
+            {isNextDay && (
+              <p className="text-xs text-indigo-500 font-bold mb-1 tracking-wide">
+                📅 {_dayLabel} KOSPI 예측
+              </p>
+            )}
+            <h2 className="text-xl font-black text-gray-900 leading-snug">
+              {_dayLabel} KOSPI가<br />오를까요, 내릴까요?
+            </h2>
+            {isOpen && timeLeft && (
+              <p className="text-sm font-mono text-orange-400 mt-2">⏰ 마감까지 {timeLeft}</p>
+            )}
+          </div>
+        )}
 
         <div className="flex">
           <button

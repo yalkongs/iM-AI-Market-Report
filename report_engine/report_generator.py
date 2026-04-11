@@ -116,6 +116,10 @@ body {{
 .game-btn {{ display: inline-block; background: var(--im-navy); color: #fff; padding: 15px 35px; border-radius: 4px; text-decoration: none; font-weight: 800; font-size: 15px; transition: 0.3s; }}
 .game-btn:hover {{ background: #000; transform: translateY(-2px); }}
 
+/* Game Widget Iframe */
+.game-widget-container {{ margin: 40px 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #fff; }}
+.game-widget-iframe {{ width: 100%; height: 320px; border: none; }}
+
 .up {{ color: #FF5252; }}
 .down {{ color: #448AFF; }}
 
@@ -158,10 +162,10 @@ body {{
    - `pull-quote`, `callout-box`, `tech-table`을 적재적소에 배치하여 잡지 스타일을 완성하세요.
 
 3. **게임 연동 (Engagement)**:
-   - KRX 영업일일 경우, 리포트 하단(footer 이전)에 `<section class="game-section">`을 배치하세요.
-   - 제목: "오늘의 KOSPI, 당신의 선택은?"
-   - 버튼: "UPDOWN 챌린지 참여하기" (링크: https://updown-kospi.vercel.app)
-   - 버튼 클릭을 유도하는 매력적인 문구를 추가하세요.
+   - **실시간 위젯 삽입**: 리포트의 **두 번째 심층 분석 섹션이 끝나는 지점**에 반드시 아래의 게임 참여 위젯 코드를 삽입하세요. 
+     `<div class="game-widget-container"><iframe src="https://im-ai-market-report.vercel.app/embed/game" class="game-widget-iframe" scrolling="no"></iframe></div>`
+   - 이 위젯은 독자가 리포트를 읽는 맥락 속에서 즉시 오늘의 KOSPI 향방을 예측할 수 있게 해줍니다.
+   - KRX 영업일일 경우, 리포트 하단(footer 이전)에도 기존의 `<section class="game-section">` 참여 유도 버튼을 한 번 더 배치하여 리마인드하세요.
 
 4. **시각적 제약**:
    - 픽토그램, 이모지 절대 금지. 오직 폰트와 선으로만 격을 표현하세요.
