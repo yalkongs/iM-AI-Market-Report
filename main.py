@@ -30,6 +30,12 @@ def clean_html_response(text):
 
 def send_to_telegram(file_path):
     """생성된 HTML 파일을 텔레그램으로 전송합니다."""
+    # [일시 중단 설정] 2026-04-12 21:00 (KST) 까지 전송 중단
+    resume_time = datetime(2026, 4, 12, 21, 0) 
+    if datetime.now() < resume_time:
+        print(f"🔇 테스트 기간입니다. 텔레그램 전송을 24시간 동안 중단합니다. (재개 예정: {resume_time})")
+        return
+
     token = os.getenv("TELEGRAM_BOT_TOKEN")
     chat_id = os.getenv("TELEGRAM_CHAT_ID")
     
