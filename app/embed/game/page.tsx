@@ -5,7 +5,7 @@ import { auth } from '@/lib/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 import { getTodayKST, getNextTradingDay, isBettingOpen, isMarketClosed } from '@/lib/kospi'
 import GameCard from '@/components/GameCard'
-import AuthProvider from '@/components/AuthProvider'
+import { AuthProvider } from '@/components/AuthProvider'
 
 function GameEmbedContent() {
   const [today, setToday] = useState('')
