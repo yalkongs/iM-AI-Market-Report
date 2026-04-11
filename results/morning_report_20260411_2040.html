@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iM뱅크 MARKET BRIEF - 2026년 04월 11일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Pretendard:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --im-navy: #2A3050; --im-blue: #3A4568; --im-gold: #C8940A;
+            --black: #111111; --white: #FFFFFF; --bg: #F9FAFB; --border: #E8E8E8;
+            --muted: #777777; --red: #C62828; --blue-down: #1565C0;
+            --lnavy: #F4F6F9;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { 
+            font-family: 'Pretendard', -apple-system, sans-serif; 
+            background: var(--bg); color: var(--black); line-height: 1.85; 
+            -webkit-font-smoothing: antialiased; word-break: keep-all; 
+        }
+        .wrap { width: 100%; max-width: 680px; margin: 0 auto; background: var(--white); min-height: 100vh; box-shadow: 0 0 40px rgba(0,0,0,0.03); }
+
+        /* iM Bank Masthead */
+        .masthead { padding: 60px 40px 45px; border-bottom: 1px solid var(--black); background: #fff; }
+        .brand-row { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+        .brand-logo { font-size: 18px; font-weight: 900; letter-spacing: -0.5px; color: var(--im-navy); }
+        .brand-label { font-family: Georgia, serif; font-size: 11px; font-style: italic; letter-spacing: 2px; text-transform: uppercase; color: var(--im-gold); padding-left: 10px; border-left: 1px solid var(--border); }
+        .masthead-title { font-size: 32px; font-weight: 800; line-height: 1.3; letter-spacing: -1.5px; margin-bottom: 25px; color: var(--black); }
+        .issue-meta { display: flex; justify-content: space-between; align-items: flex-end; font-size: 13px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 15px; }
+        .summary-lead { font-size: 17px; font-weight: 500; color: #444; margin-top: 25px; line-height: 1.75; position: relative; padding-left: 20px; border-left: 3px solid var(--im-gold); }
+
+        /* Data Strip: High Contrast */
+        .data-strip { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--im-navy); color: #fff; }
+        .data-item { padding: 22px 15px; text-align: center; border-right: 1px solid rgba(255,255,255,0.1); }
+        .data-item:last-child { border-right: none; }
+        .data-label { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; display: block; }
+        .data-val { font-size: 18px; font-weight: 700; font-family: 'Helvetica Neue', sans-serif; }
+        .data-pct { font-size: 11px; font-weight: 600; margin-top: 3px; }
+
+        /* Editorial Section */
+        .section { padding: 55px 40px; border-bottom: 1px solid var(--border); }
+        .section-num { font-family: Georgia, serif; font-size: 42px; font-weight: 400; color: #EFEFEF; line-height: 1; margin-bottom: -12px; display: block; }
+        .section-title { font-size: 24px; font-weight: 800; color: var(--im-navy); margin-bottom: 30px; letter-spacing: -0.8px; position: relative; z-index: 1; }
+        .content-body { font-size: 16.5px; color: #222; text-align: justify; }
+        .content-body p { margin-bottom: 24px; }
+
+        /* Components */
+        .callout-box { background: var(--lnavy); padding: 30px; margin: 35px 0; border-radius: 4px; border-left: 4px solid var(--im-navy); }
+        .callout-label { font-size: 11px; font-weight: 800; color: var(--im-gold); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; display: block; }
+        .tech-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .tech-table th { font-size: 11px; color: var(--muted); text-align: left; padding: 10px 0; border-bottom: 2px solid var(--im-navy); text-transform: uppercase; }
+        .tech-table td { padding: 12px 0; font-size: 14.5px; border-bottom: 1px solid var(--border); }
+        .pull-quote { font-family: Georgia, serif; font-size: 22px; font-style: italic; color: var(--im-gold); text-align: center; padding: 40px 0; line-height: 1.5; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 40px 0; }
+
+        /* Life Insight Footer */
+        .life-insight { background: var(--im-navy); color: #fff; padding: 45px 40px; }
+        .life-insight-title { font-size: 18px; font-weight: 800; color: var(--im-gold); margin-bottom: 18px; letter-spacing: -0.5px; }
+        .life-insight-text { font-size: 15px; color: #CCC; line-height: 1.75; }
+
+        /* Footer */
+        .footer { padding: 60px 40px; background: var(--white); font-size: 12px; color: var(--muted); }
+        .footer-brand { font-weight: 900; color: var(--im-navy); font-size: 16px; margin-bottom: 15px; display: block; }
+        .disclaimer { background: #F9F9F9; padding: 25px; border: 1px solid var(--border); line-height: 1.8; margin-bottom: 30px; color: #888; }
+
+        .up { color: var(--red); }
+        .down { color: var(--blue-down); }
+
+        @media (max-width: 600px) {
+            .masthead { padding: 45px 24px; }
+            .section { padding: 45px 24px; }
+            .masthead-title { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header class="masthead">
+            <div class="brand-row">
+                <div class="brand-logo">iM뱅크</div>
+                <div class="brand-label">MARKET BRIEF</div>
+            </div>
+            <h1 class="masthead-title">밤의 심장부를 관통하는 빛과 그림자: 기술주의 맹동 속 거시경제의 그림자를 읽는 iM뱅크의 통찰</h1>
+            <div class="issue-meta">
+                <span>발행일: 2026년 04월 11일 08:38 AM KST</span>
+                <span>발행주체: iM뱅크 투자전략부</span>
+            </div>
+            <p class="summary-lead">
+                밤사이 글로벌 시장은 표면적 안정 속에서 기술주와 여타 섹터 간의 뚜렷한 차별화를 보였습니다. 인공지능 혁신에 대한 기대감이 여전히 시장의 주요 동력이었으나, 미 국채 금리의 미세한 상승과 유가 하락은 거시경제의 불확실성을 상기시키며, 시장 참여자들에게 심도 깊은 성찰을 요구하고 있습니다. iM뱅크는 이러한 미묘한 흐름 속에서 기회를 포착하고 위험을 관리할 통찰을 제시합니다.
+            </p>
+        </header>
+
+        <section class="data-strip">
+            <div class="data-item">
+                <span class="data-label">S&P 500</span>
+                <span class="data-val">6,816.89</span>
+                <span class="data-pct down">-0.11%</span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">Nasdaq</span>
+                <span class="data-val">22,902.89</span>
+                <span class="data-pct up">+0.35%</span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">Dow Jones</span>
+                <span class="data-val">47,916.57</span>
+                <span class="data-pct down">-0.56%</span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">KOSPI</span>
+                <span class="data-val">5,858.87</span>
+                <span class="data-pct up">+1.40%</span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">USD/KRW</span>
+                <span class="data-val">1,482.7</span>
+                <span class="data-pct up">+0.64%</span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">WTI Oil</span>
+                <span class="data-val">96.57</span>
+                <span class="data-pct down">-1.33%</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <span class="section-num">01</span>
+            <h2 class="section-title">기술주의 맹동과 시장의 이분법적 전개</h2>
+            <div class="content-body">
+                <p>밤사이 미국 증시는 기술주의 견고한 상승세와 전통 산업주의 조정이 극명하게 대비되며 혼조세를 보였습니다. 다우존스 산업평균지수가 <span class="down">0.56% 하락</span>한 47,916.57을 기록했고, S&P 500 지수 또한 <span class="down">0.11% 소폭 하락</span>했으나, 기술주 중심의 나스닥 종합지수는 <span class="up">0.35% 상승</span>하며 22,902.89를 기록했습니다. 이는 인공지능(AI) 혁신에 대한 기대감이 여전히 시장을 지배하고 있음을 명확히 보여줍니다.</p>
+                <p>특히 필라델피아 반도체 지수(SOX)는 <span class="up">2.31%라는 견조한 상승폭</span>을 기록하며 8,889.83에 도달했습니다. AI 칩 선두주자인 NVIDIA는 <span class="up">2.57% 상승</span>한 188.63달러를 기록하며 기술주 랠리를 주도했습니다. Tesla 역시 <span class="up">0.96% 상승</span>하며 시장의 관심을 받았지만, Apple은 보합세를 보였고 Microsoft는 <span class="down">0.59% 하락</span>하는 등 대형 기술주 내에서도 차별화된 움직임이 관찰되었습니다. 이는 단순히 '기술주'라는 큰 범주 안에서도 성장 모멘텀과 밸류에이션 부담이 개별 기업에 따라 다르게 작용하고 있음을 시사합니다.</p>
+                <table class="tech-table">
+                    <thead>
+                        <tr>
+                            <th>주요 기술주</th>
+                            <th>가격</th>
+                            <th>변동률</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>NVIDIA</td>
+                            <td>$188.63</td>
+                            <td class="up">+2.57%</td>
+                        </tr>
+                        <tr>
+                            <td>Apple</td>
+                            <td>$260.48</td>
+                            <td>-0.00%</td>
+                        </tr>
+                        <tr>
+                            <td>Tesla</td>
+                            <td>$348.95</td>
+                            <td class="up">+0.96%</td>
+                        </tr>
+                        <tr>
+                            <td>Microsoft</td>
+                            <td>$370.87</td>
+                            <td class="down">-0.59%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>이러한 흐름은 글로벌 기술 기업들의 AI 투자 확대 소식과 맞물려 더욱 주목됩니다. CNBC 보도에 따르면, 알리바바가 새로운 AI 모델 개발을 위해 2억 9천만 달러를 투자한다는 소식은 LLM(대규모 언어 모델)의 한계를 넘어선 '범용 세계 모델(general world model)'에 대한 기대를 높였습니다. 이는 AI 기술 혁신이 지속될 것이라는 시장의 믿음을 강화하는 요인입니다. 반면, '빅 쇼트'의 주인공 마이클 버리가 팔란티어에 대한 공매도 포지션을 유지하고 있다는 소식은 일부 기술주의 과열 가능성 또는 본질적 가치에 대한 의문을 제기하며, 신중한 접근의 필요성을 일깨웠습니다.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <span class="section-num">02</span>
+            <h2 class="section-title">통화 긴축 경계와 채권 시장의 미세한 균열</h2>
+            <div class="content-body">
+                <p>미국 10년물 국채 금리는 0.02%p(2bp, basis points) 상승하여 4.32%를 기록했습니다. 이는 견조한 경제 지표의 지속 또는 연방준비제도(Fed)의 매파적 스탠스에 대한 시장의 반응으로 풀이될 수 있습니다. 명목 금리의 소폭 상승은 통화 정책의 불확실성이 여전히 상존하며, 인플레이션 압력 완화에 대한 기대감이 재차 시험대에 오를 수 있음을 보여줍니다. 이러한 장기 금리 상승은 기술주 중심의 시장 강세와는 다소 상반되는 흐름으로, 고금리 환경은 기업의 자금 조달 비용을 증가시키고 미래 현금 흐름의 가치를 할인하는 요인이 됩니다. 이는 특히 높은 성장 기대를 바탕으로 하는 기술주에는 잠재적인 부담으로 작용할 수 있습니다.</p>
+                <p>시장 변동성 지수(VIX)는 <span class="down">1.33% 하락</span>하여 19.23을 기록했지만, 여전히 20에 근접한 수준은 시장 참여자들이 잠재적 리스크에 대한 경계를 늦추지 않고 있음을 반영합니다. 이는 금리 상승 압력과 더불어 시장의 미묘한 불안감을 가중시킬 수 있는 요인으로 작용합니다. 즉, 금리 인상 사이클의 끝자락에 대한 기대와 실제 경제 지표 간의 괴리가 시장의 미묘한 불안감을 형성하고 있는 것입니다.</p>
+                <div class="pull-quote">
+                    "글로벌 금융시장은 이제 단순히 성장과 후퇴의 이분법을 넘어, 미세한 균열 속에서 기회를 포착하고 잠재된 위험을 관리해야 하는 '균형의 예술'을 요구하고 있습니다."
+                </div>
+                <p>블랙록이 헤지펀드 전략을 ETF에 적용하는 '유동성 대체 ETF'를 출시했다는 CNBC의 보도는 이러한 시장 환경에서 투자자들이 새로운 방식으로 리스크를 헤지하고 수익을 추구하려는 경향이 강해지고 있음을 시사합니다. 이는 전통적인 자산 배분 전략만으로는 대응하기 어려운 복잡한 시장 국면이 도래했음을 방증하며, 투자 전략의 다각화 필요성을 강조합니다.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <span class="section-num">03</span>
+            <h2 class="section-title">원자재 시장의 숨고르기와 지정학적 함의</h2>
+            <div class="content-body">
+                <p>서부 텍사스산 원유(WTI) 가격은 <span class="down">1.33% 하락</span>한 배럴당 96.57달러를 기록하며 숨고르기에 들어갔습니다. 이는 최근 중동 지역의 지정학적 긴장감이 다소 완화된 영향과 더불어, 글로벌 경기 둔화 우려가 일정 부분 반영된 결과로 해석됩니다. 유가 하락은 단기적으로 소비자 물가 상승 압력을 완화하고 인플레이션 기대감을 낮추는 긍정적인 요인이 될 수 있습니다. 이는 중앙은행의 통화정책 결정에도 일정 부분 영향을 미칠 수 있습니다.</p>
+                <p>그러나 동시에 이는 글로벌 경제 활동의 둔화 가능성을 시사하는 신호일 수도 있습니다. 특히 CNBC 보도에 따르면, 중국이 이란 휴전을 위해 적극적으로 노력하고 있다는 점은 주목할 만합니다. 중국에게 이란과의 전쟁은 수출 주도 경제 성장에 필요한 글로벌 수요를 감소시킬 큰 위험 요인이기 때문입니다. 이는 원자재 시장의 변동성이 단순히 수급 논리를 넘어 지정학적 역학 관계에 크게 좌우됨을 보여주며, 향후 에너지 가격의 움직임에 지속적인 관심과 분석이 필요합니다.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <span class="section-num">04</span>
+            <h2 class="section-title">환율의 압력과 국내 시장의 미묘한 강세</h2>
+            <div class="content-body">
+                <p>국내 시장은 밤사이 글로벌 증시의 혼조세에도 불구하고 KOSPI 지수가 <span class="up">1.40% 상승</span>한 5,858.87을 기록하며 비교적 견조한 모습을 보였습니다. 이는 국내 특정 수출 주도 업종의 선전이나, 외국인 및 기관 투자자들의 저가 매수세 유입 덕분으로 풀이됩니다. 하지만 이러한 국내 증시의 강세에도 불구하고 원/달러 환율은 <span class="up">0.64% 상승</span>한 1,482.7원을 기록하며 국내 시장에 잠재적인 압력으로 작용했습니다. 미국 금리 인상 기대감 지속, 안전자산 선호 심리 강화, 또는 국내 경기 둔화에 대한 우려 등 복합적인 요인들이 원화 약세를 부추긴 것으로 보입니다.</p>
+                <p>고환율은 수출 기업의 가격 경쟁력을 높여 단기적인 실적 개선에 기여할 수 있지만, 동시에 수입 물가 상승으로 이어져 국내 인플레이션 압력을 가중시키고 내수 경제에 부담을 줄 수 있습니다. 특히 에너지 및 원자재 의존도가 높은 국내 산업 구조상, 높은 환율은 기업의 원가 부담을 심화시킬 수 있습니다. 따라서 KOSPI의 상승세가 지속되기 위해서는 환율의 안정화와 함께 기업 실적의 견고함이 뒷받침되어야 할 것입니다. 투자자들은 개별 기업의 펀더멘탈과 함께 환율 변동성에 대한 헤지 전략을 고려해야 합니다.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <span class="section-num">05</span>
+            <h2 class="section-title">iM뱅크의 통찰: 변동성 속 포트폴리오 재점검과 기회 모색</h2>
+            <div class="content-body">
+                <p>현재 글로벌 금융시장은 특정 섹터의 강한 모멘텀과 거시경제적 불확실성이 공존하는 복합적인 양상을 보입니다. AI 및 반도체 산업의 혁신은 여전히 매력적인 투자 기회를 제공하지만, 고평가 논란과 언제든 돌출될 수 있는 지정학적 리스크를 간과해서는 안 됩니다. 또한, 미 국채 금리의 상승 압력은 채권 및 금리 민감 자산에 대한 신중한 접근을 요구하며, 포트폴리오 내에서 자산 간의 상관관계를 면밀히 분석하고 리스크 분산 전략을 강화해야 할 시점입니다.</p>
+                <div class="callout-box">
+                    <span class="callout-label">수석 이코노미스트의 조언</span>
+                    <p>iM뱅크 수석 이코노미스트로서 고객 여러분께, 급변하는 시장 환경 속에서 자산의 안정적 성장을 위해서는 <strong>분산 투자 원칙을 견지하고, 정기적인 포트폴리오 점검 및 리밸런싱을 강력히 권고</strong>합니다. 특히 기술주 중심의 성장은 지속될 가능성이 높으나, 그 이면에 잠재된 거시경제적 불안 요인에 대한 헤지(Hedge) 전략을 함께 고려해야 합니다. 시장의 흐름을 맹목적으로 따르기보다는, 본질적 가치와 장기적인 성장 잠재력을 기준으로 포트폴리오를 구성하는 지혜가 필요한 때입니다.</p>
+                </div>
+                <p>저희 iM뱅크는 고객 여러분의 성공적인 자산 관리를 위해 최신 시장 트렌드와 심층적인 분석을 지속적으로 제공할 것입니다. 이 불확실성의 시대에 iM뱅크는 든든한 파트너가 되어드릴 것을 약속드립니다.</p>
+            </div>
+        </section>
+
+        <div class="life-insight">
+            <h3 class="life-insight-title">iM뱅크 고객을 위한 Life Insight: 실생활 금융 파급 효과</h3>
+            <div class="life-insight-text">
+                <p><strong>대출 금리 변동성 대비:</strong> 글로벌 금리 인상 기조와 국내 환율 상승 압력은 시중 대출 금리에 지속적인 영향을 미칠 수 있습니다. 변동금리 대출을 이용 중이신 고객께서는 향후 금리 변동에 대비하여 자금 계획을 면밀히 수립하시고, 필요시 iM뱅크 전문가와 상담을 통해 고정금리 전환 등 리스크 관리 방안을 검토해 보시길 권합니다.</p>
+                <p><strong>예금 상품 활용 전략:</strong> 시장 금리 상승 국면에서는 단기 고금리 예금 상품의 매력이 부각될 수 있습니다. 유동성 확보와 동시에 안정적인 이자 수익을 추구하시는 고객께서는 iM뱅크의 다양한 예금 상품을 확인하시어, 본인의 투자 성향과 기간에 맞는 최적의 상품을 선택하시는 것이 중요합니다.</p>
+                <p><strong>외환 관리의 중요성:</strong> 원/달러 환율의 변동은 해외 송금, 여행 경비, 해외 투자 수익률 등 실생활 외환 거래에 직접적인 영향을 미칩니다. 해외 자산 보유 또는 해외 지출 계획이 있으신 고객께서는 환율 변동 추이를 지속적으로 모니터링하고, iM뱅크가 제공하는 환율 우대 서비스나 외화 예금 상품을 활용하여 환율 변동 리스크를 효과적으로 관리하시기 바랍니다.</p>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <span class="footer-brand">iM뱅크</span>
+            <div class="disclaimer">
+                본 자료는 고객의 투자 판단을 돕기 위한 정보 제공을 목적으로 작성되었으며, 투자 권유를 목적으로 하지 않습니다. 본 자료에 포함된 모든 정보는 신뢰할 만한 출처로부터 얻은 것이나, 그 정확성이나 완전성을 보장할 수는 없습니다. 투자 결정은 본인의 판단과 책임하에 이루어져야 하며, iM뱅크는 본 자료의 내용에 기반한 투자 결과에 대해 어떠한 법적 책임도 지지 않습니다. 모든 투자에는 원금 손실의 위험이 따릅니다.
+            </div>
+            <p>&copy; 2026 iM뱅크. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

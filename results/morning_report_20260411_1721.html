@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iM뱅크 모닝 마켓 브리프</title>
+    <style>
+        :root {
+          --navy: #2A3050; --blue: #3A4568; --sky: #4A5575; --white: #FFFFFF;
+          --gold: #C8940A; --red: #8B1A20; --green: #1A5A30; --text: #1A1E2A;
+          --muted: #6A7080; --bg: #F4F5F8; --border: #D4D8E0;
+          --lred: #FFF0F3; --lgreen: #EBF7EF; --lgold: #FDF5E6; --lsky: #E8F0FB;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:-apple-system,'Pretendard','Noto Sans KR',sans-serif; background:var(--bg); color:var(--text); line-height:1.65; }
+        .wrap { max-width:640px; margin:0 auto; padding:0 0 40px; background:#fff; min-height:100vh; }
+        .masthead { background:linear-gradient(150deg, #2A3050 0%, #3A4568 55%, #4A5575 100%); padding:28px 20px 22px; position:relative; overflow:hidden; color:#fff; }
+        .logo-tag { display:inline-block; background:rgba(0,0,0,0.30); color:#FFFFFF; font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px; margin-bottom:10px; }
+        .masthead-title { font-size:22px; font-weight:800; margin-bottom:6px; line-height:1.3; }
+        .summary-banner { background:rgba(0,0,0,0.28); color:#FFFFFF; font-size:13px; padding:8px 14px; border-radius:10px; margin-top:8px; }
+        .snap-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; padding:12px 16px; }
+        .snap-item { background:#FFFFFF; border:1px solid var(--border); border-radius:10px; padding:10px; text-align:center; }
+        .snap-item-label { font-size:11px; color:var(--muted); font-weight:600; }
+        .snap-item-value { font-size:15px; font-weight:700; }
+        .chapter-card { background:#FFFFFF; border:1px solid var(--border); border-radius:14px; margin:12px 16px; padding:18px 16px; }
+        .chapter-header { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+        .chapter-num { width:27px; height:27px; background:var(--navy); color:#FFFFFF; font-size:13px; font-weight:700; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+        .chapter-title { font-size:19px; font-weight:700; color:var(--navy); }
+        .chapter-text { font-size:14.5px; color:var(--text); line-height:1.7; }
+        .badge { display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:6px; margin-right:4px; }
+        .insight { display:inline-block; font-size:12px; font-weight:600; padding:4px 10px; border-radius:8px; margin:4px 4px 0 0; }
+        .insight.red { background:var(--lred); color:var(--red); }
+        .insight.green { background:var(--lgreen); color:var(--green); }
+        .supply-bar { margin-top:12px; }
+        .supply-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+        .supply-label { font-size:13px; font-weight:600; width:42px; }
+        .supply-bar-wrap { flex:1; height:10px; background:#eee; border-radius:5px; overflow:hidden; }
+        .supply-bar-fill { height:100%; border-radius:5px; }
+        .supply-bar-fill.buy { background:var(--green); }
+        .supply-bar-fill.sell { background:var(--red); }
+        .val-up { color:var(--red); }
+        .val-down { color:var(--blue); }
+        @media (prefers-color-scheme: dark) {
+          :root { --bg: #0D1218; --text: #E0E5ED; --border: #2A3440; }
+          body { background: var(--bg); }
+          .chapter-card { background: #141A22; }
+          .snap-item { background: #141A22; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="masthead">
+            <div class="logo-tag">iM뱅크 모닝 마켓 브리프</div>
+            <div class="masthead-title">기술주의 깃발이 밤하늘을 수놓고, 코스피는 새로운 고도를 탐험합니다</div>
+            <p class="summary-banner">2026년 4월 11일 토요일, 상쾌한 봄바람이 불어오는 주말 아침입니다. 지난밤 글로벌 증시의 주요 흐름을 통해 다가올 한 주를 현명하게 준비하시길 바랍니다.</p>
+        </div>
+
+        <div class="snap-row">
+            <div class="snap-item">
+                <div class="snap-item-label">S&P 500</div>
+                <div class="snap-item-value">6,816.89 <span class="val-down">-0.11%</span></div>
+            </div>
+            <div class="snap-item">
+                <div class="snap-item-label">Nasdaq</div>
+                <div class="snap-item-value">22,902.89 <span class="val-up">+0.35%</span></div>
+            </div>
+            <div class="snap-item">
+                <div class="snap-item-label">USD/KRW</div>
+                <div class="snap-item-value">1,482.70 <span class="val-up">+0.64%</span></div>
+            </div>
+        </div>
+
+        <div class="chapter-card">
+            <div class="chapter-header">
+                <div class="chapter-num">CH1</div>
+                <div class="chapter-title">간밤의 미 증시 결산: 기술주 랠리 속 혼조세</div>
+            </div>
+            <div class="chapter-text">
+                간밤 뉴욕 증시는 <span class="badge" style="background:var(--lsky); color:var(--sky);">혼조세</span>로 마감했습니다. 다우존스 산업평균지수와 S&P 500 지수는 소폭 하락했으나, 나스닥 종합지수는 기술주와 반도체 섹터의 강세에 힘입어 상승세를 보였습니다. 특히, <span class="insight green">필라델피아 반도체 지수(SOX)가 2.31% 급등</span>하며 기술 섹터 전반에 긍정적인 분위기를 확산시켰습니다. NVIDIA(+2.57%)를 필두로 한 주요 반도체 기업들의 주가가 상승하며 시장의 기대를 반영했습니다.
+
+                이러한 기술주 중심의 상승은 최근 AI 기술 발전과 관련된 긍정적인 소식들이 지속된 결과로 풀이됩니다. 특히 Alibaba가 새로운 AI 모델 개발을 위해 2억 9천만 달러를 투자한다는 소식은 인공지능 분야의 뜨거운 열기를 다시 한번 확인시켜 주었습니다. 반면, 일부 대형 기술주(Apple, Microsoft)는 횡보하거나 소폭 하락하며 차익 실현 움직임이 나타나기도 했습니다.
+
+                채권 시장에서는 미국 10년물 국채 금리가 소폭 상승했으나, 변동성 지수(VIX)는 하락하며 시장의 전반적인 <span class="badge" style="background:var(--lgreen); color:var(--green);">안정감</span>을 시사했습니다. 마이클 버리가 팔란티어에 대한 공매도 포지션을 유지한다는 소식은 특정 종목에 대한 개별적인 이슈로 작용했지만, 시장 전체의 흐름을 뒤바꿀 정도는 아니었습니다. 전반적으로 투자자들은 견조한 경제 지표와 기업 실적에 대한 기대를 유지하며, AI와 반도체 섹터의 성장 모멘텀에 주목하는 모습입니다.
+            </div>
+        </div>
+
+        <div class="chapter-card">
+            <div class="chapter-header">
+                <div class="chapter-num">CH2</div>
+                <div class="chapter-title">수급 및 업종 흐름: 반도체·AI 집중과 환율 변동성</div>
+            </div>
+            <div class="chapter-text">
+                지난밤 미 증시 흐름과 최신 뉴스들을 종합해볼 때, 글로벌 기관 투자자들의 자금은 <span class="insight green">인공지능(AI)과 반도체</span> 관련 혁신 기술 기업으로의 집중 현상이 심화되고 있음을 알 수 있습니다. 특히 BlackRock의 롱숏 전략 ETF 도입 소식은 시장의 효율성을 높이려는 기관들의 새로운 시도를 보여주며, 특정 섹터에 대한 더욱 정교한 투자 전략이 요구될 것임을 시사합니다.
+
+                한편, 원/달러 환율이 1,482원대까지 상승하며 원화 약세가 지속되는 점은 주목해야 할 부분입니다. 이는 국내 증시에 대한 외국인 투자심리에 양면적인 영향을 미칠 수 있습니다. 수출 기업에는 긍정적이나, 외국인 자금 유출 압력으로 작용할 가능성도 상존합니다. 지난 금요일 코스피가 1.4% 상승하며 5,800선을 돌파하는 강세를 보였음에도, 환율의 불안정성은 다음 주 시장의 중요한 변수가 될 것입니다.
+
+                다음은 주요 업종에 대한 투자 심리 흐름 (추정치) 입니다:
+                <div class="supply-bar">
+                    <div class="supply-row">
+                        <div class="supply-label">반도체/<br>AI</div>
+                        <div class="supply-bar-wrap"><div class="supply-bar-fill buy" style="width:85%;"></div></div>
+                    </div>
+                    <div class="supply-row">
+                        <div class="supply-label">에너지</div>
+                        <div class="supply-bar-wrap"><div class="supply-bar-fill sell" style="width:60%;"></div></div>
+                    </div>
+                    <div class="supply-row">
+                        <div class="supply-label">경기<br>방어주</div>
+                        <div class="supply-bar-wrap"><div class="supply-bar-fill buy" style="width:40%;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chapter-card">
+            <div class="chapter-header">
+                <div class="chapter-num">CH3</div>
+                <div class="chapter-title">다음 주 한국 증시 전략: AI/반도체 모멘텀 활용 및 환율 모니터링</div>
+            </div>
+            <div class="chapter-text">
+                주말을 앞두고 지난 금요일 KOSPI는 1.4%의 강한 상승세를 보이며 마감했습니다. 특히 미국 반도체 지수의 급등은 다음 주 월요일 한국 증시의 <span class="insight green">AI 및 반도체 섹터</span>에 강력한 긍정적 모멘텀으로 작용할 것으로 예상됩니다. 관련 대형주와 소부장(소재·부품·장비) 기업들의 주가 흐름에 집중해야 할 시점입니다.
+
+                하지만 원/달러 환율의 상승세는 주의 깊게 지켜봐야 할 부분입니다. 환율 변동성은 시장 전체의 방향성을 좌우할 수 있는 중요한 요소이므로, 다음 주 외환 시장의 동향을 면밀히 모니터링하며 <span class="badge" style="background:var(--lred); color:var(--red);">리스크 관리</span>에 만전을 기해야 합니다. 중국이 이란 전쟁의 휴전을 위해 '적극적인 노력'을 기울인다는 소식은 중동발 지정학적 리스크 완화에 대한 기대를 높이지만, 유가 하락(WTI -1.33%)은 에너지 관련주에는 부정적일 수 있습니다.
+
+                <span class="insight green">핵심 전략</span>:
+                <ul>
+                    <li><span class="badge" style="background:var(--lgreen); color:var(--green);">반도체/AI 주도주</span>: 글로벌 기술주의 강세에 힘입어 국내 반도체 및 AI 관련 대형주와 성장 잠재력이 높은 중소형주에 대한 지속적인 관심이 필요합니다.</li>
+                    <li><span class="badge" style="background:var(--lgold); color:var(--gold);">환율 변동성 대응</span>: 환율 상승은 수출 기업에 긍정적이지만, 전반적인 시장 불안을 야기할 수 있습니다. 환율 상승에 따른 수혜주와 피해주를 구분하여 대응하고, 헤지 전략을 고려해보는 것도 좋은 방법입니다.</li>
+                    <li><span class="badge" style="background:var(--lblue); color:var(--blue);">방어적 포트폴리오</span>: 급변하는 시장 환경 속에서 안정적인 배당 수익을 제공하거나 경기 방어적인 성격을 지닌 종목들로 포트폴리오의 균형을 맞추는 전략 또한 유효합니다.</li>
+                </ul>
+                성공적인 투자를 위해 iM뱅크가 늘 함께 하겠습니다. 편안하고 행복한 주말 보내십시오.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
