@@ -5,8 +5,8 @@ from datetime import datetime
 import pandas_market_calendars as mcal
 import pandas as pd
 import requests
-from report_engine.data_collector import DataCollector
-from report_engine.report_generator import ReportGenerator
+from data_collector import DataCollector
+from report_generator import ReportGenerator
 from dotenv import load_dotenv
 
 load_dotenv()
