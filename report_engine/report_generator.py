@@ -116,9 +116,15 @@ body {{
 .game-btn {{ display: inline-block; background: var(--im-navy); color: #fff; padding: 15px 35px; border-radius: 4px; text-decoration: none; font-weight: 800; font-size: 15px; transition: 0.3s; }}
 .game-btn:hover {{ background: #000; transform: translateY(-2px); }}
 
-/* Game Widget Iframe */
-.game-widget-container {{ margin: 40px 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #fff; }}
-.game-widget-iframe {{ width: 100%; height: 320px; border: none; }}
+/* Game Voting Strip */
+.voting-strip {{ margin: 45px 0; text-align: center; background: var(--lnavy); padding: 40px 20px; border-radius: 4px; }}
+.voting-prompt {{ font-size: 18px; font-weight: 800; color: var(--im-navy); margin-bottom: 25px; letter-spacing: -0.5px; }}
+.voting-buttons {{ display: flex; gap: 15px; justify-content: center; }}
+.vote-btn {{ flex: 1; max-width: 200px; padding: 20px; border-radius: 4px; text-decoration: none; font-weight: 800; font-size: 18px; transition: 0.3s; color: #fff; text-align: center; }}
+.vote-btn.up {{ background: var(--red); }}
+.vote-btn.down {{ background: var(--blue-down); }}
+.vote-btn:hover {{ filter: brightness(1.2); transform: translateY(-3px); }}
+.vote-caption {{ font-size: 12px; color: var(--muted); margin-top: 15px; font-style: italic; }}
 
 .up {{ color: #FF5252; }}
 .down {{ color: #448AFF; }}
@@ -161,11 +167,19 @@ body {{
    - 단순 요약이 아닌 심층 분석(A4 3페이지 이상)을 수행하세요. {krx_context}
    - `pull-quote`, `callout-box`, `tech-table`을 적재적소에 배치하여 잡지 스타일을 완성하세요.
 
-3. **게임 연동 (Engagement)**:
-   - **실시간 위젯 삽입**: 리포트의 **두 번째 심층 분석 섹션이 끝나는 지점**에 반드시 아래의 게임 참여 위젯 코드를 삽입하세요. 
-     `<div class="game-widget-container"><iframe src="https://im-ai-market-report.vercel.app/embed/game" class="game-widget-iframe" scrolling="no"></iframe></div>`
-   - 이 위젯은 독자가 리포트를 읽는 맥락 속에서 즉시 오늘의 KOSPI 향방을 예측할 수 있게 해줍니다.
-   - KRX 영업일일 경우, 리포트 하단(footer 이전)에도 기존의 `<section class="game-section">` 참여 유도 버튼을 한 번 더 배치하여 리마인드하세요.
+3. **게임 연동 (One-Click Engagement)**:
+   - **직접 투표 버튼 삽입**: 리포트의 **두 번째 심층 분석 섹션이 끝나는 지점**에 반드시 아래의 투표 버튼 섹션을 삽입하세요.
+     ```html
+     <div class="voting-strip">
+         <div class="voting-prompt">오늘의 KOSPI, 당신의 선택은?</div>
+         <div class="voting-buttons">
+             <a href="https://im-ai-market-report.vercel.app?vote=UP" class="vote-btn up">▲ 오른다 (UP)</a>
+             <a href="https://im-ai-market-report.vercel.app?vote=DOWN" class="vote-btn down">▼ 내린다 (DOWN)</a>
+         </div>
+         <div class="vote-caption">버튼을 누르면 즉시 투표가 완료됩니다 (로그인 필요)</div>
+     </div>
+     ```
+   - KRX 영업일일 경우, 리포트 하단(footer 이전)에도 동일한 투표 섹션 또는 참여 유도 버튼을 배치하세요.
 
 4. **시각적 제약**:
    - 픽토그램, 이모지 절대 금지. 오직 폰트와 선으로만 격을 표현하세요.

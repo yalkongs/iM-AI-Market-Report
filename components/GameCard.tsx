@@ -27,23 +27,22 @@ export default function GameCard({ todayDate, isOpen, isClosed, deadlineLabel, i
 
   // URL ?vote= 파라미터 처리 (모닝브리핑 HTML에서 클릭 시)
   useEffect(() => {
-    if (!isOpen) return
+    if (!isOpen || authLoading) return
     const params = new URLSearchParams(window.location.search)
     const vote = params.get('vote')?.toUpperCase()
     if (vote === 'UP' || vote === 'DOWN') {
       if (user) {
-        // 로그인 상태 → 즉시 자동 제출
-        handleBet(vote)
-        // URL 파라미터 제거 (새로고침 시 중복 방지)
+        console.log(`[GameCard] Auto-betting from URL: ${vote}`)
+        handleBet(vote as 'UP' | 'DOWN')
         window.history.replaceState({}, '', window.location.pathname)
       } else {
-        // 비로그인 → 선택 기억 후 바로 Google 로그인
-        setPendingChoice(vote)
+        console.log(`[GameCard] Pending vote from URL: ${vote}, triggering sign-in`)
+        setPendingChoice(vote as 'UP' | 'DOWN')
         window.history.replaceState({}, '', window.location.pathname)
         signIn()
       }
     }
-  }, [user, isOpen])
+  }, [user, isOpen, authLoading])
 
   useEffect(() => {
     if (!user) {
@@ -172,17 +171,11 @@ export default function GameCard({ todayDate, isOpen, isClosed, deadlineLabel, i
   if (authLoading || (user && todayBet === undefined)) {
     return (
       <div className="overflow-hidden rounded-2xl shadow-sm border border-gray-100 bg-white">
-        <div className="px-6 pt-6 pb-4 text-center border-b border-gray-100">
-          <div className="h-5 w-32 bg-gray-100 rounded mx-auto mb-3 animate-pulse" />
-          <div className="h-7 w-48 bg-gray-100 rounded mx-auto animate-pulse" />
-        </div>
-        <div className="flex">
-          <div className="flex-1 py-10 bg-red-50 flex items-center justify-center">
-            <div className="h-12 w-12 bg-red-100 rounded-lg animate-pulse" />
-          </div>
-          <div className="flex-1 py-10 bg-blue-50 flex items-center justify-center border-l border-blue-100">
-            <div className="h-12 w-12 bg-blue-100 rounded-lg animate-pulse" />
-          </div>
+        <div className="px-6 pt-10 pb-10 text-center">
+          <div className="h-8 w-8 border-4 border-navy border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-gray-600 font-bold">
+            {pendingChoice ? `${pendingChoice} 예측을 등록하고 있습니다...` : '데이터를 불러오고 있습니다...'}
+          </p>
         </div>
       </div>
     )
