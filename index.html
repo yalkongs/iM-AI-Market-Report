@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iM AI Market Report Archive</title>
+    <style>
+        :root { --navy: #2A3050; --gold: #C8940A; --bg: #F5F7F9; --text: #1A1A1A; }
+        body { font-family: 'Pretendard', sans-serif; background: var(--bg); margin: 0; color: var(--text); }
+        .header { background: var(--navy); color: #fff; padding: 40px 20px; text-align: center; }
+        .header h1 { margin: 0; font-size: 24px; letter-spacing: -1px; }
+        .header p { font-size: 14px; opacity: 0.7; margin-top: 10px; }
+        
+        .container { max-width: 800px; margin: -30px auto 40px; padding: 0 20px; }
+        
+        .hero-card { background: #fff; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 30px; text-align: center; border: 1px solid #eee; }
+        .hero-tag { color: var(--gold); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; }
+        .hero-title { font-size: 22px; font-weight: 800; margin-bottom: 20px; line-height: 1.4; }
+        .btn { display: inline-block; background: var(--navy); color: #fff; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 15px; transition: 0.3s; }
+        .btn:hover { background: var(--gold); transform: translateY(-2px); }
+
+        .archive-section { display: grid; grid-template-columns: 1fr; gap: 30px; }
+        .calendar-card { background: #fff; border-radius: 20px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); border: 1px solid #eee; }
+        .calendar-title { font-size: 18px; font-weight: 800; margin-bottom: 20px; color: var(--navy); }
+        
+        /* Simple List for now (Expandable to real JS Calendar) */
+        .report-list { list-style: none; padding: 0; }
+        .report-item { border-bottom: 1px solid #f0f0f0; padding: 15px 0; display: flex; justify-content: space-between; align-items: center; }
+        .report-item:last-child { border-bottom: none; }
+        .report-date { font-weight: 700; color: #555; }
+        .report-link { color: var(--navy); text-decoration: none; font-size: 14px; font-weight: 600; border: 1px solid var(--navy); padding: 4px 12px; border-radius: 15px; }
+        .report-link:hover { background: var(--navy); color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>iM AI Market Report</h1>
+        <p>AI가 분석하는 가장 권위 있는 모닝 브리핑</p>
+    </div>
+    
+    <div class="container">
+        <div class="hero-card">
+            <span class="hero-tag">Latest Update</span>
+            <div class="hero-title">가장 최신 리포트가 발행되었습니다</div>
+            <a href="results/morning_report_20260411_2121.html" class="btn">지금 읽기</a>
+        </div>
+
+        <div class="calendar-card">
+            <div class="calendar-title">리포트 아카이브</div>
+            <ul class="report-list">
+                <li class="report-item"><span class="report-date">2026-04-11</span><a href="results/morning_report_20260411_1719.html" class="report-link">보기</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <footer style="text-align: center; padding: 40px; color: #aaa; font-size: 12px;">
+        &copy; 2026 iM Bank AI Report System. All rights reserved.
+    </footer>
+</body>
+</html>

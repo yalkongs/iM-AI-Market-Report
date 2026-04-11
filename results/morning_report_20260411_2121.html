@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iM뱅크 글로벌 시장 심층 분석 리포트: 미묘한 변화 속 지혜로운 항해</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&display=swap" rel="stylesheet">
+    <style>
+        /* Pretendard 폰트 우선 적용을 위한 선언 (로컬 설치 가정 또는 CDN 사용) */
+        @font-face {
+            font-family: 'Pretendard';
+            src: local('Pretendard-Regular'), url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard-regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Pretendard';
+            src: local('Pretendard-SemiBold'), url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard-semibold.woff') format('woff');
+            font-weight: 600;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Pretendard';
+            src: local('Pretendard-Bold'), url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard-bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .container {
+            max-width: 960px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+        }
+        header {
+            text-align: center;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 40px;
+        }
+        header h1 {
+            font-family: 'Georgia', serif;
+            font-size: 2.8em;
+            color: #002244; /* iM뱅크 브랜드 컬러 느낌 */
+            margin: 0;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+        }
+        header p {
+            font-size: 1.1em;
+            color: #555;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+        h2 {
+            font-family: 'Georgia', serif;
+            font-size: 2.2em;
+            color: #003366;
+            margin-top: 55px;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e0e0e0;
+            letter-spacing: -0.02em;
+        }
+        h3 {
+            font-family: 'Georgia', serif;
+            font-size: 1.8em;
+            color: #004488;
+            margin-top: 45px;
+            margin-bottom: 18px;
+            letter-spacing: -0.01em;
+        }
+        p {
+            margin-bottom: 1.6em;
+            text-align: justify;
+        }
+        .section-intro {
+            font-size: 1.25em;
+            font-weight: 500;
+            color: #444;
+            margin-bottom: 35px;
+            line-height: 1.6;
+            padding: 0 10px;
+        }
+        .market-data {
+            background-color: #fdfdfd;
+            border: 1px solid #e9e9e9;
+            padding: 28px;
+            margin-bottom: 45px;
+            border-radius: 6px;
+        }
+        .market-data h3 {
+            margin-top: 0;
+            color: #0055aa;
+            border-bottom: 1px dashed #e0e0e0;
+            padding-bottom: 12px;
+            margin-bottom: 22px;
+            font-size: 1.6em;
+        }
+        .market-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .market-table th, .market-table td {
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.98em;
+        }
+        .market-table th {
+            background-color: #f3f7f9;
+            color: #003366;
+            font-weight: 600;
+        }
+        .market-table tr:last-child td {
+            border-bottom: none;
+        }
+        .data-positive {
+            color: #0077c2; /* A professional blue for positive */
+            font-weight: 600;
+        }
+        .data-negative {
+            color: #cc0000; /* A clear red for negative */
+            font-weight: 600;
+        }
+        .data-neutral {
+            color: #555;
+            font-weight: 500;
+        }
+        .mag-pull-quote {
+            font-family: 'Georgia', serif;
+            font-size: 2.3em;
+            font-style: italic;
+            color: #0055aa;
+            text-align: center;
+            margin: 60px auto;
+            padding: 25px 50px;
+            border-left: 5px solid #0055aa;
+            border-right: 5px solid #0055aa;
+            line-height: 1.4;
+            max-width: 85%;
+            background-color: #f7faff;
+            border-radius: 8px;
+        }
+        .mag-pull-quote strong {
+            font-weight: bold;
+        }
+        .mag-callout {
+            background-color: #fefbec;
+            border-left: 4px solid #f4c430; /* A soft yellow for callout */
+            padding: 22px 30px;
+            margin: 45px 0;
+            font-size: 1.08em;
+            color: #5c4700;
+            line-height: 1.6;
+            border-radius: 6px;
+        }
+        .mag-callout strong {
+            color: #7a5f00;
+        }
+        .news-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .news-section li {
+            background-color: #fcfcfc;
+            border: 1px solid #eee;
+            margin-bottom: 18px;
+            padding: 20px 28px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+        .news-section li strong {
+            display: block;
+            font-size: 1.18em;
+            color: #004488;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .news-section li a {
+            color: #0077c2;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        .news-section li a:hover {
+            text-decoration: underline;
+            color: #005ea6;
+        }
+        footer {
+            text-align: center;
+            padding-top: 45px;
+            margin-top: 55px;
+            border-top: 1px solid #eee;
+            color: #777;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        .footer-ai-note {
+            font-style: italic;
+            margin-top: 12px;
+            color: #888;
+        }
+        strong {
+            font-weight: 600; /* Pretendard SemiBold */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>iM뱅크 글로벌 시장 심층 분석 리포트</h1>
+            <p>발행일시: 2026년 04월 11일 21:20 AM KST | 시장 심리 테마: NEUTRAL</p>
+        </header>
+
+        <section class="editorial-lead">
+            <h2>고요한 새벽, 통찰의 항해</h2>
+            <p class="section-intro">
+                고요한 새벽을 뚫고 빛나는 글로벌 금융 시장의 항해는 언제나 복합적인 파고를 품고 있습니다. 
+                KRX의 문이 잠시 닫힌 오늘, 우리는 잠시 멈춰서 밤사이 격동했던 세계 시장의 거대한 흐름을 차분히 성찰하고, 다음 항해를 위한 지혜를 모아야 할 때입니다. 
+                변화무쌍한 지표의 미묘한 변동 속에서도 미래를 관통하는 통찰을 제공하고자 하는 <strong>iM뱅크의 금융 분석 시스템</strong>은, 
+                오늘 역시 심층적인 데이터 분석을 통해 시장의 본질을 꿰뚫는 시각을 제시합니다.
+            </p>
+        </section>
+
+        <section class="market-overview">
+            <h2>글로벌 시장 주요 지표 점검</h2>
+            <div class="market-data">
+                <h3>주요 글로벌 지수 및 상품 동향</h3>
+                <table class="market-table">
+                    <thead>
+                        <tr>
+                            <th>지표</th>
+                            <th>현재가</th>
+                            <th>변동</th>
+                            <th>변동률</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>S&P 500</td>
+                            <td>6,816.89</td>
+                            <td class="data-negative">-7.77</td>
+                            <td class="data-negative">-0.11%</td>
+                        </tr>
+                        <tr>
+                            <td>Nasdaq</td>
+                            <td>22,902.89</td>
+                            <td class="data-positive">+80.47</td>
+                            <td class="data-positive">+0.35%</td>
+                        </tr>
+                        <tr>
+                            <td>Dow Jones</td>
+                            <td>47,916.57</td>
+                            <td class="data-negative">-269.23</td>
+                            <td class="data-negative">-0.56%</td>
+                        </tr>
+                        <tr>
+                            <td>KOSPI <span style="font-size:0.8em; color:#777;">(직전 종가)</span></td>
+                            <td>5,858.87</td>
+                            <td class="data-positive">+80.86</td>
+                            <td class="data-positive">+1.40%</td>
+                        </tr>
+                        <tr>
+                            <td>USD/KRW</td>
+                            <td>1,482.70</td>
+                            <td class="data-positive">+9.42</td>
+                            <td class="data-positive">+0.64%</td>
+                        </tr>
+                        <tr>
+                            <td>WTI Oil</td>
+                            <td>96.57</td>
+                            <td class="data-negative">-1.30</td>
+                            <td class="data-negative">-1.33%</td>
+                        </tr>
+                        <tr>
+                            <td>VIX</td>
+                            <td>19.23</td>
+                            <td class="data-negative">-0.26</td>
+                            <td class="data-negative">-1.33%</td>
+                        </tr>
+                        <tr>
+                            <td>US 10Y Bond</td>
+                            <td>4.32%</td>
+                            <td class="data-positive">+0.02</td>
+                            <td class="data-positive">+0.56%</td>
+                        </tr>
+                        <tr>
+                            <td>SOX</td>
+                            <td>8,889.83</td>
+                            <td class="data-positive">+200.30</td>
+                            <td class="data-positive">+2.31%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>주요 기술주 동향</h3>
+                <table class="market-table">
+                    <thead>
+                        <tr>
+                            <th>종목</th>
+                            <th>현재가</th>
+                            <th>변동률</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>NVIDIA</td>
+                            <td>188.63</td>
+                            <td class="data-positive">+2.57%</td>
+                        </tr>
+                        <tr>
+                            <td>Apple</td>
+                            <td>260.48</td>
+                            <td class="data-neutral">+0.00%</td>
+                        </tr>
+                        <tr>
+                            <td>Tesla</td>
+                            <td>348.95</td>
+                            <td class="data-positive">+0.96%</td>
+                        </tr>
+                        <tr>
+                            <td>Microsoft</td>
+                            <td>370.87</td>
+                            <td class="data-negative">-0.59%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                밤사이 글로벌 시장은 엇갈린 흐름을 보였습니다. 
+                기술주 중심의 나스닥 지수는 상승세를 이어갔으나, S&P 500과 다우존스 지수는 소폭 하락하며 혼조세를 나타냈습니다. 
+                특히 반도체 지수인 SOX가 <strong>2.31% 상승</strong>하며 기술 섹터 내에서도 뚜렷한 강세를 보였고, 엔비디아가 <strong>2.57%의 견조한 상승률</strong>을 기록하며 시장의 특정 부문에 대한 기대를 반영했습니다. 
+                원유 가격은 하락하고 변동성 지수(VIX)도 완화되는 등 일부 안도감을 주는 지표도 관측되었으나, 
+                원/달러 환율은 <strong>1,482.70원으로 0.64% 상승</strong>하며 여전히 환율 불안정성이 지속되고 있음을 시사합니다.
+            </p>
+        </section>
+
+        <div class="mag-pull-quote">
+            "시장의 고요는 때로 가장 강력한 통찰의 순간을 제공한다. 휴장일, 우리는 더 멀리 내다볼 기회를 얻는다."
+        </div>
+
+        <section class="deep-dive-chapters">
+            <h2>심층 분석: 혼조세 속 숨겨진 기회와 위험</h2>
+
+            <h3>기술 섹터의 선별적 강세와 AI의 이중성</h3>
+            <p>
+                어제 밤 글로벌 기술 시장은 뚜렷한 양극화를 보였습니다. 
+                나스닥 지수가 <strong>0.35% 상승</strong>한 반면, S&P 500과 다우존스는 소폭 하락세를 기록했습니다. 
+                이러한 차이는 기술 섹터 내부의 역동성에 기인합니다. 특히 필라델피아 반도체 지수(SOX)가 <strong>2.31%의 강세</strong>를 보였고, 
+                선두 주자인 엔비디아가 <strong>2.57% 상승</strong>하며 반도체 산업의 견고한 성장 기대를 재확인했습니다. 
+                반면 마이크로소프트는 <strong>0.59% 하락</strong>하며 AI 기술의 발전이 모든 소프트웨어 기업에 긍정적이지만은 않음을 보여주었습니다.
+            </p>
+            <p>
+                최근 뉴스들은 AI의 진화가 시장에 가져오는 <strong>이중적인 영향</strong>을 명확히 보여줍니다. 
+                알리바바 클라우드가 '범용 세계 모델(general world model)' 개발에 대규모 투자를 단행하며 차세대 AI 모델 경쟁에 불을 지피는 소식은 기술 혁신에 대한 기대를 높였습니다. 
+                하지만 다른 한편으로는, Anthropic의 새로운 AI 에이전트 출시에 대한 우려가 소프트웨어 주식 전반의 매도세를 촉발하며 
+                "AI 위협이 소프트웨어 주식을 끈질기게 괴롭히고 있다"는 인식이 확산되는 등 <strong>AI가 기존 비즈니스 모델을 위협할 수 있다는 투자자들의 불안감</strong>이 여전함을 드러냈습니다. 
+                심지어 '빅쇼트'의 마이클 버리가 팔란티어에 대한 공매도 포지션을 유지하고 있다는 소식은, 
+                과도한 AI 거품 가능성에 대한 <strong>신중한 시각</strong>도 시장 한편에 존재함을 상기시킵니다.
+            </p>
+
+            <h3>거시 경제 지표의 미묘한 변동과 정책적 함의</h3>
+            <p>
+                주요 거시 경제 지표는 글로벌 경제의 복합적인 상황을 반영합니다. 
+                원/달러 환율은 <strong>1,482.70원으로 0.64% 상승</strong>하며 원화 약세 기조가 이어지고 있습니다. 
+                이는 국내외 금리차, 지정학적 리스크, 달러 강세 등의 복합적인 요인이 작용한 결과로 해석됩니다. 
+                국내 휴장일임에도 불구하고 이처럼 중요한 환율 변동은 다음 개장일에 국내 시장에 미칠 영향을 주시하게 만듭니다. 
+                한편, 국제 유가(WTI)는 <strong>1.33% 하락한 96.57달러</strong>를 기록했으며, 변동성 지수(VIX) 역시 <strong>1.33% 하락한 19.23</strong>을 기록하며 단기적인 시장 불안감이 다소 완화되는 모습을 보였습니다.
+            </p>
+            <p>
+                미국 10년물 국채 금리는 <strong>4.32%로 0.56% 소폭 상승</strong>하며 금리 인하에 대한 시장의 기대감이 재조정될 수 있음을 시사했습니다. 
+                그러나 연방준비제도(Fed) 관계자들은 전쟁의 영향에도 불구하고 올해 금리 인하를 여전히 전망하고 있다는 연준 의사록이 공개되며, 
+                시장은 <strong>유연한(nimble) 정책 대응</strong>에 대한 기대를 유지하고 있습니다. 
+                중국의 이란 휴전 노력이 글로벌 수출 수요 유지라는 자국 경제적 이익과 연결되어 있다는 분석은, 
+                글로벌 공급망과 원자재 시장에 대한 지정학적 요소의 영향력이 여전히 지대함을 보여줍니다. 
+                이러한 미묘한 경제 지표의 변동은 각국 중앙은행의 향후 정책 결정에 중요한 영향을 미칠 것으로 예상됩니다.
+            </p>
+
+            <div class="mag-callout">
+                <strong>[iM뱅크 인사이트]</strong>
+                글로벌 시장의 엇갈린 신호들은 투자자들에게 <strong>선별적인 접근과 유연한 전략</strong>의 중요성을 강조합니다. 
+                특정 섹터의 강세는 유효하지만, 거시 경제 지표와 지정학적 리스크는 언제든 시장의 방향을 바꿀 수 있는 잠재력을 지니고 있습니다. 
+                장기적인 관점에서 <strong>분산 투자의 원칙</strong>을 견지하는 것이 중요합니다.
+            </div>
+
+            <h3>글로벌 투자 전략의 재편: 헤지펀드에서 ETF까지</h3>
+            <p>
+                혼조세가 짙은 시장 환경 속에서, 투자 전략의 진화는 더욱 가속화되고 있습니다. 
+                블랙록이 헤지펀드의 전략을 ETF에 적용하는, 이른바 '리퀴드 알트(liquid alternative) ETF'를 통해 롱-숏 전략을 도입하는 움직임은 
+                변동성 높은 시장에서 <strong>알파 수익을 추구하는 새로운 방법론</strong>을 제시하고 있습니다. 
+                이는 전통적인 투자 방식으로는 어려운 시장 상황에서 <strong>다양한 투자 솔루션</strong>을 모색하려는 금융 기관들의 노력을 대변합니다.
+            </p>
+            <p>
+                레이 달리오 브릿지워터 창업자가 예상하는 트럼프-시진핑 회담의 무역 및 자본 흐름 논의 전망은 
+                향후 글로벌 경제의 큰 틀을 좌우할 <strong>지정학적 리더십의 중요성</strong>을 다시금 강조합니다. 
+                이러한 거시적 변동성은 장기적인 포트폴리오 구성에 있어 <strong>위험 관리와 기회 발굴</strong>이라는 두 가지 축을 동시에 고려하게 합니다. 
+                단순히 시장의 흐름에 편승하기보다는, 거대한 흐름의 전환점에서 <strong>전략적 포지셔닝</strong>을 고민해야 할 시점입니다.
+            </p>
+
+            <h3>시장 심리 브리핑: 'NEUTRAL'의 의미</h3>
+            <p>
+                현재 시장 심리는 '<strong>NEUTRAL</strong>'로 평가됩니다. 이는 시장에 뚜렷한 상승 또는 하락 모멘텀이 부재하며, 
+                투자자들이 향후 방향성에 대해 <strong>관망세를 유지</strong>하고 있음을 의미합니다. 
+                이러한 중립적인 심리는 위에서 언급된 엇갈린 경제 지표와 불확실한 지정학적 상황을 반영하는 자연스러운 결과입니다. 
+                'NEUTRAL' 심리에서는 섣부른 판단보다는 <strong>데이터에 기반한 신중한 접근</strong>이 더욱 중요해집니다. 
+                이는 다음 주요 경제 지표 발표나 지정학적 이벤트에 따라 시장 방향이 언제든 전환될 수 있음을 시사하기도 합니다. 
+                따라서 개별 기업의 펀더멘털 분석과 거시 경제 흐름에 대한 지속적인 모니터링이 필수적입니다.
+            </p>
+        </section>
+
+        <section class="news-section">
+            <h2>주요 글로벌 뉴스 요약</h2>
+            <ul>
+                <li>
+                    <strong>Michael Burry, 팔란티어에 대한 지속적인 베팅</strong><br>
+                    "빅쇼트"로 유명한 투자자 마이클 버리가 트럼프 대통령의 게시물이 주가를 끌어올린 이후에도 인공지능 소프트웨어 회사 팔란티어에 대한 장기 풋옵션을 계속 보유하고 있다고 밝혔습니다. 이는 AI 관련 주식의 고평가에 대한 비판적 시각을 반영합니다.
+                    <a href="https://www.cnbc.com/2026/04/10/michael-burry-says-hes-still-betting-against-palantir-after-trump-post-boosts-stock.html" target="_blank">[기사 원문]</a>
+                </li>
+                <li>
+                    <strong>프리마켓에서 가장 큰 움직임을 보이는 주식들</strong><br>
+                    Lumentum, ServiceNow, Sandisk 등 다수의 주식들이 프리마켓에서 큰 변동폭을 기록하며 개장 전 시장의 뜨거운 관심을 모았습니다. 이는 단기적인 시장 심리가 특정 종목에 집중될 수 있음을 시사합니다.
+                    <a href="https://www.cnbc.com/2026/04/10/stocks-making-the-biggest-moves-premarket-lite-now-sndk-more.html" target="_blank">[기사 원문]</a>
+                </li>
+                <li>
+                    <strong>블랙록, 헤지펀드 전략을 ETF에 적용</strong><br>
+                    블랙록의 제프리 로젠버그는 롱-숏 전략을 ETF 형태로 활용하는 '리퀴드 알트 ETF' 분야에서 선도적인 역할을 하고 있습니다. 이는 복잡한 헤지펀드 전략을 일반 투자자에게 접근 가능하게 하는 혁신적인 시도입니다.
+                    <a href="https://www.cnbc.com/2026/04/10/blackrock-rips-page-from-hedge-fund-playbook-applies-it-to-etfs.html" target="_blank">[기사 원문]</a>
+                </li>
+                <li>
+                    <strong>중국의 '이란 휴전' 노력: 비즈니스가 정치를 압도하다</strong><br>
+                    중국이 이란 휴전을 위해 적극적으로 노력하는 배경에는, 이란 전쟁이 중국의 경제 성장을 견인하는 수출에 대한 글로벌 수요를 위축시킬 수 있다는 리스크가 자리하고 있습니다. 이는 지정학적 문제가 경제적 이해관계와 밀접하게 연결되어 있음을 보여줍니다.
+                    <a href="https://www.cnbc.com/2026/04/10/china-iran-ceasefire-role-energy-economy-strategy.html" target="_blank">[기사 원문]</a>
+                </li>
+                <li>
+                    <strong>알리바바, LLM 한계 속 새로운 AI 모델 개발에 2.9억 달러 투자</strong><br>
+                    알리바바 클라우드가 스타트업 Shengshu에 2억 9천만 달러를 투자하여 "범용 세계 모델" 개발을 지원합니다. 이는 보다 실용적인 로봇 애플리케이션을 위한 길을 열며, 거대 언어 모델(LLM)의 한계를 극복하려는 AI 개발의 다음 단계를 보여줍니다.
+                    <a href="https://www.cnbc.com/2026/04/10/alibaba-cloud-invests-world-model-ai-shengshu-vidu.html" target="_blank">[기사 원문]</a>
+                </li>
+                <li>
+                    <strong>Anthropic의 새 AI 에이전트, 소프트웨어 주식 공포를 다시 불러일으키다</strong><br>
+                    Anthropic의 최신 매출 전망 및 업데이트는 AI가 소프트웨어 시장에 미칠 "심판의 날"에 대한 투자자들의 우려를 다시 불러일으켰습니다. 이는 AI 기술 발전이 기존 소프트웨어 기업들에게 잠재적인 위협이 될 수 있음을 강조합니다.
+                    <a href="https://www.cnbc.com/2026/04/09/anthropic-new-ai-agent-software-stocks-selloff.html" target="_blank">[기사 원문]</a>
+                </li>
+                <li>
+                    <strong>Fed 관계자들, 전쟁 영향에도 올해 금리 인하 전망 유지</strong><br>
+                    연준 의사록에 따르면, 정책 입안자들은 전쟁이 인플레이션에 미치는 영향을 고려하면서도 올해 금리 인하를 여전히 예상하고 있으며, '유연한' 대응이 필요하다고 밝혔습니다. 이는 통화 정책의 불확실성 속에서도 금리 인하 기대감이 여전히 유효함을 나타냅니다.
+                    <a href="https://www.cnbc.com/2026/04/08/fed-officials-still-foresee-rate-cut-this-year-despite-war-impacts-minutes-show.html" target="_blank">[기사 원문]</a>
+                </li>
+                <li>
+                    <strong>레이 달리오: 트럼프-시진핑 회담, 무역과 자본 흐름에 집중할 것</strong><br>
+                    브릿지워터 창업자 레이 달리오는 CNBC와의 인터뷰에서 다음 달 예정된 미국과 중국 대통령 간의 회담 결과에 대해 낙관적인 견해를 표명하며, 무역과 자본 흐름이 주요 의제가 될 것이라고 전망했습니다.
+                    <a href="https://www.cnbc.com/2026/04/08/ray-dalio-trump-xi-meeting-to-focus-on-trade-capital-flows.html" target="_blank">[기사 원문]</a>
+                </li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>본 리포트는 iM뱅크의 금융 분석 시스템이 글로벌 시장 데이터를 기반으로 생성한 고품질 웹 매거진 형식의 콘텐츠입니다.</p>
+            <p class="footer-ai-note">iM뱅크는 인공지능 기술을 활용하여 투자자 여러분께 최상의 통찰을 제공하기 위해 끊임없이 노력합니다.</p>
+            <p>&copy; 2026 iM뱅크. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
