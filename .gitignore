@@ -2,3 +2,6 @@
 venv/
 __pycache__/
 *.pyc
+.next/
+node_modules/
+# public/reports 내의 리포트들은 버전 관리에 포함하여 Vercel 배포에 반영함
