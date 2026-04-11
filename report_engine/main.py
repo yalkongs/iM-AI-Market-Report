@@ -46,11 +46,8 @@ def send_to_telegram(file_path):
             requests.post(url, data={'chat_id': chat_id, 'caption': caption}, files={'document': f})
     except Exception as e: print(f"❌ 텔레그램 오류: {e}")
 
-def update_portal():
-    """public/reports 폴더를 스캔하여 리포트 포털(index.html)을 생성합니다."""
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-        project_root = os.path.dirname(current_dir)
-        output_dir = os.path.join(project_root, "public", "reports")
+def update_portal(output_dir):
+    """지정된 output_dir 폴더를 스캔하여 리포트 포털(index.html)을 생성합니다."""
     if not os.path.exists(output_dir): os.makedirs(output_dir)
     
     files = glob.glob(os.path.join(output_dir, "morning_report_*.html"))
@@ -121,33 +118,43 @@ def update_portal():
 """
     with open(os.path.join(output_dir, "index.html"), "w", encoding="utf-8") as f:
         f.write(portal_html)
-    print("✅ 리포트 포털(public/reports/index.html) 업데이트 완료!")
+    print(f"✅ 리포트 포털({output_dir}/index.html) 업데이트 완료!")
 
 def main():
     print(f"🕒 실행 시각: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     is_open = is_krx_open_today()
+    
+    # 경로 설정: 실행 위치에 상관없이 프로젝트 루트의 public/reports를 찾음
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.dirname(current_dir)
+    output_dir = os.path.join(project_root, "public", "reports")
+    if not os.path.exists(output_dir): os.makedirs(output_dir)
+
     print("🚀 [1/3] 데이터 수집 및 분석 중...")
     collector = DataCollector()
     market_data = collector.get_market_data()
     news_list = collector.get_latest_news(limit=10)
+    
     if not market_data: return
+
     print(f"🤖 [2/3] AI 리포트 생성 중...")
     try:
         generator = ReportGenerator()
         raw_report = generator.generate_report(market_data, news_list, is_krx_open=is_open)
         html_report = clean_html_response(raw_report)
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        project_root = os.path.dirname(current_dir)
-        output_dir = os.path.join(project_root, "public", "reports")
-        if not os.path.exists(output_dir): os.makedirs(output_dir)
+        
         timestamp = datetime.now().strftime("%Y%m%d_%H%M")
         filename = f"morning_report_{timestamp}.html"
         output_file = os.path.join(output_dir, filename)
+        
         with open(output_file, "w", encoding="utf-8") as f:
             f.write(html_report)
+        
         send_to_telegram(output_file)
+        
         print("🌐 [3/3] 메인 포털 업데이트 중...")
-        update_portal()
+        update_portal(output_dir)
+
     except Exception as e:
         print(f"❌ 오류 발생: {e}")
 
