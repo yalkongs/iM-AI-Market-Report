@@ -121,8 +121,20 @@ def update_portal(output_dir):
     print(f"✅ 리포트 포털({output_dir}/index.html) 업데이트 완료!")
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--force-open', action='store_true')
+    args = parser.parse_args()
+
     print(f"🕒 실행 시각: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    is_open = is_krx_open_today()
+    
+    if args.force_open:
+        is_open = True
+        print("🧪 테스트 모드: 강제 개장 상태로 리포트를 생성합니다.")
+    else:
+        is_open = is_krx_open_today()
+    
+    print(f"📊 KRX 개장 여부: {'영업일' if is_open else '휴장일'}")
     
     # 경로 설정: 실행 위치에 상관없이 프로젝트 루트의 public/reports를 찾음
     current_dir = os.path.dirname(os.path.abspath(__file__))
