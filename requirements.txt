@@ -1,0 +1,7 @@
+yfinance
+feedparser
+google-genai
+python-dotenv
+pandas
+pandas_market_calendars
+requests
