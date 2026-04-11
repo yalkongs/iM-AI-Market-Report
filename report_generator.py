@@ -110,6 +110,12 @@ body {{
 .footer-brand {{ font-weight: 900; color: var(--im-navy); font-size: 16px; margin-bottom: 15px; display: block; }}
 .disclaimer {{ background: #fff; padding: 25px; border: 1px solid var(--border); line-height: 1.8; margin-bottom: 30px; color: #888; }}
 
+/* Game Engagement Section */
+.game-section {{ background: var(--im-gold); color: #fff; padding: 45px 40px; text-align: center; }}
+.game-title {{ font-size: 20px; font-weight: 800; margin-bottom: 15px; letter-spacing: -0.5px; }}
+.game-btn {{ display: inline-block; background: var(--im-navy); color: #fff; padding: 15px 35px; border-radius: 4px; text-decoration: none; font-weight: 800; font-size: 15px; transition: 0.3s; }}
+.game-btn:hover {{ background: #000; transform: translateY(-2px); }}
+
 .up {{ color: #FF5252; }}
 .down {{ color: #448AFF; }}
 
@@ -151,7 +157,13 @@ body {{
    - 단순 요약이 아닌 심층 분석(A4 3페이지 이상)을 수행하세요. {krx_context}
    - `pull-quote`, `callout-box`, `tech-table`을 적재적소에 배치하여 잡지 스타일을 완성하세요.
 
-3. **시각적 제약**:
+3. **게임 연동 (Engagement)**:
+   - KRX 영업일일 경우, 리포트 하단(footer 이전)에 `<section class="game-section">`을 배치하세요.
+   - 제목: "오늘의 KOSPI, 당신의 선택은?"
+   - 버튼: "UPDOWN 챌린지 참여하기" (링크: https://updown-kospi.vercel.app)
+   - 버튼 클릭을 유도하는 매력적인 문구를 추가하세요.
+
+4. **시각적 제약**:
    - 픽토그램, 이모지 절대 금지. 오직 폰트와 선으로만 격을 표현하세요.
    - 강조는 HTML `<strong>` 태그만 사용하며, 마크다운 기호(`**`)는 절대 금지합니다.
 

@@ -36,9 +36,15 @@ def send_to_telegram(file_path):
     chat_id = os.getenv("TELEGRAM_CHAT_ID")
     if not token or not chat_id: return
     url = f"https://api.telegram.org/bot{token}/sendDocument"
+    caption = (
+        f"🌅 iM뱅크 모닝 마켓 리포트 ({datetime.now().strftime('%Y-%m-%d')})\n\n"
+        f"🎯 오늘의 KOSPI는 오를까요, 내릴까요?\n"
+        f"👉 https://updown-kospi.vercel.app"
+    )
+    
     try:
         with open(file_path, 'rb') as f:
-            requests.post(url, data={'chat_id': chat_id, 'caption': f"🌅 iM AI 리포트 ({datetime.now().strftime('%Y-%m-%d')})"}, files={'document': f})
+            requests.post(url, data={'chat_id': chat_id, 'caption': caption}, files={'document': f})
     except Exception as e: print(f"❌ 텔레그램 오류: {e}")
 
 def update_portal():

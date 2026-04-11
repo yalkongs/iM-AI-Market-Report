@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>참여 지속 강화 — 샘플</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { background: #f9fafb; font-family: -apple-system, sans-serif; }
+  .card { background: white; border-radius: 1rem; border: 1px solid #f3f4f6; box-shadow: 0 1px 3px rgba(0,0,0,0.06); padding: 1.25rem; }
+</style>
+</head>
+<body class="p-4">
+
+  <p class="text-xs text-gray-400 mb-4 text-center font-medium">참여 지속 강화 — 변경 화면 샘플</p>
+
+  <div class="max-w-sm mx-auto space-y-4">
+
+    <!-- ───────────────────────────────────── -->
+    <!-- 1. GameCard — 결과 + 공유 버튼        -->
+    <!-- ───────────────────────────────────── -->
+    <div>
+      <p class="text-xs text-gray-400 mb-1.5 font-semibold uppercase tracking-wide">① GameCard — 결과 공유</p>
+      <div class="card text-center">
+        <p class="text-sm text-gray-400 mb-3">오늘(2026-04-11)의 예측 ✅</p>
+        <div class="inline-flex items-center gap-3 px-10 py-5 rounded-2xl text-white text-3xl font-black mb-4 bg-gradient-to-br from-red-500 to-red-600">
+          ▲ UP
+        </div>
+        <div class="mt-2">
+          <span class="text-5xl">⭕</span>
+          <p class="text-green-600 font-bold mt-1">정답! 스트릭 +1 🔥</p>
+        </div>
+        <!-- 공유 버튼 (신규) -->
+        <button
+          onclick="this.textContent='✅ 복사됐습니다!'; setTimeout(()=>this.textContent='📋 결과 공유하기', 2000)"
+          class="mt-4 w-full py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors"
+        >
+          📋 결과 공유하기
+        </button>
+      </div>
+    </div>
+
+    <!-- ───────────────────────────────────── -->
+    <!-- 2. StreakPanel — 순위 + 넛지 + 배지   -->
+    <!-- ───────────────────────────────────── -->
+    <div>
+      <p class="text-xs text-gray-400 mb-1.5 font-semibold uppercase tracking-wide">② StreakPanel — 순위 · 넛지 · 배지</p>
+      <div class="card">
+
+        <!-- 프로필 -->
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-500 text-lg font-bold">홍</div>
+          <div>
+            <p class="font-bold text-gray-800">홍길동</p>
+            <p class="text-xs text-gray-400">hong@example.com</p>
+          </div>
+        </div>
+
+        <!-- 스탯 -->
+        <div class="grid grid-cols-3 gap-3 mb-4">
+          <div class="text-center bg-orange-50 rounded-xl p-3">
+            <p class="text-2xl font-black text-orange-500">🔥4</p>
+            <p class="text-xs text-gray-500 mt-1">현재 스트릭</p>
+          </div>
+          <div class="text-center bg-yellow-50 rounded-xl p-3">
+            <p class="text-2xl font-black text-yellow-600">⭐7</p>
+            <p class="text-xs text-gray-500 mt-1">최고 스트릭</p>
+          </div>
+          <div class="text-center bg-blue-50 rounded-xl p-3">
+            <p class="text-2xl font-black text-blue-600">64%</p>
+            <p class="text-xs text-gray-500 mt-1">정답률</p>
+          </div>
+        </div>
+
+        <!-- 나의 순위 (신규) -->
+        <div class="flex items-center justify-between bg-indigo-50 rounded-xl px-4 py-2.5 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">🏅</span>
+            <div>
+              <p class="text-sm font-black text-indigo-700">#3위</p>
+              <p class="text-xs text-indigo-400">47명 중</p>
+            </div>
+          </div>
+          <p class="text-xs text-indigo-500 font-medium">앞 순위까지 스트릭 2개</p>
+        </div>
+
+        <!-- 다음 목표 넛지 (신규) -->
+        <div class="bg-amber-50 border border-amber-200 rounded-xl px-4 py-2.5 mb-4 text-sm font-medium text-amber-700">
+          ⚡ 5연승까지 1일!
+        </div>
+
+        <!-- 획득한 배지 (신규) -->
+        <div class="mb-4">
+          <p class="text-xs text-gray-400 font-medium mb-2">획득한 배지</p>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 rounded-full px-2.5 py-1 text-xs font-medium text-gray-600">🌱 첫 예측</span>
+            <span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 rounded-full px-2.5 py-1 text-xs font-medium text-gray-600">🔥 3연승</span>
+            <span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 rounded-full px-2.5 py-1 text-xs font-medium text-gray-600">🏅 베테랑</span>
+          </div>
+        </div>
+
+        <!-- 히스토리 바 -->
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <p class="text-xs text-gray-400 font-medium">최근 11일 기록</p>
+            <p class="text-xs text-gray-300">11번 · 7정답</p>
+          </div>
+          <div class="flex gap-2">
+            <div class="flex flex-col justify-around text-right flex-shrink-0 pb-5" style="padding-top:2px">
+              <p class="text-gray-400 leading-none" style="font-size:10px">시장</p>
+              <p class="text-gray-400 leading-none" style="font-size:10px">나</p>
+            </div>
+            <div class="flex gap-1.5 overflow-x-auto pb-1 flex-1">
+              <!-- 정답 -->
+              <div class="flex-shrink-0 flex flex-col items-center gap-1 rounded-xl px-1.5 py-2 w-10 bg-green-50 border border-green-100">
+                <span class="text-red-500 font-black leading-none" style="font-size:15px">▲</span>
+                <span class="text-red-400 font-black leading-none" style="font-size:15px">▲</span>
+                <span style="font-size:11px">✅</span>
+                <p class="text-gray-400 mt-0.5 leading-none" style="font-size:9px">3/24</p>
+              </div>
+              <!-- 오답 -->
+              <div class="flex-shrink-0 flex flex-col items-center gap-1 rounded-xl px-1.5 py-2 w-10 bg-red-50 border border-red-100">
+                <span class="text-blue-500 font-black leading-none" style="font-size:15px">▼</span>
+                <span class="text-red-400 font-black leading-none" style="font-size:15px">▲</span>
+                <span style="font-size:11px">❌</span>
+                <p class="text-gray-400 mt-0.5 leading-none" style="font-size:9px">3/25</p>
+              </div>
+              <!-- 오답 -->
+              <div class="flex-shrink-0 flex flex-col items-center gap-1 rounded-xl px-1.5 py-2 w-10 bg-red-50 border border-red-100">
+                <span class="text-red-500 font-black leading-none" style="font-size:15px">▲</span>
+                <span class="text-blue-400 font-black leading-none" style="font-size:15px">▼</span>
+                <span style="font-size:11px">❌</span>
+                <p class="text-gray-400 mt-0.5 leading-none" style="font-size:9px">3/26</p>
+              </div>
+              <!-- 정답 -->
+              <div class="flex-shrink-0 flex flex-col items-center gap-1 rounded-xl px-1.5 py-2 w-10 bg-green-50 border border-green-100">
+                <span class="text-blue-500 font-black leading-none" style="font-size:15px">▼</span>
+                <span class="text-blue-400 font-black leading-none" style="font-size:15px">▼</span>
+                <span style="font-size:11px">✅</span>
+                <p class="text-gray-400 mt-0.5 leading-none" style="font-size:9px">3/27</p>
+              </div>
+              <!-- 정답 -->
+              <div class="flex-shrink-0 flex flex-col items-center gap-1 rounded-xl px-1.5 py-2 w-10 bg-green-50 border border-green-100">
+                <span class="text-red-500 font-black leading-none" style="font-size:15px">▲</span>
+                <span class="text-red-400 font-black leading-none" style="font-size:15px">▲</span>
+                <span style="font-size:11px">✅</span>
+                <p class="text-gray-400 mt-0.5 leading-none" style="font-size:9px">3/28</p>
+              </div>
+              <!-- 정답 -->
+              <div class="flex-shrink-0 flex flex-col items-center gap-1 rounded-xl px-1.5 py-2 w-10 bg-green-50 border border-green-100">
+                <span class="text-blue-500 font-black leading-none" style="font-size:15px">▼</span>
+                <span class="text-blue-400 font-black leading-none" style="font-size:15px">▼</span>
+                <span style="font-size:11px">✅</span>
+                <p class="text-gray-400 mt-0.5 leading-none" style="font-size:9px">4/1</p>
+              </div>
+              <!-- 오답 -->
+              <div class="flex-shrink-0 flex flex-col items-center gap-1 rounded-xl px-1.5 py-2 w-10 bg-red-50 border border-red-100">
+                <span class="text-red-500 font-black leading-none" style="font-size:15px">▲</span>
+                <span class="text-blue-400 font-black leading-none" style="font-size:15px">▼</span>
+                <span style="font-size:11px">❌</span>
+                <p class="text-gray-400 mt-0.5 leading-none" style="font-size:9px">4/2</p>
+              </div>
+              <!-- 정답 -->
+              <div class="flex-shrink-0 flex flex-col items-center gap-1 rounded-xl px-1.5 py-2 w-10 bg-green-50 border border-green-100">
+                <span class="text-red-500 font-black leading-none" style="font-size:15px">▲</span>
+                <span class="text-red-400 font-black leading-none" style="font-size:15px">▲</span>
+                <span style="font-size:11px">✅</span>
+                <p class="text-gray-400 mt-0.5 leading-none" style="font-size:9px">4/7</p>
+              </div>
+              <!-- 정답 -->
+              <div class="flex-shrink-0 flex flex-col items-center gap-1 rounded-xl px-1.5 py-2 w-10 bg-green-50 border border-green-100">
+                <span class="text-blue-500 font-black leading-none" style="font-size:15px">▼</span>
+                <span class="text-blue-400 font-black leading-none" style="font-size:15px">▼</span>
+                <span style="font-size:11px">✅</span>
+                <p class="text-gray-400 mt-0.5 leading-none" style="font-size:9px">4/8</p>
+              </div>
+              <!-- 정답 -->
+              <div class="flex-shrink-0 flex flex-col items-center gap-1 rounded-xl px-1.5 py-2 w-10 bg-green-50 border border-green-100">
+                <span class="text-red-500 font-black leading-none" style="font-size:15px">▲</span>
+                <span class="text-red-400 font-black leading-none" style="font-size:15px">▲</span>
+                <span style="font-size:11px">✅</span>
+                <p class="text-gray-400 mt-0.5 leading-none" style="font-size:9px">4/9</p>
+              </div>
+              <!-- 미확정 -->
+              <div class="flex-shrink-0 flex flex-col items-center gap-1 rounded-xl px-1.5 py-2 w-10 bg-yellow-50 border border-yellow-200">
+                <span class="text-gray-300 font-black leading-none" style="font-size:15px">?</span>
+                <span class="text-red-400 font-black leading-none" style="font-size:15px">▲</span>
+                <span class="text-yellow-400 leading-none" style="font-size:11px">⏳</span>
+                <p class="text-gray-400 mt-0.5 leading-none" style="font-size:9px">4/11</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex gap-3 mt-1 text-gray-300" style="font-size:11px">
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-sm bg-green-100 inline-block"></span>정답</span>
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-sm bg-red-100 inline-block"></span>오답</span>
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-sm bg-yellow-100 inline-block"></span>미확정</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

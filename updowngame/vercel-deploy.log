@@ -1,0 +1,61 @@
+Retrieving project…
+Deploying weoncheol-hwangs-projects/updown-kospi
+Uploading [--------------------] (0.0B/8.8KB)
+Uploading [====================] (8.8KB/8.8KB)
+Inspect: https://vercel.com/weoncheol-hwangs-projects/updown-kospi/6N3vpMjw8mdd1DMzNmMupzGSGajF [3s]
+Production: https://updown-kospi-1dys0g3pj-weoncheol-hwangs-projects.vercel.app [3s]
+https://updown-kospi-1dys0g3pj-weoncheol-hwangs-projects.vercel.appBuilding...
+Building...
+Building: Running build in Washington, D.C., USA (East) – iad1
+Building: Build machine configuration: 2 cores, 8 GB
+Building: Retrieving list of deployment files...
+Building: Downloading 39 deployment files...
+Building: Restored build cache from previous deployment (CseBADZTR2bmN1wERRDRn8TCMVXg)
+Building: Running "vercel build"
+Building: Vercel CLI 50.42.0
+Building: Installing dependencies...
+Building: up to date in 1s
+Building: 162 packages are looking for funding
+Building: run `npm fund` for details
+Building: Detected Next.js version: 14.2.5
+Building: Running "npm run build"
+Building: > updown-kospi@0.1.0 build
+Building: > next build
+Building: ▲ Next.js 14.2.5
+Building: Creating an optimized production build ...
+Building: ✓ Compiled successfully
+Building: Linting and checking validity of types ...
+Building: Collecting page data ...
+Building: Generating static pages (0/5) ...
+Building: Generating static pages (1/5)
+Building: Generating static pages (2/5)
+Building: Generating static pages (3/5)
+Building: ✓ Generating static pages (5/5)
+Building: Finalizing page optimization ...
+Building: Collecting build traces ...
+Building: Route (app)                              Size     First Load JS
+Building: ┌ ƒ /                                    6.41 kB         211 kB
+Building: ├ ○ /_not-found                          871 B            88 kB
+Building: ├ ƒ /api/admin/seed                      0 B                0 B
+Building: ├ ƒ /api/bet                             0 B                0 B
+Building: ├ ƒ /api/cron/process-result             0 B                0 B
+Building: ├ ƒ /api/leaderboard                     0 B                0 B
+Building: ├ ƒ /api/telegram/morning                0 B                0 B
+Building: ├ ƒ /api/user/history                    0 B                0 B
+Building: └ ƒ /leaderboard                         2.03 kB         207 kB
+Building: + First Load JS shared by all            87.1 kB
+Building: ├ chunks/23-f9c7e85b4a1d2fb3.js        31.5 kB
+Building: ├ chunks/fd9d1056-0395f68b8cc78a20.js  53.6 kB
+Building: └ other shared chunks (total)          1.95 kB
+Building: ○  (Static)   prerendered as static content
+Building: ƒ  (Dynamic)  server-rendered on demand
+Building: Traced Next.js server files in: 61.821ms
+Building: Created all serverless functions in: 630.277ms
+Building: Collected static files (public/, static/, .next/static): 3.092ms
+Building: Build Completed in /vercel/output [23s]
+Building: Deploying outputs...
+Building: Deployment completed
+Building: Creating build cache...
+[2K[1A[2K[GProduction: https://updown-kospi-1dys0g3pj-weoncheol-hwangs-projects.vercel.app [40s]
+Completing...
+Aliased: https://updown-kospi.vercel.app [40s]

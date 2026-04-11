@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOSPI UPDOWN — 프리뷰 (오전 9시)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'Apple SD Gothic Neo', sans-serif; background: #f0f2f5; color: #1a1a2e; min-height: 100vh; }
+
+  /* 테스트 토글바 */
+  .test-bar {
+    background: #1a1a2e; color: #aaa; text-align: center;
+    padding: 8px; font-size: 12px; position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+  }
+  .test-bar span { color: #6ee7b7; font-weight: bold; }
+  .toggle-btn {
+    background: #2d2d4e; border: 1px solid #444; color: #ddd;
+    padding: 4px 12px; border-radius: 20px; cursor: pointer; font-size: 11px; transition: all 0.2s;
+  }
+  .toggle-btn:hover { background: #3d3d6e; }
+  .toggle-btn.active { background: #4f46e5; border-color: #4f46e5; color: white; }
+
+  /* 헤더 */
+  header {
+    background: white; border-bottom: 1px solid #e8eaed;
+    padding: 0 20px; height: 60px; display: flex; align-items: center;
+    justify-content: space-between; position: sticky; top: 33px; z-index: 99;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .logo { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 18px; color: #1a1a2e; letter-spacing: -0.5px; }
+  .logo .up { color: #ef4444; }
+  .logo .down { color: #3b82f6; }
+  .logo .badge { background: #f0f2f5; color: #666; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
+  .header-right { display: flex; align-items: center; gap: 12px; }
+  .nav-link { color: #555; font-size: 13px; font-weight: 500; text-decoration: none; display: flex; align-items: center; gap: 4px; }
+  .btn-login-header {
+    background: #1a1a2e; color: white; border: none; padding: 8px 18px;
+    border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; gap: 6px; transition: all 0.2s;
+  }
+  .btn-login-header:hover { background: #2d2d4e; }
+  .user-avatar {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 700; font-size: 14px; cursor: pointer;
+  }
+
+  /* 메인 */
+  .main { max-width: 480px; margin: 0 auto; padding: 20px 16px 60px; }
+
+  /* KOSPI 배너 */
+  .kospi-banner {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white; border-radius: 20px; padding: 22px 24px; margin-bottom: 12px;
+    position: relative; overflow: hidden;
+  }
+  .kospi-banner::before {
+    content: ''; position: absolute; top: -30px; right: -30px;
+    width: 120px; height: 120px; background: rgba(79,70,229,0.15); border-radius: 50%;
+  }
+  .kospi-date { font-size: 11px; color: rgba(255,255,255,0.4); margin-bottom: 4px; }
+  .kospi-price-row { display: flex; align-items: flex-end; gap: 12px; }
+  .kospi-price { font-size: 38px; font-weight: 900; letter-spacing: -1px; line-height: 1; }
+  .kospi-change-val { font-size: 15px; font-weight: 700; color: #60a5fa; padding-bottom: 4px; }
+  .kospi-change-pct { font-size: 11px; color: rgba(255,255,255,0.4); }
+  .kospi-sub { margin-top: 10px; font-size: 11px; color: rgba(255,255,255,0.35); display: flex; align-items: center; gap: 6px; }
+  .kospi-sub .dot { width: 5px; height: 5px; background: #22c55e; border-radius: 50%; animation: blink 1.5s infinite; }
+  @keyframes blink { 0%,100%{opacity:1}50%{opacity:0.3} }
+
+  /* 카운트다운 */
+  .countdown-bar {
+    background: linear-gradient(135deg, #fff7ed, #fef3c7);
+    border: 1px solid #fde68a; border-radius: 12px; padding: 10px 16px;
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;
+  }
+  .countdown-label { font-size: 12px; color: #92400e; font-weight: 600; }
+  .countdown-time { font-size: 20px; font-weight: 900; font-family: 'SF Mono', monospace; color: #d97706; letter-spacing: 2px; }
+
+  /* 참여율 */
+  .participation {
+    background: white; border-radius: 16px; padding: 14px 16px; margin-bottom: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+  .participation-label { font-size: 12px; color: #888; margin-bottom: 8px; text-align: center; }
+  .participation-bar-container { display: flex; border-radius: 8px; overflow: hidden; height: 10px; margin-bottom: 6px; }
+  .participation-up { background: linear-gradient(to right, #ef4444, #f87171); }
+  .participation-down { background: linear-gradient(to right, #60a5fa, #3b82f6); }
+  .participation-labels { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; }
+  .participation-labels .up-label { color: #ef4444; }
+  .participation-labels .down-label { color: #3b82f6; }
+
+  /* 카드 */
+  .card {
+    background: white; border-radius: 20px; padding: 24px; margin-bottom: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .card-title { font-size: 12px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
+
+  /* ============================================
+     핵심: 크고 강렬한 UP/DOWN 버튼
+  ============================================ */
+  .bet-section { margin-bottom: 12px; }
+
+  .bet-header {
+    text-align: center; padding: 20px 20px 16px;
+    background: white; border-radius: 20px 20px 0 0;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  .bet-header h2 { font-size: 20px; font-weight: 900; color: #1a1a2e; line-height: 1.35; }
+  .bet-header .sub { font-size: 13px; color: #aaa; margin-top: 4px; }
+
+  .bet-buttons-wrap {
+    display: flex; gap: 0;
+    background: white; border-radius: 0 0 20px 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .btn-up-big, .btn-down-big {
+    flex: 1; border: none; cursor: pointer;
+    padding: 36px 20px; font-weight: 900;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 8px; transition: all 0.18s; position: relative; overflow: hidden;
+  }
+  .btn-up-big {
+    background: linear-gradient(160deg, #fff1f1 0%, #fee2e2 100%);
+    color: #dc2626;
+    border-right: 1px solid #fecaca;
+  }
+  .btn-down-big {
+    background: linear-gradient(160deg, #eff6ff 0%, #dbeafe 100%);
+    color: #2563eb;
+  }
+  .btn-up-big:hover {
+    background: linear-gradient(160deg, #dc2626 0%, #ef4444 100%);
+    color: white;
+    transform: scale(1.02);
+    z-index: 1;
+    box-shadow: 4px 0 20px rgba(220,38,38,0.3);
+  }
+  .btn-down-big:hover {
+    background: linear-gradient(160deg, #2563eb 0%, #3b82f6 100%);
+    color: white;
+    transform: scale(1.02);
+    z-index: 1;
+    box-shadow: -4px 0 20px rgba(37,99,235,0.3);
+  }
+  .btn-arrow { font-size: 44px; line-height: 1; }
+  .btn-label { font-size: 18px; letter-spacing: 2px; font-weight: 900; }
+  .btn-desc { font-size: 12px; opacity: 0.65; font-weight: 500; margin-top: 2px; }
+
+  /* 선택 후 로그인 유도 모달 */
+  .login-modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+    z-index: 200; align-items: center; justify-content: center;
+  }
+  .login-modal-overlay.show { display: flex; }
+  .login-modal {
+    background: white; border-radius: 24px; padding: 32px 28px;
+    max-width: 340px; width: 90%; text-align: center;
+    animation: popIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.85); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  .modal-choice {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 24px; border-radius: 12px;
+    font-size: 22px; font-weight: 900; margin-bottom: 20px;
+  }
+  .modal-choice.up { background: #fee2e2; color: #dc2626; }
+  .modal-choice.down { background: #dbeafe; color: #2563eb; }
+  .login-modal h3 { font-size: 18px; font-weight: 800; color: #1a1a2e; margin-bottom: 6px; }
+  .login-modal p { font-size: 13px; color: #888; margin-bottom: 24px; line-height: 1.5; }
+  .btn-google-big {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    background: white; border: 1.5px solid #e0e0e0; color: #333;
+    padding: 14px 24px; border-radius: 14px; font-size: 15px; font-weight: 700;
+    cursor: pointer; width: 100%; transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .btn-google-big:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.15); transform: translateY(-1px); }
+  .modal-cancel { margin-top: 14px; font-size: 13px; color: #bbb; cursor: pointer; }
+  .modal-cancel:hover { color: #888; }
+  .modal-close {
+    position: absolute; top: 14px; right: 16px;
+    font-size: 20px; color: #ccc; cursor: pointer; background: none; border: none;
+  }
+
+  /* 베팅 완료 상태 */
+  .bet-done-wrap {
+    background: white; border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 12px; overflow: hidden;
+  }
+  .bet-done-top {
+    padding: 20px; text-align: center; border-bottom: 1px solid #f3f4f6;
+  }
+  .bet-done-chip {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 36px; border-radius: 16px;
+    font-size: 28px; font-weight: 900; margin: 10px 0;
+  }
+  .bet-done-chip.up { background: linear-gradient(135deg, #dc2626, #ef4444); color: white; }
+  .bet-done-chip.down { background: linear-gradient(135deg, #2563eb, #3b82f6); color: white; }
+  .bet-done-date { font-size: 12px; color: #aaa; margin-bottom: 4px; }
+  .bet-done-pending { font-size: 13px; color: #aaa; display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 8px; }
+  .pulse-dot { width: 7px; height: 7px; background: #f59e0b; border-radius: 50%; animation: blink 1.2s infinite; }
+
+  /* 스탯 */
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .stat-box { border-radius: 14px; padding: 14px 8px; text-align: center; }
+  .stat-box.fire { background: linear-gradient(135deg, #fff7ed, #ffedd5); }
+  .stat-box.star { background: linear-gradient(135deg, #fefce8, #fef9c3); }
+  .stat-box.acc  { background: linear-gradient(135deg, #eff6ff, #dbeafe); }
+  .stat-val { font-size: 22px; font-weight: 900; margin-bottom: 3px; }
+  .stat-val.fire-val { color: #ea580c; }
+  .stat-val.star-val { color: #ca8a04; }
+  .stat-val.acc-val  { color: #2563eb; }
+  .stat-label { font-size: 10px; color: #999; font-weight: 600; }
+
+  /* O/X 히스토리 */
+  .history-grid { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .hcell {
+    width: 34px; height: 34px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800; flex-direction: column;
+  }
+  .hcell.correct { background: #dcfce7; color: #16a34a; }
+  .hcell.incorrect { background: #fee2e2; color: #dc2626; }
+  .hcell.pending { background: #f3f4f6; color: #9ca3af; }
+  .hcell .arr { font-size: 9px; opacity: 0.6; }
+
+  /* 뱃지 */
+  .badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+  .badge { background: #f0f2ff; border: 1px solid #e0e7ff; border-radius: 20px; padding: 5px 11px; font-size: 11px; color: #4f46e5; font-weight: 600; }
+
+  /* 리더보드 */
+  .lb-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f3f4f6; }
+  .lb-item:last-child { border-bottom: none; }
+  .rank { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0; }
+  .rank.r1 { background: linear-gradient(135deg,#fbbf24,#f59e0b); color:white; font-size:16px; }
+  .rank.r2 { background: linear-gradient(135deg,#9ca3af,#6b7280); color:white; font-size:16px; }
+  .rank.r3 { background: linear-gradient(135deg,#cd7c36,#b45309); color:white; font-size:16px; }
+  .rank.rn { background: #f3f4f6; color: #6b7280; font-size:13px; }
+  .lb-avatar { width:36px; height:36px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; color:white; }
+  .lb-info { flex:1; min-width:0; }
+  .lb-name { font-size:14px; font-weight:700; color:#1a1a2e; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .lb-sub { font-size:11px; color:#aaa; margin-top:1px; }
+  .lb-streak { display:flex; flex-direction:column; align-items:flex-end; flex-shrink:0; }
+  .lb-streak-val { font-size:18px; font-weight:900; color:#ea580c; }
+  .lb-streak-label { font-size:10px; color:#aaa; }
+  .my-rank-banner {
+    background: linear-gradient(135deg,#eef2ff,#e0e7ff); border:1.5px solid #c7d2fe;
+    border-radius:14px; padding:12px 16px; display:flex; align-items:center;
+    justify-content:space-between; margin-top:12px;
+  }
+  .my-rank-label { font-size:12px; color:#6366f1; font-weight:700; }
+  .my-rank-val { font-size:20px; font-weight:900; color:#4f46e5; }
+
+  .state-view { animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)} }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- 테스트 토글바 -->
+<div class="test-bar">
+  <span>🧪 테스트 프리뷰</span> — 오전 9:00 기준 &nbsp;|&nbsp; 상태:
+  <button class="toggle-btn active" onclick="setState('guest')" id="btn-guest">비로그인</button>
+  <button class="toggle-btn" onclick="setState('loggedin-nobet')" id="btn-nobet">로그인 (미참여)</button>
+  <button class="toggle-btn" onclick="setState('loggedin-bet')" id="btn-bet">로그인 (참여완료)</button>
+</div>
+
+<!-- 헤더 -->
+<header>
+  <div class="logo">
+    <span class="up">UP</span><span style="color:#ddd">/</span><span class="down">DOWN</span>
+    <span class="badge">KOSPI</span>
+  </div>
+  <div class="header-right">
+    <a href="#" class="nav-link">🏆 리더보드</a>
+    <div id="header-guest">
+      <button class="btn-login-header">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        로그인
+      </button>
+    </div>
+    <div id="header-user" class="hidden">
+      <div class="user-avatar">K</div>
+    </div>
+  </div>
+</header>
+
+<!-- 메인 콘텐츠 -->
+<div class="main">
+
+  <!-- KOSPI 어제 종가 -->
+  <div class="kospi-banner">
+    <div class="kospi-date">2026. 04. 09 (목) 어제 종가</div>
+    <div class="kospi-price-row">
+      <div class="kospi-price">2,573.40</div>
+      <div style="padding-bottom:5px">
+        <div class="kospi-change-val">▼ -18.62 (-0.72%)</div>
+        <div class="kospi-change-pct" style="color:rgba(255,255,255,0.35); font-size:11px">전일 종가 대비</div>
+      </div>
+    </div>
+    <div class="kospi-sub">
+      <div class="dot"></div>
+      KRX 공식 데이터 · 오늘 10:00까지 예측 가능
+    </div>
+  </div>
+
+  <!-- 카운트다운 -->
+  <div class="countdown-bar">
+    <div class="countdown-label">⏰ 베팅 마감까지</div>
+    <div class="countdown-time" id="countdown">01:00:00</div>
+  </div>
+
+  <!-- 커뮤니티 참여율 -->
+  <div class="participation">
+    <div class="participation-label">오늘 <strong style="color:#333">247명</strong>이 참여 중</div>
+    <div class="participation-bar-container">
+      <div class="participation-up" style="width:58%"></div>
+      <div class="participation-down" style="width:42%"></div>
+    </div>
+    <div class="participation-labels">
+      <span class="up-label">▲ UP 58%</span>
+      <span class="down-label">42% DOWN ▼</span>
+    </div>
+  </div>
+
+  <!-- ========== 비로그인 상태 ========== -->
+  <div id="state-guest" class="state-view">
+    <!-- 크고 강렬한 UP/DOWN 버튼 -->
+    <div class="bet-section">
+      <div class="bet-header">
+        <h2>오늘 KOSPI가<br>오를까요, 내릴까요?</h2>
+        <div class="sub">예측하고 스트릭을 쌓아보세요!</div>
+      </div>
+      <div class="bet-buttons-wrap">
+        <button class="btn-up-big" onclick="showLoginModal('UP')">
+          <div class="btn-arrow">▲</div>
+          <div class="btn-label">UP</div>
+          <div class="btn-desc">오른다</div>
+        </button>
+        <button class="btn-down-big" onclick="showLoginModal('DOWN')">
+          <div class="btn-arrow">▼</div>
+          <div class="btn-label">DOWN</div>
+          <div class="btn-desc">내린다</div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 로그인 + 미참여 ========== -->
+  <div id="state-loggedin-nobet" class="state-view hidden">
+    <div class="bet-section">
+      <div class="bet-header">
+        <h2>오늘 KOSPI가<br>오를까요, 내릴까요?</h2>
+        <div class="sub">현재 스트릭 🔥5 · 지금 선택해서 이어가세요!</div>
+      </div>
+      <div class="bet-buttons-wrap">
+        <button class="btn-up-big" onclick="setState('loggedin-bet')">
+          <div class="btn-arrow">▲</div>
+          <div class="btn-label">UP</div>
+          <div class="btn-desc">오른다</div>
+        </button>
+        <button class="btn-down-big">
+          <div class="btn-arrow">▼</div>
+          <div class="btn-label">DOWN</div>
+          <div class="btn-desc">내린다</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- 내 스탯 -->
+    <div class="card">
+      <div class="card-title">📊 나의 기록</div>
+      <div class="stats-grid">
+        <div class="stat-box fire"><div class="stat-val fire-val">🔥 5</div><div class="stat-label">현재 스트릭</div></div>
+        <div class="stat-box star"><div class="stat-val star-val">⭐ 8</div><div class="stat-label">최고 스트릭</div></div>
+        <div class="stat-box acc"><div class="stat-val acc-val">71%</div><div class="stat-label">정답률</div></div>
+      </div>
+      <div style="margin-top:14px">
+        <div class="card-title" style="margin-bottom:8px">📅 최근 기록</div>
+        <div class="history-grid">
+          <div class="hcell correct">O<span class="arr">▲</span></div>
+          <div class="hcell correct">O<span class="arr">▼</span></div>
+          <div class="hcell incorrect">X<span class="arr">▲</span></div>
+          <div class="hcell correct">O<span class="arr">▲</span></div>
+          <div class="hcell correct">O<span class="arr">▼</span></div>
+          <div class="hcell correct">O<span class="arr">▲</span></div>
+          <div class="hcell correct">O<span class="arr">▲</span></div>
+          <div class="hcell correct">O<span class="arr">▼</span></div>
+          <div class="hcell incorrect">X<span class="arr">▲</span></div>
+          <div class="hcell correct">O<span class="arr">▲</span></div>
+        </div>
+      </div>
+      <div class="badges">
+        <div class="badge">🔥 5연속</div>
+        <div class="badge">📅 14일 참여</div>
+        <div class="badge">🎯 70%+</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 로그인 + 참여완료 ========== -->
+  <div id="state-loggedin-bet" class="state-view hidden">
+    <div class="bet-done-wrap">
+      <div class="bet-done-top">
+        <div class="bet-done-date">2026. 04. 10 (금) 오늘의 예측</div>
+        <div class="bet-done-chip up">▲ UP</div>
+        <div class="bet-done-pending">
+          <div class="pulse-dot"></div>
+          장 마감(15:30) 후 결과 확정
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📊 나의 기록</div>
+      <div class="stats-grid">
+        <div class="stat-box fire"><div class="stat-val fire-val">🔥 5</div><div class="stat-label">현재 스트릭</div></div>
+        <div class="stat-box star"><div class="stat-val star-val">⭐ 8</div><div class="stat-label">최고 스트릭</div></div>
+        <div class="stat-box acc"><div class="stat-val acc-val">71%</div><div class="stat-label">정답률</div></div>
+      </div>
+      <div style="margin-top:14px">
+        <div class="card-title" style="margin-bottom:8px">📅 최근 기록</div>
+        <div class="history-grid">
+          <div class="hcell correct">O<span class="arr">▲</span></div>
+          <div class="hcell correct">O<span class="arr">▼</span></div>
+          <div class="hcell incorrect">X<span class="arr">▲</span></div>
+          <div class="hcell correct">O<span class="arr">▲</span></div>
+          <div class="hcell correct">O<span class="arr">▼</span></div>
+          <div class="hcell correct">O<span class="arr">▲</span></div>
+          <div class="hcell correct">O<span class="arr">▲</span></div>
+          <div class="hcell correct">O<span class="arr">▼</span></div>
+          <div class="hcell incorrect">X<span class="arr">▲</span></div>
+          <div class="hcell pending">?<span class="arr">▲</span></div>
+        </div>
+      </div>
+      <div class="badges">
+        <div class="badge">🔥 5연속</div>
+        <div class="badge">📅 14일 참여</div>
+        <div class="badge">🎯 70%+</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 리더보드 (공통) -->
+  <div class="card">
+    <div class="card-title">🏆 리더보드 TOP 5</div>
+    <div class="lb-item">
+      <div class="rank r1">🥇</div>
+      <div class="lb-avatar" style="background:linear-gradient(135deg,#f97316,#ea580c)">이</div>
+      <div class="lb-info"><div class="lb-name">이민준</div><div class="lb-sub">71% 정답률 · 21회 참여</div></div>
+      <div class="lb-streak"><div class="lb-streak-val">🔥 15</div><div class="lb-streak-label">스트릭</div></div>
+    </div>
+    <div class="lb-item">
+      <div class="rank r2">🥈</div>
+      <div class="lb-avatar" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)">김</div>
+      <div class="lb-info"><div class="lb-name">김서연</div><div class="lb-sub">68% 정답률 · 18회 참여</div></div>
+      <div class="lb-streak"><div class="lb-streak-val">🔥 12</div><div class="lb-streak-label">스트릭</div></div>
+    </div>
+    <div class="lb-item">
+      <div class="rank r3">🥉</div>
+      <div class="lb-avatar" style="background:linear-gradient(135deg,#10b981,#059669)">박</div>
+      <div class="lb-info"><div class="lb-name">박지호</div><div class="lb-sub">75% 정답률 · 12회 참여</div></div>
+      <div class="lb-streak"><div class="lb-streak-val">🔥 9</div><div class="lb-streak-label">스트릭</div></div>
+    </div>
+    <div class="lb-item">
+      <div class="rank rn">4</div>
+      <div class="lb-avatar" style="background:linear-gradient(135deg,#3b82f6,#2563eb)">최</div>
+      <div class="lb-info"><div class="lb-name">최다은</div><div class="lb-sub">62% 정답률 · 24회 참여</div></div>
+      <div class="lb-streak"><div class="lb-streak-val">🔥 7</div><div class="lb-streak-label">스트릭</div></div>
+    </div>
+    <div class="lb-item">
+      <div class="rank rn">5</div>
+      <div class="lb-avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706)">정</div>
+      <div class="lb-info"><div class="lb-name">정우성</div><div class="lb-sub">66% 정답률 · 15회 참여</div></div>
+      <div class="lb-streak"><div class="lb-streak-val">🔥 6</div><div class="lb-streak-label">스트릭</div></div>
+    </div>
+    <div id="my-rank" class="my-rank-banner hidden">
+      <div>
+        <div class="my-rank-label">나의 현재 순위</div>
+        <div style="font-size:12px;color:#6366f1;margin-top:2px">🔥 스트릭 5 · 71% 정답률</div>
+      </div>
+      <div class="my-rank-val">7위 🎯</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 선택 후 로그인 유도 모달 -->
+<div class="login-modal-overlay" id="login-modal">
+  <div class="login-modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-choice-display" class="modal-choice up">▲ UP</div>
+    <h3>로그인 후 참여 완료!</h3>
+    <p>선택하셨군요!<br>Google 로그인하면 오늘의 예측이 바로 저장됩니다.</p>
+    <button class="btn-google-big" onclick="setState('loggedin-bet'); closeModal();">
+      <svg width="20" height="20" viewBox="0 0 24 24">
+        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/>
+        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+      </svg>
+      Google로 로그인하고 참여하기
+    </button>
+    <div class="modal-cancel" onclick="closeModal()">다음에 할게요</div>
+  </div>
+</div>
+
+<script>
+  // 카운트다운
+  function updateCountdown() {
+    const now = new Date();
+    const target = new Date(now);
+    target.setHours(10, 0, 0, 0);
+    const diff = target - now;
+    if (diff > 0) {
+      const h = Math.floor(diff / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('countdown').textContent =
+        String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    } else {
+      document.getElementById('countdown').textContent = '마감';
+    }
+  }
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  // 상태 전환
+  function setState(state) {
+    document.querySelectorAll('.state-view').forEach(el => el.classList.add('hidden'));
+    document.querySelectorAll('.toggle-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('state-' + state)?.classList.remove('hidden');
+    if (state === 'guest') {
+      document.getElementById('btn-guest').classList.add('active');
+      document.getElementById('header-guest').classList.remove('hidden');
+      document.getElementById('header-user').classList.add('hidden');
+      document.getElementById('my-rank').classList.add('hidden');
+    } else {
+      document.getElementById('header-guest').classList.add('hidden');
+      document.getElementById('header-user').classList.remove('hidden');
+      document.getElementById('my-rank').classList.remove('hidden');
+      if (state === 'loggedin-nobet') document.getElementById('btn-nobet').classList.add('active');
+      else document.getElementById('btn-bet').classList.add('active');
+    }
+  }
+
+  // 선택 후 로그인 모달
+  function showLoginModal(choice) {
+    const display = document.getElementById('modal-choice-display');
+    if (choice === 'UP') {
+      display.textContent = '▲ UP';
+      display.className = 'modal-choice up';
+    } else {
+      display.textContent = '▼ DOWN';
+      display.className = 'modal-choice down';
+    }
+    document.getElementById('login-modal').classList.add('show');
+  }
+  function closeModal() {
+    document.getElementById('login-modal').classList.remove('show');
+  }
+  // 모달 배경 클릭 시 닫기
+  document.getElementById('login-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+</script>
+</body>
+</html>
