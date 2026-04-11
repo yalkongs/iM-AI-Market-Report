@@ -61,12 +61,12 @@ export default async function Home() {
   const isWeekend = dayOfWeek === 0 || dayOfWeek === 6 || isNonTradingDay(today)
 
   // ── 상태 분류 (평일 기준) ──
-  // isWaiting:    12:00~15:29  — 베팅 마감, 결과 대기
+  // isWaiting:    10:00~15:29  — 베팅 마감, 결과 대기
   // isAfterClose: 15:30+       — 결과 확정, 다음 영업일 베팅 오픈
-  // isOpenToday:  00:00~11:59  — 오늘 베팅 오픈
-  const isWaiting    = !isWeekend && hour >= 12 && (hour < 15 || (hour === 15 && minute < 30))
+  // isOpenToday:  00:00~09:59  — 오늘 베팅 오픈
+  const isWaiting    = !isWeekend && hour >= 10 && (hour < 15 || (hour === 15 && minute < 30))
   const isAfterClose = !isWeekend && (hour > 15 || (hour === 15 && minute >= 30))
-  const isOpenToday  = !isWeekend && hour < 12
+  const isOpenToday  = !isWeekend && hour < 10
 
   // 실제 베팅 대상 날짜
   const bettingDate = isAfterClose ? getNextTradingDay(today) : today
@@ -149,8 +149,8 @@ export default async function Home() {
           dateLabel={isNextDay ? '오늘 종가 ✅' : undefined}
           subtitle={
             isNextDay
-              ? `오늘 장 마감 · ${dayLabel === '내일' ? '내일' : `다음 거래일(${dayLabel})`} 예측까지 12:00`
-              : 'KRX 공식 데이터 · 오늘 12:00까지 예측 가능'
+              ? `오늘 장 마감 · ${dayLabel === '내일' ? '내일' : `다음 거래일(${dayLabel})`} 예측까지 10:00`
+              : 'KRX 공식 데이터 · 오늘 10:00까지 예측 가능'
           }
         />
 
@@ -167,7 +167,7 @@ export default async function Home() {
           todayDate={bettingDate}
           isOpen={isOpen}
           isClosed={false}
-          deadlineLabel="12:00"
+          deadlineLabel="10:00"
           isNextDay={isNextDay}
           dayLabel={dayLabel}
         />
@@ -196,7 +196,7 @@ export default async function Home() {
             <p className="font-bold text-gray-700 mb-3">📖 게임 방법</p>
             <div className="flex gap-2">
               <span className="text-base">1️⃣</span>
-              <p>매일 오전 <strong>정오(12:00) 전</strong>에 KOSPI가 오를지(▲UP) 내릴지(▼DOWN) 예측합니다.</p>
+              <p>매일 오전 <strong>오전 10:00 전</strong>에 KOSPI가 오를지(▲UP) 내릴지(▼DOWN) 예측합니다.</p>
             </div>
             <div className="flex gap-2">
               <span className="text-base">2️⃣</span>
