@@ -36,7 +36,7 @@ def clean_html_response(text):
     return cleaned
 
 def send_to_telegram(filename):
-    """생성된 리포트의 URL만 텔레그램으로 전송합니다. (확장자 제거)"""
+    """생성된 리포트의 URL만 텔레그램으로 전송합니다."""
     resume_time = datetime(2026, 4, 11, 23, 0) 
     if datetime.now() < resume_time: return
     token = os.getenv("TELEGRAM_BOT_TOKEN")
@@ -51,6 +51,48 @@ def send_to_telegram(filename):
         requests.post(url, data={'chat_id': chat_id, 'text': report_url, 'disable_web_page_preview': False})
         print(f"✅ 텔레그램 리포트 URL 전송 완료! ({report_url})")
     except Exception as e: print(f"❌ 텔레그램 오류: {e}")
+
+def update_all_report_links(raw_data_dir):
+    """모든 리포트 파일의 내비게이션 링크를 실제 경로로 직접 박아넣습니다."""
+    files = sorted(glob.glob(os.path.join(raw_data_dir, "morning_report_*.html")), reverse=True)
+    report_ids = [os.path.basename(f).replace(".html", "") for f in files]
+    
+    print(f"🔄 총 {len(report_ids)}개 리포트의 내비게이션 링크를 최신화합니다...")
+    
+    for i, report_id in enumerate(report_ids):
+        file_path = os.path.join(raw_data_dir, f"{report_id}.html")
+        prev_id = report_ids[i+1] if i < len(report_ids) - 1 else None
+        next_id = report_ids[i-1] if i > 0 else None
+        
+        prev_link = f"/reports/{prev_id}" if prev_id else "#"
+        next_link = f"/reports/{next_id}" if next_id else "#"
+        
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+            
+        # 기존 템플릿 치환자 또는 이미 박힌 링크를 최신화
+        # 1. 이전 리포트 링크 치환
+        content = re.sub(r'href="\{\{\s*prev_link\s*\}\}"', f'href="{prev_link}"', content)
+        content = re.sub(r'href="/reports/morning_report_[0-9]+"', f'href="{prev_link}"', content, count=1) # 상단 nav
+        
+        # 2. 다음 리포트 링크 치환
+        content = re.sub(r'href="\{\{\s*next_link\s*\}\}"', f'href="{next_link}"', content)
+        # (주의: regex 순서에 따라 덮어쓰기 위험이 있으므로 정교하게 처리 필요)
+        # 가장 깔끔한 방법은 generator가 생성한 nav 구조를 통째로 다시 쓰는 것
+        
+        # 이전/다음 텍스트가 포함된 nav 태그를 찾아 직접 교체
+        def replace_nav(m):
+            nav_html = f"""<nav class="report-nav">
+    <a href="{prev_link}" class="nav-link">{"← 이전 리포트" if prev_id else ""}</a>
+    <a href="/reports/index.html" class="nav-list-btn">목록으로</a>
+    <a href="{next_link}" class="nav-link">{"다음 리포트 →" if next_id else ""}</a>
+</nav>"""
+            return nav_html
+
+        content = re.sub(r'<nav class="report-nav">.*?</nav>', replace_nav, content, flags=re.DOTALL)
+        
+        with open(file_path, 'w', encoding='utf-8') as f:
+            f.write(content)
 
 def update_portal(raw_data_dir, project_root):
     """리포트 목록을 스캔하여 고품질 포털 페이지를 생성합니다."""
@@ -126,10 +168,15 @@ def update_portal(raw_data_dir, project_root):
 </body>
 </html>"""
     with open(portal_path, "w", encoding="utf-8") as f: f.write(portal_html)
+    
+    # 모든 리포트의 내비게이션 링크 강제 업데이트 (치환 방식)
+    update_all_report_links(raw_data_dir)
+    
+    # JSON 목록 업데이트 (확장자 제거된 ID 리스트)
     report_ids = [os.path.basename(f).replace(".html", "") for f in files]
     with open(os.path.join(raw_data_dir, "report_list.json"), "w", encoding="utf-8") as f:
         json.dump({"files": report_ids}, f, ensure_ascii=False, indent=2)
-    print(f"✅ 포털 및 리스트 갱신 완료: {portal_path}")
+    print(f"✅ 포털 및 전체 리포트 링크 갱신 완료!")
 
 def main():
     import argparse
@@ -153,10 +200,12 @@ def main():
         date_str = datetime.now().strftime("%Y%m%d")
         filename = f"morning_report_{date_str}.html"
         output_file = os.path.join(raw_data_dir, filename)
-        with open(output_file, "w", encoding="utf-8") as f: f.write(html_report)
+        with open(output_file, "w", encoding="utf-8") as f:
+            f.write(html_report)
         send_to_telegram(filename)
         update_portal(raw_data_dir, project_root)
-    except Exception as e: print(f"❌ 오류 발생: {e}")
+    except Exception as e:
+        print(f"❌ 오류 발생: {e}")
 
 if __name__ == "__main__":
     main()
