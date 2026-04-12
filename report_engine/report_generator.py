@@ -27,8 +27,8 @@ class ReportGenerator:
         issue_time = now.strftime("%H:%M AM KST")
         sentiment = self.get_market_sentiment(market_data)
         
-        today_compact = now.strftime("%Y-%m-%d")
-        og_image_base = f"https://im-ai-market-report.vercel.app/api/og?date={requests.utils.quote(today_kr)}"
+        # OG 이미지 API를 위한 인코딩된 날짜
+        encoded_date = requests.utils.quote(today_kr)
         
         themes = {
             "bull": {"header_bg": "#8B1A20", "header_text": "#FFFFFF", "data_strip_bg": "#111111", "footer_bg": "#FDF5E6"},
@@ -61,7 +61,7 @@ body {{ font-family: 'Pretendard', -apple-system, sans-serif; background: var(--
 .data-strip {{ display: grid; grid-template-columns: repeat(3, 1fr); background: var(--data-bg); color: #fff; }}
 .data-item {{ padding: 22px 15px; text-align: center; border-right: 1px solid rgba(255, 255, 255, 0.1); }}
 .data-item:last-child {{ border-right: none; }}
-.data-label {{ font-size: 10px; font-weight: 700; color: rgba(255, 255, 255, 0.5); text-transform: uppercase; margin-bottom: 6px; display: block; }}
+.data-label {{ font-size: 10px; font-weight: 700; color: rgba(255, 255, 255, 0.5); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; display: block; }}
 .data-val {{ font-size: 18px; font-weight: 700; }}
 .section {{ padding: 55px 40px; border-bottom: 1px solid var(--border); }}
 .section-num {{ font-family: Georgia, serif; font-size: 42px; color: #EFEFEF; line-height: 1; margin-bottom: -12px; display: block; }}
@@ -82,9 +82,7 @@ body {{ font-family: 'Pretendard', -apple-system, sans-serif; background: var(--
 .vote-link.down {{ background: var(--blue-down); }}
 .game-footer-note {{ font-size: 12px; color: var(--muted); margin-top: 20px; }}
 .report-nav {{ display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: #fff; border-bottom: 1px solid var(--border); }}
-.report-nav.bottom {{ border-bottom: none; border-top: 1px solid var(--border); margin-top: 40px; }}
 .nav-link {{ font-size: 13px; font-weight: 700; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 5px; }}
-.nav-link:hover {{ color: var(--im-navy); }}
 .nav-list-btn {{ font-size: 14px; font-weight: 800; color: var(--im-navy); text-decoration: none; border: 1px solid var(--im-navy); padding: 6px 16px; border-radius: 20px; }}
 .footer {{ padding: 60px 40px; background: var(--footer-bg); font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }}
 .footer-brand {{ font-weight: 900; color: var(--im-navy); font-size: 16px; margin-bottom: 15px; display: block; }}
@@ -95,13 +93,6 @@ body {{ font-family: 'Pretendard', -apple-system, sans-serif; background: var(--
 </style>
 """
 
-        krx_context = ""
-        if is_krx_open:
-            krx_context = "오늘은 KRX 영업일입니다. 밤사이 뉴욕의 상황이 오늘 아침 9시 한국 증시 개장가와 방향성에 미칠 파급력을 집중 해석하세요."
-        else:
-            krx_context = "오늘은 KRX 휴장일입니다. 글로벌 거시 흐름을 정리하고 다음 개장일을 준비하는 관점에서 분석하세요."
-
-        # 내비게이션 섹션 직접 생성 (파이썬에서 받은 링크 사용)
         nav_html = f"""
 <nav class="report-nav">
     <a href="{prev_link}" class="nav-link">{"← 이전 리포트" if prev_link != "#" else ""}</a>
@@ -125,31 +116,23 @@ body {{ font-family: 'Pretendard', -apple-system, sans-serif; background: var(--
 
 ### ✍️ 에디토리얼 작성 지침:
 
-1. **내비게이션 삽입 (CRITICAL)**:
-   - 리포트의 **최상단(masthead 이전)**과 **최하단(footer 이후)**에 아래 HTML 코드를 반드시 삽입하세요:
-   {nav_html}
+1. **내비게이션 삽입**: 리포트의 최상단과 최하단에 반드시 아래 코드를 삽입하세요: {nav_html}
 
-2. **레이아웃 유지**:
-   - `brand-row` -> `masthead-title` -> `summary-lead` -> `issue-meta` -> `data-strip` 순서를 지키세요.
-   - 모든 섹션은 `section-num`과 `section-title`로 시작하세요.
+2. **Open Graph(미리보기) 설정 (CRITICAL)**:
+   - `<head>` 안에 반드시 다음 메타 태그를 포함하세요. 제목 부분에는 당신이 정한 리포트 제목을 넣으세요:
+   ```html
+   <meta property="og:title" content="[리포트 제목]">
+   <meta property="og:description" content="iM뱅크 AI가 분석한 오늘의 글로벌 시장 인사이트">
+   <meta property="og:image" content="https://im-ai-market-report.vercel.app/api/og?date={encoded_date}&title=[리포트 제목]">
+   <meta property="og:type" content="article">
+   <meta name="twitter:card" content="summary_large_image">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   ```
+   - **주의**: `[리포트 제목]`은 실제 제목으로 교체하고, `og:image` URL 내에서는 일반 공백을 사용하세요.
 
-3. **심층 분석**:
-   - 정치경제적 상관관계 분석을 포함하여 A4 3페이지 이상의 풍부한 분량을 작성하세요.
-   - `pull-quote`, `callout-box`, `tech-table`을 활용하세요.
+3. **레이아웃 및 분석**: 2043 레이아웃과 A4 3페이지 이상의 심층 분석을 유지하세요.
 
-4. **게임 연동 위젯**:
-   - 두 번째 섹션 뒤에 `<div id="im-live-game">`이 포함된 `game-embed-card`를 삽입하세요.
-
-### 💻 출력 요구사항 (필수):
-- `<head>` 안에 다음 메타 태그를 포함하세요:
-  ```html
-  <meta property="og:title" content="[리포트 제목]">
-  <meta property="og:image" content="https://im-ai-market-report.vercel.app/api/og?date={today_kr}&title=[리포트 제목]">
-  <meta property="og:type" content="article">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  ```
-- 모든 CSS는 `<style>` 태그에 포함하세요. ({css_framework})
-- 출력은 반드시 `<!DOCTYPE html>`로 시작하는 완전한 HTML 코드여야 합니다.
+모든 CSS는 `<style>` 태그에 포함하고, 출력은 오직 `<!DOCTYPE html>`로 시작해야 합니다.
 """
 
         response = self.model.generate_content(prompt)
