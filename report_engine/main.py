@@ -22,23 +22,30 @@ def is_krx_open_today():
         print(f"⚠️ 휴장일 판별 오류: {e}")
         return True
 def clean_html_response(text):
-    # 1. 실제 HTML 구조(<!DOCTYPE html>부터 </html>까지)만 정밀 추출하여 서문/지시문 반복 제거
+    import urllib.parse
+    # 1. 실제 HTML 구조만 정밀 추출
     match = re.search(r'(<!DOCTYPE html>.*</html>)', text, re.DOTALL | re.IGNORECASE)
     if match:
         html = match.group(1)
         # 2. 마크다운 코드 블록 기호 제거
         html = html.replace("```html", "").replace("```", "").replace("'''html", "").replace("'''", "").strip()
 
-        # 3. og:image URL 내의 공백 인코딩
+        # 3. og:image URL 내의 특수문자 및 공백을 완벽하게 인코딩 (urllib.parse.quote 활용)
         def encode_og_image(m):
-            url = m.group(1)
-            encoded_url = url.replace(" ", "%20")
-            return f'property="og:image" content="{encoded_url}"'
+            full_url = m.group(1)
+            # URL을 베이스와 쿼리 파라미터로 분리하여 파라미터만 인코딩
+            if '?' in full_url:
+                base, query = full_url.split('?', 1)
+                # 쿼리 스트링의 파라미터값들을 안전하게 인코딩
+                params = urllib.parse.parse_qsl(query)
+                encoded_query = urllib.parse.urlencode(params)
+                encoded_url = f"{base}?{encoded_query}"
+                return f'property="og:image" content="{encoded_url}"'
+            return m.group(0)
+
         html = re.sub(r'property="og:image" content="(.*?)"', encode_og_image, html)
         return html
-
-    # 매칭 실패 시 마크다운 기호만이라도 제거
-    return text.replace("```html", "").replace("```", "").replace("'''html", "").replace("'''", "").strip()
+    return text.replace("```html", "").replace("```", "").strip()
 
 
 def send_to_telegram(filename):
