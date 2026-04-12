@@ -128,8 +128,8 @@ body {{ font-family: 'Pretendard', -apple-system, sans-serif; background: var(--
        <span class="game-embed-label">iM Special Challenge</span>
        <div class="game-embed-title">오늘의 KOSPI, 당신의 선택은?</div>
        <div class="voting-options">
-           <a href="https://im-ai-market-report.vercel.app?vote=UP" class="vote-link up">▲ UP (상승)</a>
-           <a href="https://im-ai-market-report.vercel.app?vote=DOWN" class="vote-link down">▼ DOWN (하락)</a>
+           <a href="https://im-ai-market-report.vercel.app/history?vote=UP" class="vote-link up">▲ UP (상승)</a>
+           <a href="https://im-ai-market-report.vercel.app/history?vote=DOWN" class="vote-link down">▼ DOWN (하락)</a>
        </div>
        <div class="game-footer-note">
           버튼을 클릭하면 iM뱅크 예측 시스템에 즉시 반영됩니다.<br>

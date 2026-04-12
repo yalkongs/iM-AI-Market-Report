@@ -1,114 +1,173 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { auth, db } from '@/lib/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
-import { collection, query, where, getDocs, orderBy } from 'firebase/firestore'
+import { collection, query, where, getDocs, orderBy, limit, doc, setDoc, getDoc } from 'firebase/firestore'
 import Header from '@/components/Header'
-import { AuthProvider } from '@/components/AuthProvider'
+import { AuthProvider, useAuth } from '@/components/AuthProvider'
 import Link from 'next/link'
+import { getTodayKST, isBettingOpen, isMarketClosed } from '@/lib/kospi'
+import { useSearchParams } from 'next/navigation'
 
 function HistoryContent() {
-  const [user, setUser] = useState<any>(null)
+  const { user, signIn, loading: authLoading } = useAuth()
+  const searchParams = useSearchParams()
   const [bets, setBets] = useState<any[]>([])
+  const [leaderboard, setLeaderboard] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const [votingStatus, setVotingStatus] = useState<string | null>(null)
 
+  // 1. 데이터 로드 및 자동 투표 처리
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (u) => {
-      setUser(u)
-      if (u) {
-        try {
-          console.log('[History] Fetching bets for:', u.uid)
-          const q = query(
-            collection(db, 'bets'),
-            where('uid', '==', u.uid),
-            orderBy('date', 'desc')
-          )
-          const snapshot = await getDocs(q)
-          const betsData = snapshot.docs.map(doc => doc.data())
-          console.log('[History] Found bets:', betsData.length)
-          setBets(betsData)
-        } catch (err: any) {
-          console.error('[History] Error fetching bets:', err)
-          // 색인(Index) 누락 에러인 경우 콘솔에 링크가 표시됩니다.
-          setError('데이터를 불러오는 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.')
+    if (authLoading) return
+
+    const fetchData = async () => {
+      try {
+        // (1) 자동 투표 처리 (URL 파라미터 ?vote= 감지 시)
+        const vote = searchParams.get('vote')?.toUpperCase()
+        if (vote === 'UP' || vote === 'DOWN') {
+          if (!user) {
+            setVotingStatus('로그인 후 투표를 완료합니다...')
+            signIn()
+            return
+          }
+          
+          if (isBettingOpen()) {
+            const today = getTodayKST()
+            const betRef = doc(db, 'bets', `${user.uid}_${today}`)
+            const betDoc = await getDoc(betRef)
+            
+            if (!betDoc.exists()) {
+              setVotingStatus(`${vote} 예측을 등록 중입니다...`)
+              await setDoc(betRef, {
+                uid: user.uid,
+                userName: user.displayName || '익명',
+                date: today,
+                prediction: vote,
+                createdAt: Date.now()
+              })
+              setVotingStatus('🎉 투표가 성공적으로 완료되었습니다!')
+            } else {
+              setVotingStatus('이미 오늘의 투표에 참여하셨습니다.')
+            }
+          } else {
+            setVotingStatus('아쉽게도 오늘의 베팅이 마감되었습니다.')
+          }
         }
+
+        // (2) 나의 베팅 히스토리 로드
+        if (user) {
+          const qBets = query(
+            collection(db, 'bets'),
+            where('uid', '==', user.uid),
+            orderBy('date', 'desc'),
+            limit(10)
+          )
+          const snapBets = await getDocs(qBets)
+          setBets(snapBets.docs.map(doc => doc.data()))
+        }
+
+        // (3) 리더보드 로드 (상위 10명)
+        const qRank = query(
+          collection(db, 'users'),
+          orderBy('currentStreak', 'desc'),
+          orderBy('updatedAt', 'asc'),
+          limit(10)
+        )
+        const snapRank = await getDocs(qRank)
+        setLeaderboard(snapRank.docs.map(doc => doc.data()))
+
+      } catch (err) {
+        console.error('Error fetching data:', err)
+      } finally {
+        setLoading(false)
       }
-      setLoading(false)
-    })
-    return () => unsubscribe()
-  }, [])
+    }
 
-  if (loading) return (
+    fetchData()
+  }, [user, authLoading, searchParams])
+
+  if (loading && !votingStatus) return (
     <div className="flex flex-col items-center justify-center min-h-screen">
-      <div className="h-10 w-10 border-4 border-navy border-t-transparent rounded-full animate-spin mb-4"></div>
-      <p className="text-gray-500">도전 기록을 불러오는 중입니다...</p>
+      <div className="h-10 w-10 border-4 border-navy border-t-transparent rounded-full animate-spin"></div>
     </div>
   )
-
-  if (error) return (
-    <div className="max-w-lg mx-auto p-20 text-center">
-      <p className="text-red-500 mb-4">⚠️ {error}</p>
-      <button onClick={() => window.location.reload()} className="text-navy underline">다시 시도</button>
-    </div>
-  )
-
-  if (!user) {
-    return (
-      <div className="max-w-lg mx-auto p-20 text-center">
-        <p className="text-gray-500 mb-6">로그인하시면 나의 도전 기록을 확인할 수 있습니다.</p>
-        <Link href="/" className="bg-navy text-white px-8 py-3 rounded-xl font-bold inline-block shadow-lg">
-          로그인하러 가기
-        </Link>
-      </div>
-    )
-  }
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-gray-50 pb-20">
       <Header />
       <div className="max-w-lg mx-auto px-4 py-8">
-        <div className="flex items-center justify-between mb-2">
-          <h1 className="text-2xl font-black text-gray-800">📜 나의 도전 기록</h1>
-          <Link href="/" className="text-sm text-gray-400">← 홈으로</Link>
-        </div>
-        <p className="text-sm text-gray-400 mb-8">지금까지 참여하신 KOSPI 예측 히스토리입니다.</p>
+        
+        {/* 리포트 복귀 상단 버튼 */}
+        <Link 
+          href="/reports/index.html" 
+          className="inline-block mb-6 text-sm font-bold text-navy bg-white px-4 py-2 rounded-full border border-navy shadow-sm"
+        >
+          ← 리포트 게시판으로 돌아가기
+        </Link>
 
-        {bets.length === 0 ? (
-          <div className="card text-center py-20 bg-white rounded-2xl border border-gray-100">
-            <p className="text-gray-400">아직 참여한 기록이 없습니다.</p>
-            <Link href="/" className="text-navy font-bold underline mt-4 block">첫 번째 도전 시작하기</Link>
+        {/* 1. 투표 처리 상태 메시지 */}
+        {votingStatus && (
+          <div className="bg-indigo-600 text-white p-4 rounded-2xl mb-8 shadow-lg animate-bounce text-center font-bold">
+            {votingStatus}
           </div>
-        ) : (
-          <div className="grid gap-3">
-            {bets.map((bet, idx) => (
-              <div key={idx} className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex justify-between items-center">
-                <div>
-                  <p className="font-bold text-gray-800 text-lg">{bet.date}</p>
-                  <p className="text-xs text-gray-400 mt-1">
-                    나의 선택: <span className="font-bold text-gray-600">{bet.prediction === 'UP' ? '▲ 상승' : '▼ 하락'}</span>
-                  </p>
+        )}
+
+        {/* 2. 나의 도전 기록 섹션 */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-black text-gray-800 mb-4 flex items-center gap-2">📜 나의 기록</h2>
+          {!user ? (
+            <div className="card text-center py-10 bg-white">
+              <p className="text-gray-500 mb-4">로그인하시면 나의 기록을 볼 수 있습니다.</p>
+              <button onClick={() => signIn()} className="bg-navy text-white px-6 py-2 rounded-lg font-bold">로그인</button>
+            </div>
+          ) : bets.length === 0 ? (
+            <div className="card text-center py-10 text-gray-400 bg-white">아직 참여 기록이 없습니다.</div>
+          ) : (
+            <div className="grid gap-3">
+              {bets.map((bet, idx) => (
+                <div key={idx} className="bg-white p-4 rounded-xl border border-gray-100 flex justify-between items-center shadow-sm">
+                  <div>
+                    <p className="font-bold text-gray-800">{bet.date}</p>
+                    <p className="text-xs text-gray-400">예측: {bet.prediction}</p>
+                  </div>
+                  <span className={`font-black ${bet.result === 'correct' ? 'text-green-500' : bet.result === 'incorrect' ? 'text-red-500' : 'text-yellow-500'}`}>
+                    {bet.result === 'correct' ? '⭕' : bet.result === 'incorrect' ? '❌' : '대기'}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+
+        {/* 3. 통합 리더보드 섹션 (Top 10) */}
+        <section>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-2xl font-black text-gray-800 flex items-center gap-2">🏆 실시간 랭킹</h2>
+            <Link href="/leaderboard" className="text-xs text-gray-400 font-bold underline">전체 보기</Link>
+          </div>
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+            {leaderboard.map((player, idx) => (
+              <div key={player.uid} className={`flex items-center justify-between p-4 ${idx < 3 ? 'bg-orange-50/30' : ''} border-b last:border-none`}>
+                <div className="flex items-center gap-3">
+                  <span className={`w-6 text-center font-black ${idx === 0 ? 'text-yellow-500' : idx === 1 ? 'text-gray-400' : idx === 2 ? 'text-orange-400' : 'text-gray-300'}`}>
+                    {idx + 1}
+                  </span>
+                  <span className="font-bold text-gray-700">{player.name}</span>
                 </div>
                 <div className="text-right">
-                  {bet.result === 'correct' ? (
-                    <div className="flex flex-col items-end">
-                      <span className="text-green-500 font-black text-xl">정답 ⭕</span>
-                    </div>
-                  ) : bet.result === 'incorrect' ? (
-                    <div className="flex flex-col items-end">
-                      <span className="text-red-500 font-black text-xl">오답 ❌</span>
-                    </div>
-                  ) : (
-                    <span className="bg-yellow-50 text-yellow-600 px-3 py-1 rounded-full text-xs font-bold border border-yellow-100">
-                      결과 대기 중
-                    </span>
-                  )}
+                  <span className="text-sm font-black text-navy">{player.currentStreak}🔥</span>
                 </div>
               </div>
             ))}
           </div>
-        )}
+        </section>
+
+        {/* 하단 복귀 버튼 */}
+        <div className="mt-12 text-center">
+          <Link href="/reports/index.html" className="text-gray-400 text-sm underline">마켓 리포트 더 읽으러 가기</Link>
+        </div>
       </div>
     </main>
   )
@@ -117,7 +176,9 @@ function HistoryContent() {
 export default function HistoryPage() {
   return (
     <AuthProvider>
-      <HistoryContent />
+      <Suspense fallback={<div className="p-20 text-center">Loading...</div>}>
+        <HistoryContent />
+      </Suspense>
     </AuthProvider>
   )
 }
