@@ -30,9 +30,10 @@ class ReportGenerator:
         sentiment = self.get_market_sentiment(market_data)
         
         # 메타 데이터 준비 (OG 태그용)
-        # Gemini가 생성할 제목을 미리 예측하거나, 기본 제목 설정
-        og_title = f"iM뱅크 모닝 마켓 브리프 ({today_compact})"
-        og_image = f"https://im-ai-market-report.vercel.app/api/og?title={requests.utils.quote(og_title)}&date={today_compact}"
+        today_compact = now.strftime("%Y-%m-%d")
+        # 텔레그램 미리보기에 나타날 기본 제목 (Gemini가 본문에서 교체하도록 지시)
+        og_title_placeholder = f"iM뱅크 모닝 마켓 브리프 ({today_compact})"
+        og_image_base = f"https://im-ai-market-report.vercel.app/api/og?date={today_compact}"
         
         # [2043 Style + Dynamic Theme]
         themes = {
@@ -228,15 +229,16 @@ body {{
 출력은 반드시 `<!DOCTYPE html>`로 시작하는 완전한 HTML 코드여야 합니다. 
 
 ### 💻 출력 요구사항 (필수):
-- `<head>` 안에 다음 메타 태그를 반드시 포함하세요:
+- `<head>` 안에 다음 메타 태그를 반드시 포함하세요. (제목 부분에는 당신이 정한 리포트 제목을 넣으세요):
   ```html
-  <meta property="og:title" content="{og_title}">
+  <meta property="og:title" content="[리포트 제목]">
   <meta property="og:description" content="iM뱅크 AI가 분석한 오늘의 글로벌 시장 인사이트">
-  <meta property="og:image" content="{og_image}">
+  <meta property="og:image" content="{og_image_base}&title=[리포트 제목]">
   <meta property="og:type" content="article">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   ```
+- **주의**: `[리포트 제목]` 부분은 반드시 실제 당신이 지은 매력적인 제목으로 교체하여 URL 인코딩 형식에 맞게(띄어쓰기 등 주의) 작성하세요.
 - 모든 CSS는 `<style>` 태그에 포함하세요. ({css_framework})
 """
 
