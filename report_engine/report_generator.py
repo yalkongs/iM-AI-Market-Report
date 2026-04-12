@@ -12,7 +12,7 @@ class ReportGenerator:
         if not api_key:
             raise ValueError("GEMINI_API_KEY not found. Please set it in .env file.")
         genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel("gemini-2.5-flash")
+        self.model = genai.GenerativeModel("gemini-2.5-pro")
 
     def get_market_sentiment(self, market_data):
         sp500_pct = market_data.get("S&P 500", {}).get("pct", 0)

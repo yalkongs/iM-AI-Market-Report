@@ -21,19 +21,25 @@ def is_krx_open_today():
     except Exception as e:
         print(f"⚠️ 휴장일 판별 오류: {e}")
         return True
-
 def clean_html_response(text):
-    cleaned = text.replace("```html", "").replace("```", "").replace("'''html", "").replace("'''", "").strip()
-    match = re.search(r'(<!DOCTYPE html>.*</html>)', cleaned, re.DOTALL | re.IGNORECASE)
+    # 1. 실제 HTML 구조(<!DOCTYPE html>부터 </html>까지)만 정밀 추출하여 서문/지시문 반복 제거
+    match = re.search(r'(<!DOCTYPE html>.*</html>)', text, re.DOTALL | re.IGNORECASE)
     if match:
         html = match.group(1)
+        # 2. 마크다운 코드 블록 기호 제거
+        html = html.replace("```html", "").replace("```", "").replace("'''html", "").replace("'''", "").strip()
+
+        # 3. og:image URL 내의 공백 인코딩
         def encode_og_image(m):
             url = m.group(1)
             encoded_url = url.replace(" ", "%20")
             return f'property="og:image" content="{encoded_url}"'
         html = re.sub(r'property="og:image" content="(.*?)"', encode_og_image, html)
         return html
-    return cleaned
+
+    # 매칭 실패 시 마크다운 기호만이라도 제거
+    return text.replace("```html", "").replace("```", "").replace("'''html", "").replace("'''", "").strip()
+
 
 def send_to_telegram(filename):
     """생성된 리포트의 URL만 텔레그램으로 전송합니다."""
