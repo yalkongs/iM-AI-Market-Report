@@ -2,7 +2,9 @@ name: Daily Morning Market Report
 
 on:
   schedule:
-    - cron: '0 22 * * 0-4'
+    # 매일 아침 07:00 KST (UTC 22:00, 전날 밤 실행)
+    # 매일 밤 22:00 UTC에 실행하면 다음 날 아침 07:00 KST가 됨
+    - cron: '0 22 * * *'
   workflow_dispatch:
 
 jobs:

@@ -38,7 +38,8 @@ def clean_html_response(text):
 
 def send_to_telegram(filename):
     """생성된 리포트의 URL을 텔레그램으로 전송합니다."""
-    resume_time = datetime(2026, 4, 12, 21, 0) 
+    # [일시 중단 설정] 2026-04-11 23:00 (KST) 이후 전송 재개
+    resume_time = datetime(2026, 4, 11, 23, 0) 
     if datetime.now() < resume_time:
         print(f"🔇 테스트 기간 텔레그램 전송 중단 중")
         return
