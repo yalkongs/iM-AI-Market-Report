@@ -18,9 +18,20 @@ function ReportViewer() {
         const filename = params.filename as string
         const response = await fetch(`/reports/${filename}`)
         if (!response.ok) throw new Error('Report not found')
-        const html = await response.text()
+        let html = await response.text()
         
-        // 1. HTML 콘텐츠 내보내기 (불필요한 스타일/태그 제거 로직 등)
+        // 주변 파일 목록 가져오기
+        const listRes = await fetch('/api/reports/list')
+        const { files } = await listRes.json()
+        
+        const currentIndex = files.indexOf(filename)
+        const prevFile = currentIndex < files.length - 1 ? files[currentIndex + 1] : null
+        const nextFile = currentIndex > 0 ? files[currentIndex - 1] : null
+        
+        // 치환자 교체 (웹 뷰어용 경로 /reports/파일명)
+        html = html.replace(/\{\{prev_link\}\}/g, prevFile ? `/reports/${prevFile}` : '#')
+        html = html.replace(/\{\{next_link\}\}/g, nextFile ? `/reports/${nextFile}` : '#')
+        
         setHtmlContent(html)
         setLoading(false)
       } catch (error) {

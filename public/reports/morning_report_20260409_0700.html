@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -5,26 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta property="og:title" content="iM뱅크 모닝 마켓 브리프 (2026-04-12)">
     <meta property="og:description" content="iM뱅크 AI가 분석한 오늘의 글로벌 시장 인사이트">
-    <meta property="og:image" content="https://im-ai-market-report.vercel.app/api/og?title=iM%EB%B1%85%ED%81%B4%20%EB%AA%A8%EB%8B%9D%20%EB%B8%8C%EB%A6%AC%ED%94%84%20%282026-04-12%29&date=2026-04-12">
+    <meta property="og:image" content="https://im-ai-market-report.vercel.app/api/og?title=iM%EB%B1%85%ED%81%AC%20%EB%AA%A8%EB%8B%9D%20%EB%A7%88%EC%BC%93%20%EB%B8%8C%EB%A6%AC%ED%94%84%20%282026-04-12%29&date=2026-04-12">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>iM뱅크 프리미엄 에디토리얼 리포트: 2026년 04월 12일</title>
+    <title>iM뱅크 프리미엄 에디토리얼 리포트 (2026-04-12)</title>
     <style>
         :root {
             --im-navy: #2A3050; --im-blue: #3A4568; --im-gold: #C8940A;
             --black: #111111; --white: #FFFFFF; --bg: #F9FAFB;
             --border: #E8E8E8; --muted: #777777; --red: #C62828;
             --blue-down: #1565C0; --lnavy: #F4F6F9;
-            --header-bg: #FFFFFF; /* Neutral sentiment, so default white */
-            --header-text: #111111; /* Neutral sentiment, so default black */
-            --footer-bg: #F9FAFB; /* Neutral sentiment, so default light gray */
-            --data-bg: #2A3050;
+            --header-bg: #FFFFFF; --header-text: #111111;
+            --footer-bg: #F9FAFB; --data-bg: #2A3050;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Pretendard', -apple-system, sans-serif; background: var(--bg); 
-            color: var(--black); line-height: 1.85; -webkit-font-smoothing: antialiased; word-break: keep-all; 
+        body {
+            font-family: 'Pretendard', -apple-system, sans-serif; background: var(--bg);
+            color: var(--black); line-height: 1.85; -webkit-font-smoothing: antialiased; word-break: keep-all;
         }
         .wrap { width: 100%; max-width: 680px; margin: 0 auto; background: var(--white); min-height: 100vh; box-shadow: 0 0 40px rgba(0, 0, 0, 0.03); }
 
@@ -74,24 +73,32 @@
         .game-btn:hover { background: #000; transform: translateY(-2px); }
 
         /* Live Game Embed Card */
-        .game-embed-card { 
-            margin: 50px 0; padding: 40px; background: var(--lnavy); border: 1px solid var(--border); 
+        .game-embed-card {
+            margin: 50px 0; padding: 40px; background: var(--lnavy); border: 1px solid var(--border);
             border-radius: 4px; text-align: center; position: relative;
         }
-        .game-embed-label { 
-            font-size: 11px; font-weight: 800; color: var(--im-gold); text-transform: uppercase; 
-            letter-spacing: 2px; margin-bottom: 15px; display: block; 
+        .game-embed-label {
+            font-size: 11px; font-weight: 800; color: var(--im-gold); text-transform: uppercase;
+            letter-spacing: 2px; margin-bottom: 15px; display: block;
         }
         .game-embed-title { font-size: 22px; font-weight: 800; color: var(--im-navy); margin-bottom: 25px; }
         .voting-options { display: flex; gap: 15px; justify-content: center; }
-        .vote-link { 
-            flex: 1; max-width: 180px; padding: 18px; border-radius: 2px; text-decoration: none; 
-            font-weight: 800; font-size: 16px; color: #fff; transition: 0.3s; 
+        .vote-link {
+            flex: 1; max-width: 180px; padding: 18px; border-radius: 2px; text-decoration: none;
+            font-weight: 800; font-size: 16px; color: #fff; transition: 0.3s;
         }
         .vote-link.up { background: var(--red); }
         .vote-link.down { background: var(--blue-down); }
         .vote-link:hover { filter: brightness(1.1); transform: translateY(-2px); }
         .game-footer-note { font-size: 12px; color: var(--muted); margin-top: 20px; font-style: italic; }
+
+        /* Report Navigation */
+        .report-nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: #fff; border-bottom: 1px solid var(--border); }
+        .report-nav.bottom { border-bottom: none; border-top: 1px solid var(--border); margin-top: 40px; }
+        .nav-link { font-size: 13px; font-weight: 700; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 5px; }
+        .nav-link:hover { color: var(--im-navy); }
+        .nav-list-btn { font-size: 14px; font-weight: 800; color: var(--im-navy); text-decoration: none; border: 1px solid var(--im-navy); padding: 6px 16px; border-radius: 20px; }
+        .nav-list-btn:hover { background: var(--im-navy); color: #fff; }
 
         .up { color: #FF5252; }
         .down { color: #448AFF; }
@@ -100,93 +107,89 @@
             .masthead { padding: 45px 24px; }
             .section { padding: 45px 24px; }
             .masthead-title { font-size: 28px; }
+            .data-strip { grid-template-columns: repeat(1, 1fr); }
+            .data-item { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .data-item:last-child { border-bottom: none; }
         }
     </style>
 </head>
 <body>
     <div class="wrap">
+        <nav class="report-nav">
+            <a href="{prev_link}" class="nav-link">← 이전 리포트</a>
+            <a href="/reports/index.html" class="nav-list-btn">목록으로</a>
+            <a href="{next_link}" class="nav-link">다음 리포트 →</a>
+        </nav>
+
         <header class="masthead">
             <div class="brand-row">
                 <div class="brand-left">
                     <span class="brand-logo">iM뱅크</span>
-                    <span class="brand-label">MARKET BRIEF</span>
+                    <span class="brand-label">PREMIUM EDITORIAL</span>
                 </div>
-                <span class="ai-tag">AI-DRIVEN ANALYSIS</span>
+                <span class="ai-tag">AI Powered Analysis</span>
             </div>
-            <h1 class="masthead-title">혼조세 속 기술주 강세: 뉴욕 시장의 밤, 코스피의 아침을 읽다</h1>
-            <p class="summary-lead">
-                미국 시장은 전반적으로 혼조세를 보였으나, 기술주와 반도체 섹터의 두드러진 강세가 지수 전반의 하방 압력을 상쇄했습니다. 연준의 금리 인하 기대감은 여전히 유효하지만, 지정학적 리스크와 특정 섹터의 크레딧 위기 우려는 투자 심리에 신중함을 더하고 있습니다. 금일 한국 증시는 밤사이 형성된 이러한 복합적인 심리를 반영하며 개장할 것으로 예상됩니다.
-            </p>
+            <h1 class="masthead-title">2043 프리미엄 에디토리얼 리포트: <br>글로벌 시장, 미묘한 균형 속 기회 모색</h1>
+            <div class="summary-lead">
+                2026년 4월 12일, 글로벌 금융 시장은 혼조세를 보이며 미묘한 균형 상태에 진입했습니다. 뉴욕 증시는 기술주의 선방과 전통 산업주의 약세가 교차하는 가운데, 한국 코스피는 견조한 상승세를 기록하며 아시아 시장의 주목을 받았습니다. 이번 리포트에서는 중립(NEUTRAL) 심리가 지배하는 현 시장의 복합적인 요인을 심층 분석하고, 투자 전략에 대한 iM뱅크의 통찰을 제공합니다.
+            </div>
             <div class="issue-meta">
-                <span>발행시각: 2026년 04월 12일 19:00 AM KST</span>
-                <span>KRX 개장 여부: 영업일</span>
+                <span>발행시각: 2026년 04월 12일 19:43 AM KST</span>
+                <span>총괄 에디터: iM뱅크 AI 분석 시스템</span>
             </div>
         </header>
 
         <div class="data-strip">
             <div class="data-item">
                 <span class="data-label">S&P 500</span>
-                <span class="data-val">6816.89</span>
-                <span class="data-pct down">-0.11%</span>
+                <span class="data-val">6,816.89</span>
+                <span class="data-pct down">(-0.11%)</span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">Nasdaq</span>
+                <span class="data-val">22,902.89</span>
+                <span class="data-pct up">(+0.35%)</span>
             </div>
             <div class="data-item">
                 <span class="data-label">KOSPI</span>
-                <span class="data-val">5858.87</span>
-                <span class="data-pct up">+1.40%</span>
-            </div>
-            <div class="data-item">
-                <span class="data-label">USD/KRW</span>
-                <span class="data-val">1482.7</span>
-                <span class="data-pct up">+0.64%</span>
+                <span class="data-val">5,858.87</span>
+                <span class="data-pct up">(+1.40%)</span>
             </div>
         </div>
 
         <section class="section">
-            <span class="section-num">I.</span>
-            <h2 class="section-title">글로벌 시장 동향 및 뉴욕 증시 분석: 혼조세 속 숨겨진 기회</h2>
+            <span class="section-num">01</span>
+            <h2 class="section-title">글로벌 시장 동향 분석: 뉴욕의 혼조와 코스피의 강세</h2>
             <div class="content-body">
-                <p>
-                    지난밤 뉴욕 증시는 엇갈린 흐름을 보였습니다. 다우존스 산업평균지수는 0.56% 하락하며 전반적인 시장의 조심스러운 분위기를 반영한 반면, S&P 500 지수 역시 소폭(-0.11%) 하락하며 유사한 경향을 나타냈습니다. 이는 주로 금리 인하 기대감과 지정학적 리스크, 그리고 특정 섹터의 불안감이 복합적으로 작용한 결과로 풀이됩니다. 특히 채권 시장에서는 사모 신용(private credit) 위기에 대한 우려가 확산되고 있으며, 이는 고정 수입 ETF에까지 영향을 미치고 있다는 분석이 제기되어 시장 참여자들의 경계심을 높이고 있습니다.
-                </p>
+                <p>지난밤 뉴욕 증시는 혼조 양상을 보이며 투자자들에게 복합적인 신호를 보냈습니다. S&P 500 지수는 소폭 하락(-0.11%)하며 전반적인 시장의 관망세를 반영했고, 다우존스 산업평균지수는 상당한 하락폭(-0.56%)을 기록하며 전통 산업주의 약세를 시사했습니다. 반면, 기술주 중심의 나스닥 지수는 견조한 상승세(+0.35%)를 보이며 시장 내에서 기술 섹터의 상대적 강세를 다시 한번 증명했습니다. 이는 인공지능(AI) 관련 성장 기대감이 여전히 유효함을 보여주는 동시에, 특정 부문에 대한 자금 쏠림 현상이 지속되고 있음을 나타냅니다.</p>
+
+                <p>이러한 뉴욕 시장의 흐름은 오늘 아침 개장한 KRX 시장에 중요한 파급력을 미쳤습니다. 코스피 지수는 무려 1.40% 상승하며 5,858.87 포인트를 기록, 아시아 시장 전반에 걸쳐 긍정적인 분위기를 주도했습니다. 이는 글로벌 기술주의 강세에 대한 기대로 국내 반도체 및 IT 관련주가 동반 상승한 결과로 해석됩니다. 특히, 나스닥의 상승세와 필라델피아 반도체 지수(SOX)의 강력한 반등(+2.31%)은 국내 기술주에 대한 매수 심리를 자극하는 주요 요인으로 작용했습니다.</p>
+
                 <div class="callout-box">
-                    <strong>시장 경계 요인: 사모 신용 위기 우려</strong>
-                    <p>
-                        "How bond market's private credit crisis fears are playing out in fixed-income ETFs" 기사는 성장하는 불투명한 채권 시장이 고정 수입 ETF에 포함되면서 사모 신용 위기에 대한 우려가 고조되고 있음을 시사합니다. 이는 시장 전반에 잠재적인 위험 요소로 작용할 수 있습니다.
-                    </p>
+                    <strong>AI 시대의 명암: 성장 기대와 규제 리스크</strong>
+                    인공지능 기술의 발전은 시장에 새로운 성장 동력을 제공하고 있지만, 동시에 산업 전반의 변화와 잠재적 리스크에 대한 논의도 활발합니다. 최근 Anthropic의 새로운 AI 에이전트 출시는 소프트웨어 기업들의 수익 모델에 대한 우려를 다시 불러일으키며 일부 기술주에 대한 압박으로 작용했습니다. Alibaba의 '세계 모델' 투자 사례는 이러한 혁신 경쟁이 가속화되고 있음을 보여주며, 투자자들은 AI 관련 기업들의 실질적인 수익 창출 능력과 장기적인 비전을 더욱 신중하게 평가해야 할 시점입니다.
                 </div>
-                <p>
-                    그러나 기술주 중심의 나스닥 지수는 0.35% 상승하며 견조한 흐름을 이어갔습니다. 이는 반도체 지수(SOX)가 2.31% 급등한 것과 궤를 같이하며, 인공지능(AI) 관련 기술 섹터에 대한 여전한 투자 심리를 방증합니다. 연방준비제도(Fed) 관계자들이 전쟁의 영향에도 불구하고 올해 금리 인하를 여전히 전망하고 있다는 소식은 증시의 하방 경직성을 지지하는 요인으로 작용했습니다. 이와 같은 연준의 입장은 시장의 불확실성 속에서도 투자자들에게 일말의 안도감을 제공했습니다.
-                </p>
-                <div class="pull-quote">
-                    "지정학적 리스크와 사모 신용 시장의 불안감 속에서도, 기술 혁신을 향한 투자의지는 여전히 시장의 한 축을 지탱하는 강력한 동력으로 작용하고 있다."
-                </div>
-                <p>
-                    이처럼 미국 증시는 전반적인 경제 지표와 금리 인하 기대감, 그리고 특정 섹터의 위험 요소가 복합적으로 작용하며 방향성을 모색하는 모습을 보였습니다. 마이클 버리(Michael Burry)와 같은 거물 투자자가 팔란티어(Palantir)에 대한 공매도 포지션을 유지하고 있다는 소식은 여전히 시장 내에서 기업 가치에 대한 회의론이 존재함을 보여주며, 무조건적인 상승보다는 신중한 접근이 필요함을 상기시킵니다.
-                </p>
+
+                <p>미국 10년물 국채 금리는 소폭 상승(+0.56%)하여 4.32%를 기록했으며, 변동성 지수(VIX)는 안정세를 찾아가며(-1.33%) 시장의 단기적인 공포 심리가 완화되었음을 나타냈습니다. 국제유가(WTI Oil)는 하락(-1.33%)하여 인플레이션 압력 완화에 기여할 수 있는 요인으로 작용했습니다. 원/달러 환율은 1,482.7원으로 상승(+0.64%)하며, 달러 강세 압력이 여전히 존재함을 보여주었으나, 전반적인 시장 심리는 이러한 복합적인 지표들 사이에서 균형점을 찾아가는 모습입니다.</p>
             </div>
         </section>
 
         <section class="section">
-            <span class="section-num">II.</span>
-            <h2 class="section-title">기술 섹터의 양면성: AI 혁신과 기존 소프트웨어의 도전</h2>
+            <span class="section-num">02</span>
+            <h2 class="section-title">핵심 드라이버 심층 분석: 기술 섹터의 이중성과 거시 경제 변수</h2>
             <div class="content-body">
-                <p>
-                    미국 시장의 혼조세 속에서도 기술 섹터, 특히 반도체 분야는 독보적인 강세를 보였습니다. 필라델피아 반도체 지수(SOX)는 2.31%의 큰 폭 상승을 기록하며 전체 기술주 시장의 긍정적인 분위기를 주도했습니다. 이는 엔비디아(NVIDIA)가 2.57% 상승하며 다시금 시장의 주목을 받은 것과 무관하지 않습니다. AI 기술의 발전은 여전히 강력한 성장 동력으로 작용하고 있으며, 글로벌 기업들의 관련 투자 소식은 이러한 추세를 더욱 공고히 합니다.
-                </p>
-                <div class="callout-box">
-                    <strong>AI 투자의 지속: 알리바바의 'General World Model'</strong>
-                    <p>
-                        알리바바 클라우드(Alibaba Cloud)가 스타트업 셩슈(Shengshu)에 2억 9천만 달러를 투자하여 새로운 AI 모델인 "General World Model"을 개발한다는 소식은 LLM(거대언어모델)의 한계를 극복하고 로봇 애플리케이션의 실용화를 위한 중요한 진전으로 평가됩니다. 이는 AI 산업의 진화 방향을 제시하며 관련 기술주에 긍정적인 영향을 미칠 수 있습니다.
-                    </p>
+                <p>현재 시장은 특정 섹터의 강세와 거시 경제 지표의 변동성 사이에서 복잡한 역학 관계를 형성하고 있습니다. 특히 기술 섹터는 혁신을 주도하는 동시에 규제 및 경쟁 심화라는 이중적 과제를 안고 있습니다. 엔비디아(NVIDIA)는 2.57%의 견조한 상승세를 기록하며 AI 반도체 시장의 지배력을 재확인했습니다. 이는 나스닥 및 SOX 지수의 상승을 견인하는 핵심 동력이었으며, 미래 기술 성장에 대한 시장의 기대를 반영합니다.</p>
+
+                <div class="pull-quote">
+                    "성장과 불확실성의 교차로에서, 시장은 혁신을 향한 열망과 현실적 위험 사이의 미묘한 균형점을 찾고 있다."
                 </div>
-                <p>
-                    그러나 AI 혁신이 모든 기술 기업에 장밋빛 미래만을 선사하는 것은 아닙니다. 앤스로픽(Anthropic)의 새로운 AI 에이전트 발표와 수익 전망 업데이트는 기존 소프트웨어 기업들에게 "AI 심판의 날(AI day of reckoning)"이 다가올 수 있다는 투자자들의 우려를 다시 불러일으켰습니다. 이는 AI가 가져올 생산성 향상과 비용 절감이 기존 소프트웨어 모델의 파괴적 혁신으로 이어질 수 있음을 시사합니다. 마이크로소프트(Microsoft)가 0.59% 하락한 반면, 테슬라(Tesla)가 0.96% 상승하고 애플(Apple)은 보합세를 보인 것은 기술주 내에서도 차별화된 흐름이 나타나고 있음을 보여줍니다.
-                </p>
+
+                <p>반면, 애플(Apple)은 보합세(0.00%)를 기록하며 최근 신제품 출시와 관련된 시장의 신중한 평가를 받았고, 마이크로소프트(Microsoft)는 소폭 하락(-0.59%)하여 AI 기술 선두 주자로서의 기대에도 불구하고 전체 시장의 조정을 완전히 비켜가지는 못했습니다. 테슬라(Tesla)는 0.96% 상승하며 전기차 시장의 경쟁 심화 속에서도 일정 부분 회복세를 보였습니다. 이러한 개별 기술 기업들의 상이한 움직임은 단순한 섹터 전체의 강세보다는, 기업별 펀더멘털과 혁신 역량에 대한 더욱 면밀한 평가가 필요함을 시사합니다.</p>
 
                 <table class="tech-table">
                     <thead>
                         <tr>
-                            <th>종목</th>
+                            <th>기술주</th>
                             <th>현재가</th>
                             <th>변동률</th>
                         </tr>
@@ -200,7 +203,7 @@
                         <tr>
                             <td>Apple</td>
                             <td>$260.48</td>
-                            <td class="down">-0.00%</td>
+                            <td>-0.00%</td>
                         </tr>
                         <tr>
                             <td>Tesla</td>
@@ -214,65 +217,59 @@
                         </tr>
                     </tbody>
                 </table>
-                <p>
-                    기술 섹터는 AI라는 강력한 성장 동력을 품고 있지만, 동시에 기술적 진보가 야기하는 기존 산업의 재편이라는 도전 과제 또한 안고 있습니다. 투자자들은 이러한 양면성을 면밀히 분석하여 신중한 포트폴리오 전략을 수립해야 할 시점입니다.
-                </p>
 
-                <div id="im-live-game" class="game-embed-card">
-                    <span class="game-embed-label">iM Special Challenge</span>
-                    <div class="game-embed-title">오늘의 KOSPI, 당신의 선택은?</div>
-                    <div class="voting-options">
-                        <a href="https://im-ai-market-report.vercel.app?vote=UP" class="vote-link up">▲ UP (상승)</a>
-                        <a href="https://im-ai-market-report.vercel.app?vote=DOWN" class="vote-link down">▼ DOWN (하락)</a>
-                    </div>
-                    <div class="game-footer-note">버튼을 클릭하면 iM뱅크 예측 시스템에 즉시 반영됩니다.</div>
+                <p>거시 경제 측면에서는 연방준비제도(Fed)의 금리 인하 정책 방향이 여전히 시장의 핵심 관심사입니다. 최근 발표된 FOMC 의사록에 따르면, 정책 입안자들은 중동 지역의 전쟁이 인플레이션에 미치는 영향에도 불구하고 올해 금리 인하를 여전히 전망하고 있음을 시사했습니다. 그러나 동시에 "신중하게(nimble)" 대응할 필요성을 강조하며, 향후 경제 지표와 지정학적 상황 변화에 따라 정책 유연성을 유지할 것임을 내비쳤습니다. 이러한 Fed의 스탠스는 시장에 일정 부분의 안도감을 주면서도, 불확실성이 상존함을 상기시킵니다.</p>
+
+                <p>또한, 채권 시장의 사모 신용 위기(private credit crisis)에 대한 우려가 확산되고 있는 점은 주시해야 할 리스크 요인입니다. 투명성이 낮은 사모 채권 시장의 성장이 ETF 등 고정 수입 상품에 편입되면서, 잠재적 부실 위험이 더 넓은 금융 시스템으로 확산될 수 있다는 분석이 제기됩니다. 이는 특히 유동성 관리와 포트폴리오 다변화 측면에서 투자자들에게 신중한 접근을 요구하는 대목입니다.</p>
+            </div>
+
+            <div id="im-live-game" class="game-embed-card">
+                <span class="game-embed-label">iM Special Challenge</span>
+                <div class="game-embed-title">오늘의 KOSPI, 당신의 선택은?</div>
+                <div class="voting-options">
+                    <a href="https://im-ai-market-report.vercel.app?vote=UP" class="vote-link up">▲ UP (상승)</a>
+                    <a href="https://im-ai-market-report.vercel.app?vote=DOWN" class="vote-link down">▼ DOWN (하락)</a>
                 </div>
+                <div class="game-footer-note">버튼을 클릭하면 iM뱅크 예측 시스템에 즉시 반영됩니다.</div>
             </div>
         </section>
 
         <section class="section">
-            <span class="section-num">III.</span>
-            <h2 class="section-title">한국 증시 전망 및 투자 전략: 복합적 신호 속 기회 탐색</h2>
+            <span class="section-num">03</span>
+            <h2 class="section-title">KRX 시장 영향과 투자 전략: 중립 속 기회 포착</h2>
             <div class="content-body">
-                <p>
-                    밤사이 뉴욕 시장의 흐름은 금일(영업일) 한국 증시, 특히 코스피의 개장가와 방향성에 복합적인 영향을 미칠 것으로 예상됩니다. 전반적인 미국 증시의 혼조세 속에서도 기술주와 반도체 섹터의 강세는 한국의 IT 및 반도체 관련 대형주에 긍정적인 영향을 미칠 수 있습니다. 특히 SOX 지수의 견조한 상승과 엔비디아의 약진은 국내 반도체 기업들의 주가 흐름에 모멘텀을 제공할 것으로 보입니다.
-                </p>
-                <p>
-                    그러나 다우존스와 S&P 500의 소폭 하락은 시장 전반의 상승 탄력을 제한할 수 있으며, 이는 특정 업종에 대한 선별적인 접근의 중요성을 부각시킵니다. 또한, 원/달러 환율이 0.64% 상승한 1482.7원을 기록하며 원화 약세가 지속되는 점은 외국인 투자 자금 유출에 대한 우려를 키울 수 있으며, 국내 증시에 부담으로 작용할 가능성이 있습니다. 유가(WTI Oil)가 1.33% 하락한 것은 국내 에너지 수입 기업에는 긍정적이지만, 글로벌 경기 둔화 우려의 반영일 수도 있어 마냥 호재로만 해석하기는 어렵습니다.
-                </p>
-                <p>
-                    변동성 지수(VIX)가 1.33% 하락하며 시장의 단기적인 공포 심리가 완화된 것은 긍정적인 신호로 볼 수 있습니다. 이는 투자자들이 극단적인 위험 회피보다는 좀 더 냉정한 시각으로 시장을 바라보고 있음을 의미합니다. 미국 10년물 국채 금리가 0.56% 상승한 4.32%를 기록한 것은 아직 긴축 완화에 대한 불확실성이 남아있음을 보여주며, 성장주 투자에는 여전히 부담으로 작용할 수 있습니다.
-                </p>
-                <p>
-                    종합적으로 볼 때, 금일 코스피는 밤사이 형성된 미국 시장의 복합적인 심리를 반영하여 개장할 것으로 보입니다. AI와 반도체 관련 기술주는 강세를 이어갈 수 있으나, 전반적인 지수의 큰 폭 상승보다는 선별적인 강세가 나타날 가능성이 높습니다. 투자자들은 미 연준의 금리 인하 스탠스와 지정학적 리스크, 그리고 환율 변동성 등 거시 경제 지표를 주시하며, 유망 섹터 내에서도 펀더멘털이 견고한 기업을 중심으로 포트폴리오를 재점검하는 신중한 전략이 필요합니다. iM뱅크는 이러한 시장의 미묘한 흐름을 지속적으로 분석하여 가장 신뢰할 수 있는 투자 인사이트를 제공할 것입니다.
-                </p>
+                <p>뉴욕 증시의 혼조세 속에서도 코스피가 1.40%라는 강한 상승세를 보인 것은 매우 고무적입니다. 이는 국내 시장이 특정 글로벌 요인, 특히 기술 섹터의 강세에 대한 민감도가 높음을 반증합니다. 필라델피아 반도체 지수의 급등은 국내 반도체 관련 대형주에 대한 매수 심리를 강화했고, 이는 지수 전반의 상승을 견인했습니다. 또한, Fed의 금리 인하 전망 유지 기조는 투자자들에게 안도감을 주며 위험 자산 선호 심리를 일부 회복시켰습니다.</p>
+
+                <p>그러나 시장 심리가 중립(NEUTRAL)으로 평가되는 만큼, 과도한 낙관론은 경계해야 합니다. 다우존스 지수의 하락과 사모 신용 시장의 잠재적 리스크는 여전히 글로벌 경제의 하방 압력으로 작용할 수 있습니다. 특히 원/달러 환율의 상승세는 국내 수출 기업에게는 긍정적일 수 있으나, 외국인 투자 자금 유출의 가능성을 내포하고 있어 지속적인 모니터링이 필요합니다.</p>
+
+                <p>iM뱅크는 현 시점에서 다음과 같은 투자 전략을 제안합니다. 첫째, <strong>우량 기술주 내에서도 차별화된 접근</strong>이 필요합니다. AI 혁신의 수혜를 직접적으로 받는 기업과 그렇지 않은 기업 간의 격차는 더욱 확대될 수 있습니다. 단순한 테마 추종보다는 실질적인 기술력과 시장 지배력을 갖춘 기업에 대한 선별적 투자가 중요합니다. 둘째, <strong>포트폴리오의 방어적 요소를 강화</strong>해야 합니다. 시장의 불확실성이 상존하는 만큼, 필수 소비재, 유틸리티 등 경기 방어적인 섹터에 대한 비중을 일정 부분 유지하여 변동성에 대비하는 것이 현명합니다. 셋째, <strong>글로벌 거시 경제 지표와 중앙은행 정책에 대한 지속적인 관심</strong>이 필수적입니다. Fed의 금리 인하 시점과 폭, 그리고 지정학적 리스크의 변화는 언제든 시장의 방향을 바꿀 수 있는 주요 변수입니다.</p>
+
+                <p>결론적으로, 2026년 4월 12일의 시장은 혼재된 신호 속에서 균형을 찾아가고 있습니다. 한국 코스피의 선전은 긍정적이지만, 글로벌 전반의 중립적 심리는 신중한 접근을 요구합니다. iM뱅크는 고객 여러분이 이러한 복합적인 시장 환경 속에서 현명한 투자 결정을 내릴 수 있도록 지속적으로 심층적인 분석과 통찰을 제공할 것입니다.</p>
             </div>
         </section>
 
         <section class="life-insight">
-            <h2 class="section-title" style="color:#fff; border-bottom-color:rgba(255,255,255,0.3);">Beyond Numbers: 지속 가능한 성장을 위한 통찰</h2>
-            <div class="content-body" style="color:rgba(255,255,255,0.8);">
-                <p>
-                    금융 시장의 복잡성 속에서, 단순히 숫자를 넘어서는 통찰력은 장기적인 성공의 열쇠입니다. iM뱅크는 변화하는 글로벌 환경 속에서 고객 여러분이 현명한 결정을 내릴 수 있도록 깊이 있는 분석과 전략적 조언을 아끼지 않습니다. 오늘의 시장 심리가 '중립'을 가리키는 것처럼, 우리는 균형 잡힌 시각으로 기회와 위험을 동시에 탐색하는 지혜가 필요합니다.
-                </p>
-                <p>
-                    특히 AI와 같은 혁신 기술이 가져올 파급력은 단순히 특정 산업을 넘어 사회 전반의 패러다임을 바꿀 것입니다. 이러한 변화의 흐름을 읽고 선제적으로 대응하는 것이 개인과 기업 모두에게 중요합니다. iM뱅크는 미래 금융의 방향성을 제시하며 고객 여러분의 지속 가능한 성장을 위한 든든한 동반자가 될 것을 약속드립니다.
-                </p>
+            <span class="section-num">iM</span>
+            <h2 class="section-title" style="color: #fff; border-bottom-color: #fff;">iM Life Insight: 미래를 위한 금융 설계</h2>
+            <div class="content-body" style="color: rgba(255, 255, 255, 0.8);">
+                <p>변동성 높은 시장 환경 속에서도 장기적인 자산 증식의 원칙은 변함없습니다. iM뱅크는 고객 개개인의 생애 주기와 투자 목표에 맞춰 최적화된 금융 솔루션을 제공합니다. 단순히 수익률만을 쫓기보다는, 안정적인 현금 흐름 확보, 은퇴 자금 마련, 자녀 교육 자금 계획 등 삶의 중요한 전환점마다 필요한 금융 지원을 설계해 드립니다. 전문가의 맞춤형 컨설팅과 AI 기반의 정교한 분석을 통해, 불확실한 미래를 확신으로 바꿀 수 있는 지혜로운 투자를 지금 시작하십시오.</p>
             </div>
         </section>
 
         <footer class="footer">
             <span class="footer-brand">iM뱅크</span>
-            <p>
-                본 리포트는 iM뱅크의 금융 분석 시스템에서 생성된 데이터와 AI 분석을 기반으로 작성되었습니다. <br>
-                제공된 정보는 투자 참고 자료이며, 투자 결정은 투자자 본인의 판단과 책임 하에 이루어져야 합니다. <br>
-                iM뱅크는 본 정보의 내용상 오류 또는 사용으로 인해 발생하는 손해에 대해 일체의 책임을 지지 않습니다.
-            </p>
             <div class="disclaimer">
-                Copyright © 2026 iM Bank. All rights reserved. <br>
-                iM뱅크는 고객의 성공적인 투자를 위해 최선을 다합니다.
+                본 리포트는 iM뱅크 AI 금융 분석 시스템이 제공하는 정보와 분석 결과를 바탕으로 작성되었습니다. 모든 투자 결정은 고객 본인의 판단과 책임 하에 이루어져야 하며, 본 리포트에 제시된 정보는 투자 권유를 목적으로 하지 않습니다. 시장 상황 및 개별 자산의 가치는 변동될 수 있으며, 과거의 수익률이 미래의 수익률을 보장하지 않습니다.
             </div>
+            <p>Copyright © 2043 iM Bank. All rights reserved.</p>
         </footer>
+
+        <nav class="report-nav bottom">
+            <a href="{prev_link}" class="nav-link">← 이전 리포트</a>
+            <a href="/reports/index.html" class="nav-list-btn">목록으로</a>
+            <a href="{next_link}" class="nav-link">다음 리포트 →</a>
+        </nav>
     </div>
 </body>
 </html>
+```

@@ -28,12 +28,22 @@ export default async function LeaderboardPage() {
       <Header />
 
       <div className="max-w-lg mx-auto px-4 py-6">
-        <div className="flex items-center justify-between mb-4">
-          <h1 className="text-xl font-black text-gray-800">🏆 리더보드</h1>
-          <Link href="/" className="text-sm text-gray-400 hover:text-gray-600">← 베팅하기</Link>
+        <div className="flex flex-col gap-4 mb-6">
+          <div className="flex items-center justify-between">
+            <h1 className="text-xl font-black text-gray-800">🏆 리더보드</h1>
+            <Link href="/" className="text-sm text-gray-400 hover:text-gray-600">← 게임 홈</Link>
+          </div>
+          
+          {/* 리포트 게시판 이동 버튼 추가 */}
+          <Link 
+            href="/reports/index.html" 
+            className="flex items-center justify-center gap-2 w-full py-3 bg-navy text-white rounded-xl font-bold text-sm shadow-sm hover:bg-opacity-90 transition-all"
+          >
+            📖 iM AI 마켓 리포트 게시판 가기
+          </Link>
         </div>
 
-        <p className="text-xs text-gray-400 mb-4">현재 스트릭 기준 순위 (연속 정답 수)</p>
+        <p className="text-xs text-gray-400 mb-4">현재 스트릭 기준 순위 (이름 외 개인정보는 노출되지 않습니다)</p>
 
         {leaderboard.length === 0 ? (
           <div className="card text-center py-10">

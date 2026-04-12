@@ -143,6 +143,14 @@ body {{
 .vote-link:hover {{ filter: brightness(1.1); transform: translateY(-2px); }}
 .game-footer-note {{ font-size: 12px; color: var(--muted); margin-top: 20px; font-style: italic; }}
 
+/* Report Navigation */
+.report-nav {{ display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: #fff; border-bottom: 1px solid var(--border); }}
+.report-nav.bottom {{ border-bottom: none; border-top: 1px solid var(--border); margin-top: 40px; }}
+.nav-link {{ font-size: 13px; font-weight: 700; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 5px; }}
+.nav-link:hover {{ color: var(--im-navy); }}
+.nav-list-btn {{ font-size: 14px; font-weight: 800; color: var(--im-navy); text-decoration: none; border: 1px solid var(--im-navy); padding: 6px 16px; border-radius: 20px; }}
+.nav-list-btn:hover {{ background: var(--im-navy); color: #fff; }}
+
 .up {{ color: #FF5252; }}
 .down {{ color: #448AFF; }}
 
@@ -199,7 +207,18 @@ body {{
      ```
    - 이 카드는 텔레그램이나 오프라인 파일에서도 완벽하게 보이며, 웹사이트에서는 실시간 데이터로 교체됩니다.
 
-4. **시각적 제약**:
+4. **내비게이션 (Navigation)**:
+   - 리포트의 **최상단(masthead 이전)**과 **최하단(footer 이후)**에 반드시 아래의 내비게이션 섹션을 삽입하세요.
+     ```html
+     <nav class="report-nav">
+         <a href="{{prev_link}}" class="nav-link">← 이전 리포트</a>
+         <a href="/reports/index.html" class="nav-list-btn">목록으로</a>
+         <a href="{{next_link}}" class="nav-link">다음 리포트 →</a>
+     </nav>
+     ```
+   - 주의: `{{prev_link}}`와 `{{next_link}}` 문자열을 그대로 사용하세요. 나중에 시스템에서 실제 링크로 치환됩니다. 만약 이전/다음 리포트가 없는 경우에도 링크 형식은 유지하세요.
+
+5. **시각적 제약**:
    - 픽토그램, 이모지 절대 금지. 오직 폰트와 선으로만 격을 표현하세요.
    - 강조는 HTML `<strong>` 태그만 사용하며, 마크다운 기호(`**`)는 절대 금지합니다.
 
