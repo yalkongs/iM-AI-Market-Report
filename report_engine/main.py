@@ -49,21 +49,12 @@ def clean_html_response(text):
 
 
 def send_to_telegram(filename):
-    """생성된 리포트의 URL만 텔레그램으로 전송합니다."""
-    resume_time = datetime(2026, 4, 11, 23, 0) 
-    if datetime.now() < resume_time: return
-    token = os.getenv("TELEGRAM_BOT_TOKEN")
-    chat_id = os.getenv("TELEGRAM_CHAT_ID")
-    if not token or not chat_id: return
-    
-    report_id = filename.replace(".html", "")
-    report_url = f"https://im-ai-market-report.vercel.app/reports/{report_id}"
-    
-    url = f"https://api.telegram.org/bot{token}/sendMessage"
-    try:
-        requests.post(url, data={'chat_id': chat_id, 'text': report_url, 'disable_web_page_preview': False})
-        print(f"✅ 텔레그램 리포트 URL 전송 완료! ({report_url})")
-    except Exception as e: print(f"❌ 텔레그램 오류: {e}")
+    """🚫 사용자 지시에 따라 텔레그램 전송 기능을 완전히 차단했습니다. 
+    별도의 재개 지시가 있을 때까지 이 함수는 아무 동작도 하지 않습니다.
+    """
+    print(f"🔇 [TELEGRAM BLOCKED] 전송 시도 건너뜀: {filename}")
+    return
+
 
 def update_all_report_links(raw_data_dir):
     """모든 리포트 파일의 내비게이션 링크를 실제 경로로 직접 박아넣습니다."""
