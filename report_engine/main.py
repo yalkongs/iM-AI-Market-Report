@@ -101,12 +101,12 @@ def update_portal(output_dir):
         <div class="hero-card">
             <span class="hero-tag">Latest Update</span>
             <div class="hero-title">가장 최신 리포트가 발행되었습니다</div>
-            <a href="{latest_filename}" class="btn">지금 읽기</a>
+            <a href="/reports/{latest_filename}" class="btn">지금 읽기</a>
         </div>
         <div class="calendar-card">
             <div class="calendar-title">리포트 아카이브</div>
             <ul class="report-list">
-                {"".join([f'<li class="report-item"><span class="report-date">{d[:4]}-{d[4:6]}-{d[6:8]}</span><a href="{file_links[d]}" class="report-link">보기</a></li>' for d in sorted(file_links.keys(), reverse=True)])}
+                {"".join([f'<li class="report-item"><span class="report-date">{d[:4]}-{d[4:6]}-{d[6:8]}</span><a href="/reports/{file_links[d]}" class="report-link">보기</a></li>' for d in sorted(file_links.keys(), reverse=True)])}
             </ul>
         </div>
     </div>

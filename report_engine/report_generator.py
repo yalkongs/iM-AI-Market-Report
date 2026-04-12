@@ -116,15 +116,25 @@ body {{
 .game-btn {{ display: inline-block; background: var(--im-navy); color: #fff; padding: 15px 35px; border-radius: 4px; text-decoration: none; font-weight: 800; font-size: 15px; transition: 0.3s; }}
 .game-btn:hover {{ background: #000; transform: translateY(-2px); }}
 
-/* Game Voting Strip */
-.voting-strip {{ margin: 45px 0; text-align: center; background: var(--lnavy); padding: 40px 20px; border-radius: 4px; }}
-.voting-prompt {{ font-size: 18px; font-weight: 800; color: var(--im-navy); margin-bottom: 25px; letter-spacing: -0.5px; }}
-.voting-buttons {{ display: flex; gap: 15px; justify-content: center; }}
-.vote-btn {{ flex: 1; max-width: 200px; padding: 20px; border-radius: 4px; text-decoration: none; font-weight: 800; font-size: 18px; transition: 0.3s; color: #fff; text-align: center; }}
-.vote-btn.up {{ background: var(--red); }}
-.vote-btn.down {{ background: var(--blue-down); }}
-.vote-btn:hover {{ filter: brightness(1.2); transform: translateY(-3px); }}
-.vote-caption {{ font-size: 12px; color: var(--muted); margin-top: 15px; font-style: italic; }}
+/* Live Game Embed Card */
+.game-embed-card {{ 
+    margin: 50px 0; padding: 40px; background: var(--lnavy); border: 1px solid var(--border); 
+    border-radius: 4px; text-align: center; position: relative;
+}}
+.game-embed-label {{ 
+    font-size: 11px; font-weight: 800; color: var(--im-gold); text-transform: uppercase; 
+    letter-spacing: 2px; margin-bottom: 15px; display: block; 
+}}
+.game-embed-title {{ font-size: 22px; font-weight: 800; color: var(--im-navy); margin-bottom: 25px; }}
+.voting-options {{ display: flex; gap: 15px; justify-content: center; }}
+.vote-link {{ 
+    flex: 1; max-width: 180px; padding: 18px; border-radius: 2px; text-decoration: none; 
+    font-weight: 800; font-size: 16px; color: #fff; transition: 0.3s; 
+}}
+.vote-link.up {{ background: var(--red); }}
+.vote-link.down {{ background: var(--blue-down); }}
+.vote-link:hover {{ filter: brightness(1.1); transform: translateY(-2px); }}
+.game-footer-note {{ font-size: 12px; color: var(--muted); margin-top: 20px; font-style: italic; }}
 
 .up {{ color: #FF5252; }}
 .down {{ color: #448AFF; }}
@@ -167,19 +177,20 @@ body {{
    - 단순 요약이 아닌 심층 분석(A4 3페이지 이상)을 수행하세요. {krx_context}
    - `pull-quote`, `callout-box`, `tech-table`을 적재적소에 배치하여 잡지 스타일을 완성하세요.
 
-3. **게임 연동 (One-Click Engagement)**:
-   - **직접 투표 버튼 삽입**: 리포트의 **두 번째 심층 분석 섹션이 끝나는 지점**에 반드시 아래의 투표 버튼 섹션을 삽입하세요.
+3. **게임 연동 (Full Context Engagement)**:
+   - **인터랙티브 투표 카드 삽입**: 리포트의 **두 번째 심층 분석 섹션이 끝나는 지점**에 반드시 아래의 정적 투표 카드를 삽입하세요.
      ```html
-     <div class="voting-strip">
-         <div class="voting-prompt">오늘의 KOSPI, 당신의 선택은?</div>
-         <div class="voting-buttons">
-             <a href="https://im-ai-market-report.vercel.app?vote=UP" class="vote-btn up">▲ 오른다 (UP)</a>
-             <a href="https://im-ai-market-report.vercel.app?vote=DOWN" class="vote-btn down">▼ 내린다 (DOWN)</a>
+     <div id="im-live-game" class="game-embed-card">
+         <span class="game-embed-label">iM Special Challenge</span>
+         <div class="game-embed-title">오늘의 KOSPI, 당신의 선택은?</div>
+         <div class="voting-options">
+             <a href="https://im-ai-market-report.vercel.app?vote=UP" class="vote-link up">▲ UP (상승)</a>
+             <a href="https://im-ai-market-report.vercel.app?vote=DOWN" class="vote-link down">▼ DOWN (하락)</a>
          </div>
-         <div class="vote-caption">버튼을 누르면 즉시 투표가 완료됩니다 (로그인 필요)</div>
+         <div class="game-footer-note">버튼을 클릭하면 iM뱅크 예측 시스템에 즉시 반영됩니다.</div>
      </div>
      ```
-   - KRX 영업일일 경우, 리포트 하단(footer 이전)에도 동일한 투표 섹션 또는 참여 유도 버튼을 배치하세요.
+   - 이 카드는 텔레그램이나 오프라인 파일에서도 완벽하게 보이며, 웹사이트에서는 실시간 데이터로 교체됩니다.
 
 4. **시각적 제약**:
    - 픽토그램, 이모지 절대 금지. 오직 폰트와 선으로만 격을 표현하세요.
