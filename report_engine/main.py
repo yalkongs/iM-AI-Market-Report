@@ -33,23 +33,28 @@ def clean_html_response(text):
         html = re.sub(r'property="og:image" content="(.*?)"', encode_og_image, html)
         return html
     return text.replace("```html", "").replace("```", "").strip()
-
 def send_to_telegram(filename):
+    """생성된 리포트의 URL만 텔레그램으로 전송합니다. (미리보기 활용)"""
     resume_time = datetime(2026, 4, 11, 23, 0) 
     if datetime.now() < resume_time: return
+
     token = os.getenv("TELEGRAM_BOT_TOKEN")
     chat_id = os.getenv("TELEGRAM_CHAT_ID")
     if not token or not chat_id: return
+
+    # 오직 URL만 전송 (Link Preview가 모든 정보를 노출함)
     report_url = f"https://im-ai-market-report.vercel.app/reports/{filename}"
-    today_kr = datetime.now().strftime("%Y년 %m월 %d일")
-    msg = (f"🌅 *iM뱅크 AI 마켓 리포트*\n({today_kr})\n\n"
-           f"오늘의 시장 인사이트가 도착했습니다.\n"
-           f"📖 [리포트 읽기]({report_url})\n\n"
-           f"🎯 *UPDOWN 챌린지*\n👉 [오늘의 KOSPI 예측하기](https://updown-kospi.vercel.app)")
+
+    url = f"https://api.telegram.org/bot{token}/sendMessage"
     try:
-        requests.post(f"https://api.telegram.org/bot{token}/sendMessage", 
-                      data={'chat_id': chat_id, 'text': msg, 'parse_mode': 'Markdown'})
+        requests.post(url, data={
+            'chat_id': chat_id, 
+            'text': report_url, 
+            'disable_web_page_preview': False # 미리보기 강제 활성화
+        })
+        print(f"✅ 텔레그램 리포트 URL 전송 완료! ({report_url})")
     except Exception as e: print(f"❌ 텔레그램 오류: {e}")
+
 
 def update_portal(raw_data_dir, project_root):
     """리포트 목록을 스캔하여 고품질 포털 페이지를 생성합니다."""
