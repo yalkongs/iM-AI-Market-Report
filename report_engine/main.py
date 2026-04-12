@@ -203,9 +203,14 @@ def main():
         generator = ReportGenerator()
         raw_report = generator.generate_report(market_data, news_list, is_krx_open=is_open)
         html_report = clean_html_response(raw_report)
-        date_str = datetime.now().strftime("%Y%m%d")
+
+        # [수정] 항상 한국 시간(KST) 기준으로 날짜 계산
+        kst_now = pd.Timestamp.now(tz='Asia/Seoul')
+        date_str = kst_now.strftime("%Y%m%d")
+
         filename = f"morning_report_{date_str}.html"
         output_file = os.path.join(raw_data_dir, filename)
+
         with open(output_file, "w", encoding="utf-8") as f:
             f.write(html_report)
         send_to_telegram(filename)
