@@ -132,7 +132,14 @@ def update_portal(output_dir):
 """
     with open(os.path.join(output_dir, "index.html"), "w", encoding="utf-8") as f:
         f.write(portal_html)
-    print(f"✅ 리포트 포털({output_dir}/index.html) 업데이트 완료!")
+    
+    # [추가] 리포트 목록 JSON 생성 (서버리스 환경에서 파일 목록을 안정적으로 읽기 위함)
+    import json
+    report_names = sorted([os.path.basename(f) for f in files], reverse=True)
+    with open(os.path.join(output_dir, "report_list.json"), "w", encoding="utf-8") as f:
+        json.dump({"files": report_names}, f, ensure_ascii=False, indent=2)
+        
+    print(f"✅ 리포트 포털 및 목록 JSON({output_dir}/report_list.json) 업데이트 완료!")
 
 def main():
     import argparse
