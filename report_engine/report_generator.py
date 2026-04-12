@@ -233,12 +233,12 @@ body {{
   ```html
   <meta property="og:title" content="[리포트 제목]">
   <meta property="og:description" content="iM뱅크 AI가 분석한 오늘의 글로벌 시장 인사이트">
-  <meta property="og:image" content="{og_image_base}&title=[리포트 제목]">
+  <meta property="og:image" content="https://im-ai-market-report.vercel.app/api/og?date={today_compact}&title=[리포트 제목]">
   <meta property="og:type" content="article">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   ```
-- **주의**: `[리포트 제목]` 부분은 반드시 실제 당신이 지은 매력적인 제목으로 교체하여 URL 인코딩 형식에 맞게(띄어쓰기 등 주의) 작성하세요.
+- **주의**: `[리포트 제목]` 부분은 반드시 실제 당신이 지은 매력적인 제목으로 교체하세요. 이때 **`og:title`의 content에는 일반 공백**을 사용하고, **`og:image`의 content URL 안에서도 일반 공백**을 사용하세요. (시스템이 나중에 처리할 것이니 당신이 직접 %20으로 바꿀 필요가 없습니다.)
 - 모든 CSS는 `<style>` 태그에 포함하세요. ({css_framework})
 """
 

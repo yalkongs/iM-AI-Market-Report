@@ -24,7 +24,16 @@ def is_krx_open_today():
 def clean_html_response(text):
     match = re.search(r'<!DOCTYPE html>.*</html>', text, re.DOTALL | re.IGNORECASE)
     if match:
-        return match.group(0)
+        html = match.group(0)
+        # og:image URL 내의 공백을 %20으로 안전하게 치환 (텍스트 제목은 유지)
+        def encode_og_image(m):
+            url = m.group(1)
+            # URL 내의 실제 공백만 인코딩
+            encoded_url = url.replace(" ", "%20")
+            return f'property="og:image" content="{encoded_url}"'
+        
+        html = re.sub(r'property="og:image" content="(.*?)"', encode_og_image, html)
+        return html
     return text.replace("```html", "").replace("```", "").strip()
 
 def send_to_telegram(filename):
