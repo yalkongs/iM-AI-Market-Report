@@ -202,7 +202,10 @@ body {{
              <a href="https://im-ai-market-report.vercel.app?vote=UP" class="vote-link up">▲ UP (상승)</a>
              <a href="https://im-ai-market-report.vercel.app?vote=DOWN" class="vote-link down">▼ DOWN (하락)</a>
          </div>
-         <div class="game-footer-note">버튼을 클릭하면 iM뱅크 예측 시스템에 즉시 반영됩니다.</div>
+         <div class="game-footer-note">
+            버튼을 클릭하면 iM뱅크 예측 시스템에 즉시 반영됩니다.<br>
+            <a href="https://im-ai-market-report.vercel.app/history" style="color:var(--im-gold); text-decoration:underline; margin-top:10px; display:inline-block;">나의 전체 도전 기록 확인하기</a>
+         </div>
      </div>
      ```
    - 이 카드는 텔레그램이나 오프라인 파일에서도 완벽하게 보이며, 웹사이트에서는 실시간 데이터로 교체됩니다.

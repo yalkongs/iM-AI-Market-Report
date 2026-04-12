@@ -23,16 +23,21 @@ def is_krx_open_today():
         return True
 
 def clean_html_response(text):
-    match = re.search(r'<!DOCTYPE html>.*</html>', text, re.DOTALL | re.IGNORECASE)
+    # 1. 마크다운 코드 블록 기호 전면 제거
+    cleaned = text.replace("```html", "").replace("```", "").replace("'''html", "").replace("'''", "").strip()
+    
+    # 2. 실제 HTML 부분만 정밀 추출
+    match = re.search(r'(<!DOCTYPE html>.*</html>)', cleaned, re.DOTALL | re.IGNORECASE)
     if match:
-        html = match.group(0)
+        html = match.group(1)
+        # og:image URL 내의 공백 인코딩
         def encode_og_image(m):
             url = m.group(1)
             encoded_url = url.replace(" ", "%20")
             return f'property="og:image" content="{encoded_url}"'
         html = re.sub(r'property="og:image" content="(.*?)"', encode_og_image, html)
         return html
-    return text.replace("```html", "").replace("```", "").strip()
+    return cleaned
 def send_to_telegram(filename):
     """생성된 리포트의 URL만 텔레그램으로 전송합니다. (미리보기 활용)"""
     resume_time = datetime(2026, 4, 11, 23, 0) 
@@ -172,8 +177,9 @@ def main():
         generator = ReportGenerator()
         raw_report = generator.generate_report(market_data, news_list, is_krx_open=is_open)
         html_report = clean_html_response(raw_report)
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M")
-        filename = f"morning_report_{timestamp}.html"
+        # 날짜별 유니크한 파일명 (중복 방지)
+        date_str = datetime.now().strftime("%Y%m%d")
+        filename = f"morning_report_{date_str}.html"
         output_file = os.path.join(raw_data_dir, filename)
         with open(output_file, "w", encoding="utf-8") as f:
             f.write(html_report)

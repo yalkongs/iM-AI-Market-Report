@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>iM뱅크 프리미엄 리포트: 혼조 속 균형점 탐색</title>
+    <meta property="og:title" content="혼조 속 균형점 탐색: 글로벌 시장, 기술주의 견인과 긴축의 그림자">
+    <meta property="og:description" content="iM뱅크 AI가 분석한 오늘의 글로벌 시장 인사이트">
+    <meta property="og:image" content="https://im-ai-market-report.vercel.app/api/og?date=2026-04-12&title=혼조 속 균형점 탐색: 글로벌 시장, 기술주의 견인과 긴축의 그림자">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Georgia:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --im-navy: #2A3050; --im-blue: #3A4568; --im-gold: #C8940A;
+            --black: #111111; --white: #FFFFFF; --bg: #F9FAFB;
+            --border: #E8E8E8; --muted: #777777; --red: #C62828;
+            --blue-down: #1565C0; --lnavy: #F4F6F9;
+            --header-bg: #FFFFFF; --header-text: #111111;
+            --footer-bg: #F9FAFB; --data-bg: #2A3050;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Pretendard', -apple-system, sans-serif; background: var(--bg); 
+            color: var(--black); line-height: 1.85; -webkit-font-smoothing: antialiased; word-break: keep-all; 
+        }
+        .wrap { width: 100%; max-width: 680px; margin: 0 auto; background: var(--white); min-height: 100vh; box-shadow: 0 0 40px rgba(0, 0, 0, 0.03); }
+
+        /* 2043 기반 Masthead */
+        .masthead { padding: 60px 40px 45px; background: var(--header-bg); color: var(--header-text); border-bottom: 1px solid var(--black); }
+        .brand-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+        .brand-left { display: flex; align-items: center; gap: 10px; }
+        .brand-logo { font-size: 18px; font-weight: 900; letter-spacing: -0.5px; color: inherit; }
+        .brand-label { font-family: Georgia, serif; font-size: 11px; font-style: italic; letter-spacing: 2px; text-transform: uppercase; color: var(--im-gold); padding-left: 10px; border-left: 1px solid var(--border); }
+        .ai-tag { font-size: 9px; font-weight: 700; color: inherit; opacity: 0.6; border: 1px solid currentColor; padding: 2px 6px; letter-spacing: 0.5px; text-transform: uppercase; }
+        .masthead-title { font-size: 32px; font-weight: 800; line-height: 1.3; letter-spacing: -1.5px; margin-bottom: 25px; }
+        .summary-lead { font-size: 17px; font-weight: 500; opacity: 0.9; margin-top: 25px; line-height: 1.75; position: relative; padding-left: 20px; border-left: 3px solid var(--im-gold); }
+        .issue-meta { display: flex; justify-content: space-between; align-items: flex-end; font-size: 13px; opacity: 0.7; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; margin-top: 20px; }
+
+        /* Data Strip */
+        .data-strip { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--data-bg); color: #fff; }
+        .data-item { padding: 22px 15px; text-align: center; border-right: 1px solid rgba(255, 255, 255, 0.1); }
+        .data-item:last-child { border-right: none; }
+        .data-label { font-size: 10px; font-weight: 700; color: rgba(255, 255, 255, 0.5); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; display: block; }
+        .data-val { font-size: 18px; font-weight: 700; font-family: 'Helvetica Neue', sans-serif; }
+        .data-pct { font-size: 11px; font-weight: 600; margin-top: 3px; }
+
+        /* Section */
+        .section { padding: 55px 40px; border-bottom: 1px solid var(--border); }
+        .section-num { font-family: Georgia, serif; font-size: 42px; font-weight: 400; color: #EFEFEF; line-height: 1; margin-bottom: -12px; display: block; }
+        .section-title { font-size: 24px; font-weight: 800; color: var(--im-navy); margin-bottom: 30px; letter-spacing: -0.8px; border-bottom: 2px solid var(--im-navy); display: inline-block; padding-bottom: 4px; }
+        .content-body { font-size: 16.5px; color: #222; text-align: justify; }
+        .content-body p { margin-bottom: 24px; }
+
+        /* Components */
+        .callout-box { background: var(--lnavy); padding: 30px; margin: 35px 0; border-radius: 4px; border-left: 4px solid var(--im-navy); }
+        .tech-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .tech-table th { font-size: 11px; color: var(--muted); text-align: left; padding: 10px 0; border-bottom: 2px solid var(--im-navy); text-transform: uppercase; }
+        .tech-table td { padding: 12px 0; font-size: 14.5px; border-bottom: 1px solid var(--border); }
+        .pull-quote { font-family: Georgia, serif; font-size: 22px; font-style: italic; color: var(--im-gold); text-align: center; padding: 40px 0; line-height: 1.5; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 40px 0; }
+
+        /* Footer */
+        .life-insight { background: var(--im-navy); color: #fff; padding: 45px 40px; }
+        .footer { padding: 60px 40px; background: var(--footer-bg); font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
+        .footer-brand { font-weight: 900; color: var(--im-navy); font-size: 16px; margin-bottom: 15px; display: block; }
+        .disclaimer { background: #fff; padding: 25px; border: 1px solid var(--border); line-height: 1.8; margin-bottom: 30px; color: #888; }
+
+        /* Game Engagement Section */
+        .game-section { background: var(--im-gold); color: #fff; padding: 45px 40px; text-align: center; }
+        .game-title { font-size: 20px; font-weight: 800; margin-bottom: 15px; letter-spacing: -0.5px; }
+        .game-btn { display: inline-block; background: var(--im-navy); color: #fff; padding: 15px 35px; border-radius: 4px; text-decoration: none; font-weight: 800; font-size: 15px; transition: 0.3s; }
+        .game-btn:hover { background: #000; transform: translateY(-2px); }
+
+        /* Live Game Embed Card */
+        .game-embed-card { 
+            margin: 50px 0; padding: 40px; background: var(--lnavy); border: 1px solid var(--border); 
+            border-radius: 4px; text-align: center; position: relative;
+        }
+        .game-embed-label { 
+            font-size: 11px; font-weight: 800; color: var(--im-gold); text-transform: uppercase; 
+            letter-spacing: 2px; margin-bottom: 15px; display: block; 
+        }
+        .game-embed-title { font-size: 22px; font-weight: 800; color: var(--im-navy); margin-bottom: 25px; }
+        .voting-options { display: flex; gap: 15px; justify-content: center; }
+        .vote-link { 
+            flex: 1; max-width: 180px; padding: 18px; border-radius: 2px; text-decoration: none; 
+            font-weight: 800; font-size: 16px; color: #fff; transition: 0.3s; 
+        }
+        .vote-link.up { background: var(--red); }
+        .vote-link.down { background: var(--blue-down); }
+        .vote-link:hover { filter: brightness(1.1); transform: translateY(-2px); }
+        .game-footer-note { font-size: 12px; color: var(--muted); margin-top: 20px; font-style: italic; }
+
+        /* Report Navigation */
+        .report-nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: #fff; border-bottom: 1px solid var(--border); }
+        .report-nav.bottom { border-bottom: none; border-top: 1px solid var(--border); margin-top: 40px; }
+        .nav-link { font-size: 13px; font-weight: 700; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 5px; }
+        .nav-link:hover { color: var(--im-navy); }
+        .nav-list-btn { font-size: 14px; font-weight: 800; color: var(--im-navy); text-decoration: none; border: 1px solid var(--im-navy); padding: 6px 16px; border-radius: 20px; }
+        .nav-list-btn:hover { background: var(--im-navy); color: #fff; }
+
+        .up { color: #FF5252; }
+        .down { color: #448AFF; }
+
+        @media (max-width: 600px) {
+            .masthead { padding: 45px 24px; }
+            .section { padding: 45px 24px; }
+            .masthead-title { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="report-nav">
+        <a href="{prev_link}" class="nav-link">← 이전 리포트</a>
+        <a href="/reports/index.html" class="nav-list-btn">목록으로</a>
+        <a href="{next_link}" class="nav-link">다음 리포트 →</a>
+    </nav>
+    <div class="wrap">
+        <header class="masthead">
+            <div class="brand-row">
+                <div class="brand-left">
+                    <span class="brand-logo">iM뱅크</span>
+                    <span class="brand-label">PREMIUM EDITORIAL</span>
+                </div>
+                <span class="ai-tag">AI-POWERED INSIGHT</span>
+            </div>
+            <h1 class="masthead-title">혼조 속 균형점 탐색: 글로벌 시장, 기술주의 견인과 긴축의 그림자</h1>
+            <p class="summary-lead">
+                오늘 글로벌 금융 시장은 미묘한 균형 속에서 방향성을 모색하고 있습니다. 밤사이 뉴욕 증시는 다우존스의 하락에도 불구하고 나스닥과 반도체 지수의 견고한 상승으로 기술주 중심의 활력을 보여주었습니다. 이는 KRX 시장에도 긍정적인 영향을 미쳐 KOSPI는 상승세를 기록 중입니다. 그러나 지정학적 긴장 완화 기대감과 금리 인하 전망 속에서도, 사모 신용 시장의 잠재적 위험과 AI 산업 내에서의 미묘한 변화는 투자자들에게 신중한 접근을 요구하고 있습니다.
+            </p>
+            <div class="issue-meta">
+                <span>발행시각: 2026년 04월 12일 22:27 AM KST</span>
+                <span>총괄 에디터: iM AI Financial Analyst System</span>
+            </div>
+        </header>
+
+        <div class="data-strip">
+            <div class="data-item">
+                <span class="data-label">S&P 500</span>
+                <span class="data-val">6816.89</span>
+                <span class="data-pct down">-0.11%</span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">Nasdaq</span>
+                <span class="data-val">22902.89</span>
+                <span class="data-pct up">+0.35%</span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">KOSPI</span>
+                <span class="data-val">5858.87</span>
+                <span class="data-pct up">+1.40%</span>
+            </div>
+        </div>
+
+        <section class="section">
+            <span class="section-num">01</span>
+            <h2 class="section-title">글로벌 시장의 이중주: 혼재된 신호 속 균형점 탐색</h2>
+            <div class="content-body">
+                <p>
+                    오늘 글로벌 금융 시장은 명확한 방향성보다는 <strong>복합적인 신호 속에서 균형점을 찾아가는 모습</strong>을 보이고 있습니다. 밤사이 뉴욕 증시는 전통 산업 중심의 다우존스가 0.56% 하락하며 약세를 보였으나, 기술주 비중이 높은 나스닥 종합지수는 0.35% 상승하고 반도체 지수(SOX)는 무려 2.31% 급등하며 뚜렷한 차이를 보였습니다. 이러한 이중적인 흐름은 투자자들이 개별 섹터의 펀더멘털과 미래 성장 가능성에 더욱 집중하고 있음을 시사합니다.
+                </p>
+                <p>
+                    미국 시장의 이러한 역동적인 변화는 아시아 시장, 특히 한국의 KRX 시장에도 즉각적인 영향을 미쳤습니다. KRX가 영업일인 현재, KOSPI는 이러한 글로벌 흐름에 발맞춰 1.40%의 견조한 상승세를 기록하며 개장 후 긍정적인 심리를 이어가고 있습니다. 이는 기술주 중심의 성장 동력이 여전히 유효하며, 특정 섹터의 강세가 시장 전반의 활력을 불어넣을 수 있음을 증명하는 사례입니다.
+                </p>
+                <div class="pull-quote">
+                    "오늘의 시장은 미묘한 오케스트라와 같습니다. 둔중한 금속 타악기가 잠시 쉬어갈 때, 날카로운 현악기는 더욱 빛을 발하며 새로운 리듬을 창조합니다."
+                </div>
+                <p>
+                    이와 더불어, 지정학적 리스크 완화에 대한 기대감도 시장 심리에 긍정적인 영향을 미치고 있습니다. 모건 스탠리의 분석에 따르면, 중동 긴장 완화는 특정 중국 주식의 반등을 이끌 수 있으며, 중국 정부가 이란 휴전을 위해 '적극적인 노력'을 기울이는 배경에는 자국 경제 성장 동력인 수출 수요 유지라는 현실적인 목표가 깔려 있다는 분석이 지배적입니다. 이는 글로벌 공급망 안정화와 전반적인 경제 회복에 대한 기대를 높이는 요인으로 작용합니다.
+                </p>
+                <p>
+                    그러나 모든 지표가 낙관적인 것만은 아닙니다. 국제 유가(WTI Oil)는 1.33% 하락하며 경기 둔화 우려를 반영하는 동시에, 달러/원 환율은 0.64% 상승하여 원화 약세 압력을 보여주고 있습니다. 또한, 채권 시장에서는 '사모 신용 위기'에 대한 우려가 확산되고 있으며, 이는 투명성이 낮은 채권 시장의 위험성을 부각시키며 고정 수입 ETF에도 영향을 미치고 있습니다. 연방준비제도(Fed)는 전쟁의 영향에도 불구하고 올해 금리 인하를 여전히 전망하고 있지만, 시장은 이러한 거시경제적 변수들에 대한 신중한 접근을 유지하고 있습니다.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <span class="section-num">02</span>
+            <h2 class="section-title">기술주의 강력한 견인력과 KOSPI의 재해석</h2>
+            <div class="content-body">
+                <p>
+                    뉴욕 증시의 혼조세 속에서도 기술 섹터의 강세는 단연 돋보였습니다. 특히 <strong>반도체 지수(SOX)가 2.31% 상승하고 엔비디아(NVIDIA)가 2.57% 오르는 등 AI 관련 핵심 기술주들의 약진</strong>이 시장을 견인했습니다. 이러한 흐름은 인공지능 기술의 지속적인 발전과 그에 따른 산업 전반의 변화가 여전히 강력한 투자 테마임을 입증합니다. 알리바바가 "일반 세계 모델(general world model)" 구축을 위해 2억 9천만 달러를 투자한다는 소식은 LLM(대규모 언어 모델)의 한계를 넘어선 새로운 AI 모델 개발 경쟁이 심화되고 있음을 보여주며, 이는 장기적인 관점에서 기술 혁신을 선도하는 기업들에게 긍정적인 모멘텀을 제공할 것입니다.
+                </p>
+                <p>
+                    한국 시장의 KOSPI는 이러한 글로벌 기술주의 훈풍을 받아 1.40% 상승하며 견고한 흐름을 이어가고 있습니다. 이는 국내 증시 내에서도 반도체 및 IT 섹터의 비중이 높기 때문이며, 특히 삼성전자와 SK하이닉스 등 주요 기술 기업들이 뉴욕 시장의 반도체 강세에 동조하여 상승 압력을 받고 있음을 시사합니다. 미국의 주요 기술 기업들의 성과는 국내 기업들의 실적 및 주가에도 밀접하게 연결되어 있어, 투자자들은 미국 기술주의 동향을 면밀히 주시해야 합니다.
+                </p>
+                <div class="callout-box">
+                    <strong>[AI 혁신의 두 얼굴: 성장과 도전]</strong><br>
+                    AI 기술은 시장을 뜨겁게 달구고 있지만, 그 그림자도 존재합니다. Anthropic의 새로운 AI 에이전트 발표가 소프트웨어 주식 매도를 촉발하며 "AI 심판의 날"에 대한 투자자들의 우려를 되살렸다는 소식은 주목할 만합니다. 이는 AI가 일부 산업에 혁신을 가져오지만, 동시에 기존 소프트웨어 기업들에게는 위협이 될 수 있음을 의미합니다. 선택적 투자의 중요성이 부각되는 지점입니다.
+                </div>
+                <p>
+                    아래는 주요 기술 기업들의 오늘 시장 성과입니다. 전반적인 강세 속에서도 개별 기업의 명암은 뚜렷하게 갈리고 있음을 확인할 수 있습니다.
+                </p>
+                <table class="tech-table">
+                    <thead>
+                        <tr>
+                            <th>종목</th>
+                            <th>현재가</th>
+                            <th>변동률</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>NVIDIA</td>
+                            <td>188.63</td>
+                            <td class="up">+2.57%</td>
+                        </tr>
+                        <tr>
+                            <td>Apple</td>
+                            <td>260.48</td>
+                            <td class="down">-0.00%</td>
+                        </tr>
+                        <tr>
+                            <td>Tesla</td>
+                            <td>348.95</td>
+                            <td class="up">+0.96%</td>
+                        </tr>
+                        <tr>
+                            <td>Microsoft</td>
+                            <td>370.87</td>
+                            <td class="down">-0.59%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- iM Special Challenge Interactive Voting Card -->
+        <div id="im-live-game" class="game-embed-card">
+            <span class="game-embed-label">iM Special Challenge</span>
+            <div class="game-embed-title">오늘의 KOSPI, 당신의 선택은?</div>
+            <div class="voting-options">
+                <a href="https://im-ai-market-report.vercel.app?vote=UP" class="vote-link up">▲ UP (상승)</a>
+                <a href="https://im-ai-market-report.vercel.app?vote=DOWN" class="vote-link down">▼ DOWN (하락)</a>
+            </div>
+            <div class="game-footer-note">버튼을 클릭하면 iM뱅크 예측 시스템에 즉시 반영됩니다.</div>
+        </div>
+
+        <section class="section">
+            <span class="section-num">03</span>
+            <h2 class="section-title">거시경제의 파고: 금리, 유가, 그리고 지정학적 변동성</h2>
+            <div class="content-body">
+                <p>
+                    거시경제 환경은 시장에 복합적인 영향을 미치고 있습니다. 가장 중요한 요소 중 하나는 미국 연방준비제도(Fed)의 통화 정책 스탠스입니다. 최근 공개된 의사록에 따르면, Fed 관계자들은 지정학적 갈등의 영향에도 불구하고 <strong>올해 안에 금리 인하가 단행될 수 있다는 전망</strong>을 유지하고 있습니다. 이는 시장에 긍정적인 기대감을 불어넣는 요인이지만, 동시에 그들은 인플레이션에 대한 전쟁의 영향을 주시하며 '민첩하게' 대응할 필요성을 강조했습니다. 이러한 신중한 접근은 시장의 변동성을 키울 수 있는 잠재적 요인으로 작용합니다.
+                </p>
+                <p>
+                    채권 시장의 불안정성도 주목할 부분입니다. '사모 신용 위기'에 대한 우려가 고정 수입 ETF에까지 영향을 미치고 있다는 소식은, 투명성이 낮은 비공개 채권 시장의 위험이 점차 수면 위로 부상하고 있음을 시사합니다. 이는 전반적인 금융 시스템 안정성에 대한 잠재적 위험으로 인식될 수 있으며, 투자자들은 관련 자산에 대한 위험 노출도를 재평가할 필요가 있습니다.
+                </p>
+                <p>
+                    한편, 국제 유가(WTI Oil)는 배럴당 96.57달러로 1.33% 하락하며 안정세를 찾아가는 모습입니다. 이는 글로벌 경기 둔화 우려를 일부 반영하는 동시에, 지정학적 긴장 완화 기대감과 맞물려 인플레이션 압력을 완화하는 긍정적인 신호로 해석될 수 있습니다. 유가 하락은 생산 비용 감소로 이어져 기업 수익성 개선에 기여할 수 있습니다.
+                </p>
+                <p>
+                    환율 시장에서는 달러/원 환율이 1482.7원으로 0.64% 상승하며 원화 약세가 지속되고 있습니다. 이는 국제 유가 하락에도 불구하고, 국내 수출 기업들에게는 일시적인 환율 효과를 제공할 수 있으나, 전반적인 수입 물가 상승 압력과 외국인 투자 심리에는 부정적인 영향을 미칠 수 있습니다. 글로벌 경제의 불확실성이 해소되기 전까지 환율 변동성은 한국 시장의 주요 리스크 요인으로 작용할 것입니다.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <span class="section-num">04</span>
+            <h2 class="section-title">2043년, iM뱅크가 제시하는 전략적 통찰: 균형과 선별의 시대</h2>
+            <div class="content-body">
+                <p>
+                    2043년의 문턱에서 iM뱅크는 오늘의 시장 흐름을 '균형과 선별의 시대'로 정의합니다. 글로벌 시장은 지정학적 완화와 기술 혁신이라는 낙관적 요인과, 동시에 거시경제의 불확실성 및 특정 금융 시장의 잠재적 위험이라는 복합적인 요인들 사이에서 진폭을 보이고 있습니다. 이러한 환경 속에서 성공적인 투자를 위해서는 <strong>광범위한 시장 지표를 넘어서는 심층적인 분석과 차별화된 전략</strong>이 필수적입니다.
+                </p>
+                <p>
+                    오늘의 리포트에서 나타났듯이, 미국 시장의 기술주 강세가 KOSPI 상승을 견인한 것은 분명합니다. 특히 AI 관련 반도체 섹터의 견고함은 지속적인 관심이 필요합니다. 그러나 AI가 모든 소프트웨어 산업에 긍정적이지만은 않다는 교훈 역시 간과해서는 안 됩니다. 혁신의 수혜를 입는 기업과 그로 인해 구조적 변화에 직면하는 기업을 명확히 구분하는 선별적 투자의 중요성이 더욱 커지고 있습니다.
+                </p>
+                <p>
+                    거시경제적 측면에서는 Fed의 금리 인하 전망이 시장에 안도감을 주지만, 사모 신용 시장의 불안정성은 언제든지 예상치 못한 리스크로 작용할 수 있음을 상기시켜 줍니다. 투자자들은 포트폴리오의 리스크 노출도를 지속적으로 점검하고, 유동성이 풍부한 자산과 그렇지 않은 자산 간의 균형을 유지하는 것이 중요합니다.
+                </p>
+                <p>
+                    iM뱅크는 이러한 복합적인 시장 환경 속에서 고객 여러분이 현명한 투자 결정을 내릴 수 있도록 최첨단 AI 분석 시스템과 전문적인 에디토리얼을 통해 <strong>깊이 있는 통찰력과 명확한 방향성</strong>을 제시할 것을 약속드립니다. 다가오는 변화의 시대를 넘어, 견고한 자산 성장을 위한 동반자가 될 것입니다.
+                </p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <span class="footer-brand">iM뱅크</span>
+            <div class="disclaimer">
+                본 리포트는 iM뱅크 AI Financial Analyst System에 의해 생성되었으며, 투자 판단의 참고 자료로만 활용될 수 있습니다. 
+                제공된 모든 정보는 신뢰할 수 있는 출처를 기반으로 하지만, 정보의 정확성이나 완전성을 보장하지 않으며, 
+                시장 상황에 따라 변동될 수 있습니다. 투자 결정은 투자자 본인의 판단과 책임 하에 이루어져야 합니다. 
+                iM뱅크는 본 리포트에 포함된 정보로 인해 발생하는 어떠한 손실에 대해서도 책임을 지지 않습니다.
+            </div>
+            &copy; 2043 iM Bank. All Rights Reserved.
+        </footer>
+    </div>
+    <nav class="report-nav bottom">
+        <a href="{prev_link}" class="nav-link">← 이전 리포트</a>
+        <a href="/reports/index.html" class="nav-list-btn">목록으로</a>
+        <a href="{next_link}" class="nav-link">다음 리포트 →</a>
+    </nav>
+</body>
+</html>

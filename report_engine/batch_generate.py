@@ -41,7 +41,7 @@ def generate_past_reports():
         # 텔레그램 전송 없이 HTML만 생성
         raw_report = generator.generate_report(market_data, news_list, is_krx_open=is_open)
         
-        filename = f"morning_report_{date_str}_0700.html"
+        filename = f"morning_report_{date_str}.html"
         output_file = os.path.join(raw_data_dir, filename)
         
         with open(output_file, "w", encoding="utf-8") as f:
