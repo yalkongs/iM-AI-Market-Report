@@ -58,11 +58,13 @@ body {{ font-family: 'Pretendard', -apple-system, sans-serif; background: var(--
 .masthead-title {{ font-size: 32px; font-weight: 800; line-height: 1.3; letter-spacing: -1.5px; margin-bottom: 25px; }}
 .summary-lead {{ font-size: 17px; font-weight: 500; opacity: 0.9; margin-top: 25px; line-height: 1.75; padding-left: 20px; border-left: 3px solid var(--im-gold); }}
 .issue-meta {{ display: flex; justify-content: space-between; align-items: flex-end; font-size: 13px; opacity: 0.7; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; margin-top: 20px; }}
-.data-strip {{ display: grid; grid-template-columns: repeat(3, 1fr); background: var(--data-bg); color: #fff; }}
-.data-item {{ padding: 22px 15px; text-align: center; border-right: 1px solid rgba(255, 255, 255, 0.1); }}
+/* Data Strip: Compact for Mobile */
+.data-strip {{ display: grid; grid-template-columns: repeat(3, 1fr); background: var(--data-bg); color: #fff; border-bottom: 1px solid rgba(0,0,0,0.1); }}
+.data-item {{ padding: 15px 10px; text-align: center; border-right: 1px solid rgba(255, 255, 255, 0.1); }}
 .data-item:last-child {{ border-right: none; }}
-.data-label {{ font-size: 10px; font-weight: 700; color: rgba(255, 255, 255, 0.5); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; display: block; }}
-.data-val {{ font-size: 18px; font-weight: 700; }}
+.data-label {{ font-size: 9px; font-weight: 700; color: rgba(255, 255, 255, 0.5); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; display: block; }}
+.data-val {{ font-size: 16px; font-weight: 700; font-family: 'Helvetica Neue', sans-serif; letter-spacing: -0.5px; }}
+.data-pct {{ font-size: 10px; font-weight: 600; margin-top: 1px; }}
 .section {{ padding: 55px 40px; border-bottom: 1px solid var(--border); }}
 .section-num {{ font-family: Georgia, serif; font-size: 42px; color: #EFEFEF; line-height: 1; margin-bottom: -12px; display: block; }}
 .section-title {{ font-size: 24px; font-weight: 800; color: var(--im-navy); margin-bottom: 30px; letter-spacing: -0.8px; border-bottom: 2px solid var(--im-navy); display: inline-block; padding-bottom: 4px; }}
