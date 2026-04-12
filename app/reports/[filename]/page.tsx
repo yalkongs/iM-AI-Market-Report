@@ -12,10 +12,8 @@ interface Props {
   params: { filename: string }
 }
 
-// 🎯 텔레그램 미리보기를 위한 동적 메타데이터 생성
 export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
+  { params }: Props
 ): Promise<Metadata> {
   const { filename } = params
   const rawDataDir = path.join(process.cwd(), 'public', 'raw-data')
@@ -25,14 +23,16 @@ export async function generateMetadata(
 
   const html = fs.readFileSync(filePath, 'utf8')
   
-  // HTML에서 메타 태그 정보 추출
-  const titleMatch = html.match(/<meta property="og:title" content="(.*?)"/)
-  const descMatch = html.match(/<meta property="og:description" content="(.*?)"/)
-  const imageMatch = html.match(/<meta property="og:image" content="(.*?)"/)
+  // 🎯 정규식 개선: 따옴표 종류나 공백에 상관없이 추출
+  const titleMatch = html.match(/<meta\s+property=["']og:title["']\s+content=["'](.*?)["']/)
+  const descMatch = html.match(/<meta\s+property=["']og:description["']\s+content=["'](.*?)["']/)
+  const imageMatch = html.match(/<meta\s+property=["']og:image["']\s+content=["'](.*?)["']/)
 
   const title = titleMatch ? titleMatch[1] : 'iM AI Market Report'
   const description = descMatch ? descMatch[1] : 'iM뱅크 AI 금융 분석 리포트'
-  const image = imageMatch ? imageMatch[1] : 'https://im-ai-market-report.vercel.app/og-default.png'
+  
+  // 🎯 &amp; 문제를 방지하기 위해 텍스트를 디코딩하여 깨끗한 URL 생성
+  let image = imageMatch ? imageMatch[1].replace(/&amp;/g, '&') : 'https://im-ai-market-report.vercel.app/og-default.png'
 
   return {
     title,
@@ -40,11 +40,16 @@ export async function generateMetadata(
     openGraph: {
       title,
       description,
-      images: [image],
+      images: [{
+        url: image,
+        width: 1080,
+        height: 1920,
+      }],
       type: 'article',
     },
     twitter: {
-      card: 'summary_large_image',
+      // 🎯 세로형 이미지는 summary 카드가 더 안정적일 수 있음
+      card: 'summary', 
       title,
       description,
       images: [image],
@@ -61,13 +66,17 @@ export default async function ReportPage({ params }: Props) {
     notFound()
   }
 
-  const html = fs.readFileSync(filePath, 'utf8')
+  let html = fs.readFileSync(filePath, 'utf8')
+
+  // 🎯 중첩된 HTML 구조 제거: <body> 태그 내부의 내용만 추출
+  const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i)
+  const cleanBody = bodyMatch ? bodyMatch[1] : html
 
   return (
     <>
       <div 
         className="report-content-wrapper"
-        dangerouslySetInnerHTML={{ __html: html }} 
+        dangerouslySetInnerHTML={{ __html: cleanBody }} 
       />
       <ClientHydrator />
     </>

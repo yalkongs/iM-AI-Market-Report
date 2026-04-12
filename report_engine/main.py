@@ -23,26 +23,31 @@ def is_krx_open_today():
 
 def clean_html_response(text):
     import urllib.parse
-    # 🎯 <!DOCTYPE html>부터 </html>까지만 완벽하게 추출
+    # 🎯 1. 실제 HTML 구조만 정밀 추출 (중첩 방지)
     match = re.search(r'(<!DOCTYPE html>.*?</html>)', text, re.DOTALL | re.IGNORECASE)
     if match:
         html = match.group(1)
-        # 마크다운 잔재 및 시스템 지시문 파편 제거
+        # 2. 마크다운 기호 제거
         html = html.replace("```html", "").replace("```", "").replace("'''html", "").replace("'''", "").strip()
-        
-        # og:image URL 인코딩 (텔레그램 미리보기용)
+
+        # 3. og:image URL 내의 특수문자 및 공백을 정밀하게 인코딩
         def encode_og_image(m):
             full_url = m.group(1)
+            # &amp; 등이 이미 있다면 원복하여 처리
+            full_url = full_url.replace('&amp;', '&')
             if '?' in full_url:
                 base, query = full_url.split('?', 1)
-                # 쿼리 파라미터 내의 특수문자만 정밀 인코딩
-                params = urllib.parse.parse_qsl(query)
-                encoded_query = urllib.parse.urlencode(params)
-                return f'property="og:image" content="{base}?{encoded_query}"'
+                # 쿼리 파라미터만 분리하여 개별 인코딩 (앰퍼샌드 유지)
+                pairs = urllib.parse.parse_qsl(query)
+                encoded_pairs = [f"{k}={urllib.parse.quote(v)}" for k, v in pairs]
+                encoded_url = f"{base}?{'&'.join(encoded_pairs)}"
+                return f'property="og:image" content="{encoded_url}"'
             return m.group(0)
-        
+
         html = re.sub(r'property="og:image" content="(.*?)"', encode_og_image, html)
         return html
+    return text.strip()
+
     return text.strip()
 
 def send_to_telegram(filename):
