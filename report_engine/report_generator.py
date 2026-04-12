@@ -23,9 +23,15 @@ class ReportGenerator:
     def generate_report(self, market_data, news_list, is_krx_open=True):
         now = datetime.now()
         today_str = now.strftime("%Y년 %m월 %d일")
+        today_compact = now.strftime("%Y-%m-%d")
         issue_time = now.strftime("%H:%M AM KST")
         
         sentiment = self.get_market_sentiment(market_data)
+        
+        # 메타 데이터 준비 (OG 태그용)
+        # Gemini가 생성할 제목을 미리 예측하거나, 기본 제목 설정
+        og_title = f"iM뱅크 모닝 마켓 브리프 ({today_compact})"
+        og_image = f"https://im-ai-market-report.vercel.app/api/og?title={requests.utils.quote(og_title)}&date={today_compact}"
         
         # [2043 Style + Dynamic Theme]
         themes = {
@@ -199,7 +205,19 @@ body {{
 4. **언어의 품격**:
    - iM뱅크의 신뢰를 담은 우아하고 전문적인 문체를 사용하세요.
 
-출력은 반드시 `<!DOCTYPE html>`로 시작하는 완전한 HTML 코드여야 합니다.
+출력은 반드시 `<!DOCTYPE html>`로 시작하는 완전한 HTML 코드여야 합니다. 
+
+### 💻 출력 요구사항 (필수):
+- `<head>` 안에 다음 메타 태그를 반드시 포함하세요:
+  ```html
+  <meta property="og:title" content="{og_title}">
+  <meta property="og:description" content="iM뱅크 AI가 분석한 오늘의 글로벌 시장 인사이트">
+  <meta property="og:image" content="{og_image}">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  ```
+- 모든 CSS는 `<style>` 태그에 포함하세요. ({css_framework})
 """
 
         response = self.client.models.generate_content(

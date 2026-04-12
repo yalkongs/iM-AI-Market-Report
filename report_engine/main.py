@@ -27,23 +27,37 @@ def clean_html_response(text):
         return match.group(0)
     return text.replace("```html", "").replace("```", "").strip()
 
-def send_to_telegram(file_path):
+def send_to_telegram(filename):
+    """생성된 리포트의 URL을 텔레그램으로 전송합니다."""
     resume_time = datetime(2026, 4, 12, 21, 0) 
     if datetime.now() < resume_time:
         print(f"🔇 테스트 기간 텔레그램 전송 중단 중")
         return
+    
     token = os.getenv("TELEGRAM_BOT_TOKEN")
     chat_id = os.getenv("TELEGRAM_CHAT_ID")
     if not token or not chat_id: return
-    url = f"https://api.telegram.org/bot{token}/sendDocument"
-    caption = (
-        f"🌅 iM뱅크 모닝 마켓 리포트 ({datetime.now().strftime('%Y-%m-%d')})\n\n"
-        f"🎯 오늘의 KOSPI는 오를까요, 내릴까요?\n"
-        f"👉 https://updown-kospi.vercel.app"
+
+    report_url = f"https://im-ai-market-report.vercel.app/reports/{filename}"
+    
+    msg = (
+        f"🌅 *iM뱅크 AI 마켓 리포트 발행*\n\n"
+        f"오늘의 시장 인사이트가 도착했습니다.\n"
+        f"아래 링크에서 지금 바로 확인하세요!\n\n"
+        f"📖 [리포트 읽기]({report_url})\n\n"
+        f"🎯 *UPDOWN 챌린지*\n"
+        f"👉 [오늘의 KOSPI 예측하기](https://updown-kospi.vercel.app)"
     )
+
+    url = f"https://api.telegram.org/bot{token}/sendMessage"
     try:
-        with open(file_path, 'rb') as f:
-            requests.post(url, data={'chat_id': chat_id, 'caption': caption}, files={'document': f})
+        requests.post(url, data={
+            'chat_id': chat_id, 
+            'text': msg, 
+            'parse_mode': 'Markdown',
+            'disable_web_page_preview': False # 미리보기 활성화
+        })
+        print(f"✅ 텔레그램 리포트 URL 전송 완료! ({report_url})")
     except Exception as e: print(f"❌ 텔레그램 오류: {e}")
 
 def update_portal(output_dir):
@@ -162,7 +176,7 @@ def main():
         with open(output_file, "w", encoding="utf-8") as f:
             f.write(html_report)
         
-        send_to_telegram(output_file)
+        send_to_telegram(filename)
         
         print("🌐 [3/3] 메인 포털 업데이트 중...")
         update_portal(output_dir)
