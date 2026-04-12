@@ -48,9 +48,11 @@ def send_to_telegram(filename):
     if not token or not chat_id: return
 
     report_url = f"https://im-ai-market-report.vercel.app/reports/{filename}"
+    today_kr = datetime.now().strftime("%Y년 %m월 %d일")
     
     msg = (
-        f"🌅 *iM뱅크 AI 마켓 리포트 발행*\n\n"
+        f"🌅 *iM뱅크 AI 마켓 리포트*\n"
+        f"({today_kr})\n\n"
         f"오늘의 시장 인사이트가 도착했습니다.\n"
         f"아래 링크에서 지금 바로 확인하세요!\n\n"
         f"📖 [리포트 읽기]({report_url})\n\n"

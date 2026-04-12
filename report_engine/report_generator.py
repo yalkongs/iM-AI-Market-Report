@@ -25,15 +25,14 @@ class ReportGenerator:
         now = datetime.now()
         today_str = now.strftime("%Y년 %m월 %d일")
         today_compact = now.strftime("%Y-%m-%d")
+        today_kr = now.strftime("%Y년 %m월 %d일")
         issue_time = now.strftime("%H:%M AM KST")
         
         sentiment = self.get_market_sentiment(market_data)
         
         # 메타 데이터 준비 (OG 태그용)
-        today_compact = now.strftime("%Y-%m-%d")
-        # 텔레그램 미리보기에 나타날 기본 제목 (Gemini가 본문에서 교체하도록 지시)
-        og_title_placeholder = f"iM뱅크 모닝 마켓 브리프 ({today_compact})"
-        og_image_base = f"https://im-ai-market-report.vercel.app/api/og?date={today_compact}"
+        og_title_placeholder = f"iM뱅크 모닝 마켓 브리프\n({today_kr})"
+        og_image_base = f"https://im-ai-market-report.vercel.app/api/og?date={requests.utils.quote(today_kr)}"
         
         # [2043 Style + Dynamic Theme]
         themes = {

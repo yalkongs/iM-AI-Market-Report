@@ -52,7 +52,6 @@ export async function GET(req: NextRequest) {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div style={{ width: '100px', height: '2px', backgroundColor: '#C8940A', marginBottom: '30px' }} />
           <div style={{ fontSize: '28px', color: '#ADB5BD', fontWeight: 500 }}>{date}</div>
-          <div style={{ fontSize: '24px', color: '#888', marginTop: '10px' }}>iM뱅크 투자전략부 발행</div>
         </div>
 
         {/* 하단 브랜드 슬로건 */}
