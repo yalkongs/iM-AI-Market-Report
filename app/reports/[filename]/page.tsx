@@ -15,42 +15,55 @@ interface Props {
 export async function generateStaticParams() {
   const rawDataDir = path.join(process.cwd(), 'public', 'raw-data')
   if (!fs.existsSync(rawDataDir)) return []
-  
   const files = fs.readdirSync(rawDataDir)
     .filter(f => f.startsWith('morning_report_') && f.endsWith('.html'))
-  
-  // URL에서 .html을 제거한 순수 ID만 파라미터로 등록
-  return files.map(f => ({ 
-    filename: f.replace('.html', '') 
-  }))
+  return files.map(f => ({ filename: f.replace('.html', '') }))
 }
 
 export default async function ReportPage({ params }: Props) {
-  const { filename } = params // 이제 filename은 확장자가 없는 ID입니다.
+  const { filename } = params
   const rawDataDir = path.join(process.cwd(), 'public', 'raw-data')
-  
-  // 실제 파일 읽기 시에는 .html을 붙여서 찾음
   const filePath = path.join(rawDataDir, `${filename}.html`)
   const jsonPath = path.join(rawDataDir, 'report_list.json')
 
   if (!fs.existsSync(filePath)) {
+    console.error(`[ReportPage] File not found: ${filePath}`)
     notFound()
   }
 
   let html = fs.readFileSync(filePath, 'utf8')
   
+  // 리포트 목록 로드
   let files: string[] = []
-  if (fs.existsSync(jsonPath)) {
-    files = JSON.parse(fs.readFileSync(jsonPath, 'utf8')).files
+  try {
+    if (fs.existsSync(jsonPath)) {
+      const jsonData = JSON.parse(fs.readFileSync(jsonPath, 'utf8'))
+      files = jsonData.files || []
+    } else {
+      // JSON이 없으면 직접 디렉토리 스캔 (Fallback)
+      files = fs.readdirSync(rawDataDir)
+        .filter(f => f.startsWith('morning_report_') && f.endsWith('.html'))
+        .map(f => f.replace('.html', ''))
+        .sort((a, b) => b.localeCompare(a))
+    }
+  } catch (e) {
+    console.error('[ReportPage] Error loading report list:', e)
   }
 
   const currentIndex = files.indexOf(filename)
-  const prevFile = currentIndex < files.length - 1 ? files[currentIndex + 1] : null
-  const nextFile = currentIndex > 0 ? files[currentIndex - 1] : null
+  const prevFile = (currentIndex !== -1 && currentIndex < files.length - 1) ? files[currentIndex + 1] : null
+  const nextFile = (currentIndex !== -1 && currentIndex > 0) ? files[currentIndex - 1] : null
 
-  // 네비게이션 링크 생성 (확장자 없는 깔끔한 주소 유지)
-  html = html.replace(/\{\{prev_link\}\}/g, prevFile ? `/reports/${prevFile}` : '#')
-  html = html.replace(/\{\{next_link\}\}/g, nextFile ? `/reports/${nextFile}` : '#')
+  // 치환 로직 강화: 정규식으로 유연하게 매칭
+  const prevLink = prevFile ? `/reports/${prevFile}` : '#'
+  const nextLink = nextFile ? `/reports/${nextFile}` : '#'
+  
+  html = html.replace(/\{\{\s*prev_link\s*\}\}/g, prevLink)
+  html = html.replace(/\{\{\s*next_link\s*\}\}/g, nextLink)
+  
+  // 혹시 모를 %7B%7B 형색의 인코딩된 문자열도 방어
+  html = html.replace(/%7B%7Bprev_link%7D%7D/g, prevLink)
+  html = html.replace(/%7B%7Bnext_link%7D%7D/g, nextLink)
 
   return (
     <>
