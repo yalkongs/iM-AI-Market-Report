@@ -37,7 +37,7 @@ export default async function LeaderboardPage() {
           {/* 리포트 게시판 이동 버튼 추가 */}
           <Link 
             href="/reports/index.html" 
-            className="flex items-center justify-center gap-2 w-full py-3 bg-navy text-white rounded-xl font-bold text-sm shadow-sm hover:bg-opacity-90 transition-all"
+            className="flex items-center justify-center gap-2 w-full py-3 bg-[#2A3050] text-white rounded-xl font-bold text-sm shadow-md hover:bg-opacity-90 transition-all"
           >
             📖 iM AI 마켓 리포트 게시판 가기
           </Link>
