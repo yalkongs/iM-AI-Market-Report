@@ -12,7 +12,6 @@ class ReportGenerator:
         if not api_key:
             raise ValueError("GEMINI_API_KEY not found. Please set it in .env file.")
         genai.configure(api_key=api_key)
-        # 최상위 지능을 가진 Pro 모델 고정
         self.model = genai.GenerativeModel("gemini-2.5-pro")
 
     def get_market_sentiment(self, market_data):
@@ -101,37 +100,45 @@ body {{ font-family: 'Pretendard', -apple-system, sans-serif; background: var(--
 """
 
         prompt = f"""
-당신은 iM뱅크의 최고 투자전략가이자 수석 이코노미스트입니다. 
-밤사이 글로벌 데이터를 바탕으로, 전문 지식과 대중성을 모두 갖춘 대한민국 최고 수준의 에디토리얼 리포트를 HTML로 제작해 주세요.
+당신은 iM뱅크의 최고 투자전략가이자 **'iM뱅크 AI 이코노미스트'**입니다. 
+밤사이 글로벌 데이터를 바탕으로, 전문 지식과 대중성을 모두 갖춘 대한민국 최고 수준의 에디토리얼 리포트를 제작해 주세요.
 
-### 🎯 리포트 필수 포함 레이어 (반드시 반영):
+### 🎯 필수 포함 레이어 및 작성 규칙 (절대 준수):
 
-1. **Editorial Lead (시장의 맥 읽기)**:
-   - 단순 요약이 아닌, 밤사이 시장의 전반적인 공기와 투심의 흐름을 한 문장으로 정의하는 묵직한 서문으로 시작하세요.
+1. **명의 표기**: 리포트의 모든 발행 명의는 오직 **'iM뱅크 AI 이코노미스트'**로만 작성하세요. (수석 전략가, 편집장 등 다른 표현 금지)
 
-2. **Political & Economic Roots (정치경제적 배경)**:
-   - 시장 등락의 배후에 있는 정치적 결정, 입법 동향, 지정학적 리스크를 해부하세요. (예: 미 국채 금리 변동의 정치적 이유 등)
+2. **한글 소제목 전용**: 모든 섹션의 제목은 오직 **'한글'**로만 작성하세요. (영어 병기나 괄호 내 영어 표기 절대 금지)
 
-3. **Domestic Impact & Outlook (한국 시장 및 산업 영향)**:
-   - 글로벌 상황이 오늘 아침 한국의 핵심 산업(반도체, 이차전지, 자동차 등)과 수급에 미칠 파급 효과를 구체적 시나리오로 제시하세요.
+3. **5대 분석 레이어 강제**:
+   - **시장의 맥 읽기 (Editorial Lead)**: 시장의 공기를 읽어주는 묵직한 서문.
+   - **정치경제적 배경**: 배후의 정치적 결정, 입법 동향, 지정학적 리스크 해부.
+   - **한국 시장 및 산업 영향**: 오늘 아침 K-반도체, 자동차 등 핵심 산업 파급 효과.
+   - **투자자 유의사항**: 오늘 장의 '기회'와 '위험 요소' 명시.
+   - **일상 속 나비효과**: 대출 금리, 환율 등 독자의 실생활 영향 해설.
 
-4. **Strategic Guidance (투자자 유의사항)**:
-   - 오늘 장에서 투자자들이 주목해야 할 '기회'와 경계해야 할 '위험 요소'를 명확히 짚어주세요.
+4. **게임 위젯 삽입 (MUST)**: 
+   - 반드시 **두 번째 섹션과 세 번째 섹션 사이**에 아래의 게임 위젯 코드를 한 토씨도 틀리지 말고 삽입하세요.
+   ```html
+   <div id="im-live-game" class="game-embed-card">
+       <span class="game-embed-label">iM Special Challenge</span>
+       <div class="game-embed-title">오늘의 KOSPI, 당신의 선택은?</div>
+       <div class="voting-options">
+           <a href="https://im-ai-market-report.vercel.app/history?vote=UP" class="vote-link up">▲ UP (상승)</a>
+           <a href="https://im-ai-market-report.vercel.app/history?vote=DOWN" class="vote-link down">▼ DOWN (하락)</a>
+       </div>
+       <div class="game-footer-note">
+          버튼을 클릭하면 iM뱅크 예측 시스템에 즉시 반영됩니다.<br>
+          <a href="https://im-ai-market-report.vercel.app/history" style="color:var(--im-gold); text-decoration:underline; margin-top:10px; display:inline-block;">나의 전체 도전 기록 확인하기</a>
+       </div>
+   </div>
+   ```
 
-5. **Life Connection (일상 속 나비효과)**:
-   - 거시 경제의 변화가 일반 독자의 대출 금리, 환율, 해외 소비 등 실생활에 미치는 영향을 친절하게 해설하세요.
+5. **내비게이션 필수 삽입**: 리포트의 최상단과 최하단에 반드시 아래 코드를 삽입하세요: {nav_html}
 
----
+6. **Open Graph(미리보기) 설정**:
+   - `<head>` 안에 리포트 제목과 날짜를 포함한 메타 태그를 작성하세요. 이미지 URL: `https://im-ai-market-report.vercel.app/api/og?date={encoded_date}&title=[리포트 제목]`
 
-### ✍️ 작성 지침:
-
-- **분량**: A4 3~4페이지 분량의 풍부하고 깊이 있는 분석을 수행하세요.
-- **언어**: 지적이고 권위 있으면서도 독자를 아끼는 따뜻한 문체를 유지하세요.
-- **내비게이션**: 상단과 하단에 반드시 아래 코드를 삽입하세요: {nav_html}
-- **게임 위젯**: 두 번째 섹션 뒤에 `<div id="im-live-game">` 카드를 반드시 삽입하세요.
-- **Open Graph**: `<head>` 내에 매력적인 제목과 이미지를 포함한 메타 태그를 완벽하게 작성하세요.
-
-모든 CSS는 `<style>` 태그에 포함하고, 출력은 오직 `<!DOCTYPE html>`로 시작해야 합니다. 픽토그램/이모지는 사용하지 마세요.
+모든 CSS는 `<style>` 태그에 포함하고, 출력은 오직 `<!DOCTYPE html>`로 시작해야 합니다.
 """
 
         response = self.model.generate_content(prompt)
