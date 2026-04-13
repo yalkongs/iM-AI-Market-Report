@@ -37,6 +37,10 @@ iM AI 리포트의 분석을 확인하고 예측해 보세요!
 ---
 📖 [iM AI 마켓 리포트 보기](https://yalkongs.github.io/iM-AI-Market-Report/)`
 
+  // 텔레그램 전송 중단
+  console.log('🔇 아침 텔레그램 전송이 비활성화되어 있습니다.')
+  return NextResponse.json({ success: true, message: 'Telegram disabled' })
+  /*
   try {
     const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
       method: 'POST',
@@ -57,4 +61,5 @@ iM AI 리포트의 분석을 확인하고 예측해 보세요!
     console.error('아침 Telegram 전송 실패:', e)
     return NextResponse.json({ error: String(e) }, { status: 500 })
   }
+  */
 }

@@ -181,6 +181,9 @@ async function sendTelegramResult(
 📖 [왜 이렇게 움직였을까? AI 리포트 보기](https://yalkongs.github.io/iM-AI-Market-Report/)
 🏆 [리더보드 확인하기](${appUrl}/leaderboard)`
 
+  // 텔레그램 전송 중단
+  console.log('🔇 텔레그램 전송이 비활성화되어 있습니다.')
+  /*
   try {
     await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
       method: 'POST',
@@ -195,4 +198,5 @@ async function sendTelegramResult(
   } catch (e) {
     console.error('Telegram 전송 실패:', e)
   }
+  */
 }
