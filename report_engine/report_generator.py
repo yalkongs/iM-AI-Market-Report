@@ -22,7 +22,6 @@ class ReportGenerator:
 
     def generate_report(self, market_data, news_list, is_krx_open=True, prev_link="#", next_link="#"):
         now = datetime.now()
-        today_str = now.strftime("%Y년 %m월 %d일")
         today_kr = now.strftime("%Y년 %m월 %d일")
         issue_time = now.strftime("%H:%M AM KST")
         sentiment = self.get_market_sentiment(market_data)
@@ -53,7 +52,8 @@ body {{ font-family: 'Pretendard', -apple-system, sans-serif; background: var(--
 .brand-logo {{ font-size: 18px; font-weight: 900; color: inherit; }}
 .brand-label {{ font-family: Georgia, serif; font-size: 11px; font-style: italic; color: var(--im-gold); padding-left: 10px; border-left: 1px solid var(--border); }}
 .ai-tag {{ font-size: 9px; font-weight: 700; color: inherit; opacity: 0.6; border: 1px solid currentColor; padding: 2px 6px; text-transform: uppercase; }}
-.masthead-title {{ font-size: 32px; font-weight: 800; line-height: 1.3; letter-spacing: -1.5px; margin-bottom: 25px; }}
+.masthead-title {{ font-size: 32px; font-weight: 800; line-height: 1.3; letter-spacing: -1.5px; margin-bottom: 10px; }}
+.masthead-date {{ font-size: 16px; font-weight: 600; color: var(--im-gold); margin-bottom: 25px; display: block; }}
 .summary-lead {{ font-size: 17px; font-weight: 500; opacity: 0.9; margin-top: 25px; line-height: 1.75; padding-left: 20px; border-left: 3px solid var(--im-gold); }}
 .issue-meta {{ display: flex; justify-content: space-between; align-items: flex-end; font-size: 13px; opacity: 0.7; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; margin-top: 20px; }}
 .data-strip {{ display: grid; grid-template-columns: repeat(3, 1fr); background: var(--data-bg); color: #fff; border-bottom: 1px solid rgba(0,0,0,0.1); }}
@@ -100,24 +100,25 @@ body {{ font-family: 'Pretendard', -apple-system, sans-serif; background: var(--
 """
 
         prompt = f"""
-당신은 iM뱅크의 최고 투자전략가이자 **'iM뱅크 AI 이코노미스트'**입니다. 
-밤사이 글로벌 데이터를 바탕으로, 전문 지식과 대중성을 모두 갖춘 대한민국 최고 수준의 에디토리얼 리포트를 제작해 주세요.
+당신은 대한민국 최고의 금융 분석 시스템을 총괄하는 **'iM뱅크 AI 이코노미스트'**입니다. 
+밤사이 글로벌 데이터를 바탕으로, 최고 품질의 에디토리얼 리포트를 HTML로 제작해 주세요.
 
 ### 🎯 필수 포함 레이어 및 작성 규칙 (절대 준수):
 
-1. **명의 표기**: 리포트의 모든 발행 명의는 오직 **'iM뱅크 AI 이코노미스트'**로만 작성하세요. (수석 전략가, 편집장 등 다른 표현 금지)
+1. **명의 및 날짜 명시**: 
+   - 모든 발행 명의는 오직 **'iM뱅크 AI 이코노미스트'**로만 작성하세요.
+   - 마스트헤드 제목 바로 아래에 발행일 **({today_kr})**을 반드시 명시하세요.
 
-2. **한글 소제목 전용**: 모든 섹션의 제목은 오직 **'한글'**로만 작성하세요. (영어 병기나 괄호 내 영어 표기 절대 금지)
+2. **한글 소제목 전용**: 모든 섹션의 제목은 오직 **'한글'**로만 작성하세요. (영어 병기 절대 금지)
 
-3. **5대 분석 레이어 강제**:
-   - **시장의 맥 읽기 (Editorial Lead)**: 시장의 공기를 읽어주는 묵직한 서문.
-   - **정치경제적 배경**: 배후의 정치적 결정, 입법 동향, 지정학적 리스크 해부.
-   - **한국 시장 및 산업 영향**: 오늘 아침 K-반도체, 자동차 등 핵심 산업 파급 효과.
-   - **투자자 유의사항**: 오늘 장의 '기회'와 '위험 요소' 명시.
-   - **일상 속 나비효과**: 대출 금리, 환율 등 독자의 실생활 영향 해설.
+3. **금융 지표 대시보드 복구 (CRITICAL)**:
+   - 마스트헤드 직후에 반드시 `<section class="data-strip">`을 배치하여 주요 시장 지표(S&P 500, 나스닥, KOSPI 등)를 시각화하세요.
 
-4. **게임 위젯 삽입 (MUST)**: 
-   - 반드시 **두 번째 섹션과 세 번째 섹션 사이**에 아래의 게임 위젯 코드를 한 토씨도 틀리지 말고 삽입하세요.
+4. **5대 심층 분석 레이어**:
+   - 시장 상황 해설, 정치경제적 배경, 한국 시장/산업 영향, 투자자 유의사항, 실생활 나비효과를 풍부하게 서술하세요.
+
+5. **게임 위젯 삽입 (MUST)**: 
+   - 반드시 **두 번째 섹션과 세 번째 섹션 사이**에 아래 코드를 삽입하세요.
    ```html
    <div id="im-live-game" class="game-embed-card">
        <span class="game-embed-label">iM Special Challenge</span>
@@ -133,10 +134,7 @@ body {{ font-family: 'Pretendard', -apple-system, sans-serif; background: var(--
    </div>
    ```
 
-5. **내비게이션 필수 삽입**: 리포트의 최상단과 최하단에 반드시 아래 코드를 삽입하세요: {nav_html}
-
-6. **Open Graph(미리보기) 설정**:
-   - `<head>` 안에 리포트 제목과 날짜를 포함한 메타 태그를 작성하세요. 이미지 URL: `https://im-ai-market-report.vercel.app/api/og?date={encoded_date}&title=[리포트 제목]`
+6. **내비게이션 및 OG 태그**: 상하단 내비게이션 {nav_html} 삽입 및 `<head>` 내 OG 태그를 완벽하게 작성하세요. 이미지 URL: `https://im-ai-market-report.vercel.app/api/og?date={encoded_date}&title=[리포트 제목]`
 
 모든 CSS는 `<style>` 태그에 포함하고, 출력은 오직 `<!DOCTYPE html>`로 시작해야 합니다.
 """
