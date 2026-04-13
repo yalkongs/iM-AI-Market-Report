@@ -1,8 +1,10 @@
 import os
+import os
 import re
 import glob
 import json
 from datetime import datetime
+
 import pandas_market_calendars as mcal
 import pandas as pd
 import requests

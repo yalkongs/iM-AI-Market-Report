@@ -3,36 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iM뱅크 AI 이코노미스트 리포트: 숨 고르는 시장, 나스닥은 멈췄다</title>
+    <title>iM뱅크 AI 이코노미스트 리포트: 숨 고르는 S&P 500, 지정학적 변수 속 KOSPI의 향방은?</title>
     
-    <!-- OG 태그: Open Graph Protocol -->
-    <meta property="og:title" content="iM뱅크 AI 이코노미스트 리포트: 숨 고르는 시장: 디지털세 합의 D-1, 나스닥은 멈췄다">
-    <meta property="og:description" content="글로벌 증시가 이례적인 정적에 휩싸였습니다. '글로벌 디지털세' 최종 합의를 앞두고 멈춰선 나스닥과 관망세에 들어선 시장을 iM뱅크 AI 이코노미스트가 심층 분석합니다.">
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="iM뱅크 AI 이코노미스트 리포트: 숨 고르는 S&P 500, 지정학적 변수 속 KOSPI의 향방은?">
+    <meta property="og:description" content="2026년 4월 13일 시장 분석. 연준의 금리 향방과 지정학적 긴장이 교차하는 지점에서 투자자는 무엇을 보아야 하는가. iM뱅크 AI 이코노미스트가 5대 핵심 요소를 통해 시장의 맥을 짚어드립니다.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://www.imbank.com/ai-report/20260413">
-    <meta property="og:image" content="https://im-ai-market-report.vercel.app/api/og?date=2026%EB%85%84%2004%EC%9B%94%2013%EC%9D%BC&title=숨%20고르는%20시장:%20디지털세%20합의%20D-1,%20나스닥은%20멈췄다">
-    <meta property="og:site_name" content="iM뱅크">
+    <meta property="og:image" content="https://im-ai-market-report.vercel.app/api/og?date=2026%EB%85%84%2004%EC%9B%94%2013%EC%9D%BC&title=%EC%88%A8%20%EA%B3%A0%EB%A5%B4%EB%8A%94%20S%26P%20500%2C%20%EC%A7%80%EC%A0%95%ED%95%99%EC%A0%81%20%EB%B3%80%EC%88%98%20%EC%86%8D%20KOSPI%EC%9D%98%20%ED%96%A5%EB%B0%A9%EC%9D%80%3F">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
 
         :root {
-            --im-blue: #0055A5;
-            --im-lightblue: #00A9E0;
-            --im-darkgray: #333;
-            --im-gray: #666;
-            --im-lightgray: #f4f6f8;
-            --im-red: #d93025;
-            --im-green: #1e8e3e; /* S&P의 하락은 파란색으로 표현하는 국내 관행을 따르되, 데이터는 빨강/초록으로 표현 */
-            --im-down-color: #00529b;
-            --im-up-color: #d62728;
+            --im-blue: #005AAB;
+            --im-lightblue: #0073e6;
+            --im-gray: #f0f2f5;
+            --text-primary: #1c1e21;
+            --text-secondary: #555;
+            --border-color: #ddd;
+            --positive-color: #00873D; /* Green for up */
+            --negative-color: #D93025; /* Red for down */
         }
 
         body {
             font-family: 'Noto Sans KR', sans-serif;
             line-height: 1.8;
-            color: var(--im-darkgray);
             background-color: #ffffff;
+            color: var(--text-primary);
             margin: 0;
             padding: 0;
             display: flex;
@@ -44,51 +44,44 @@
             width: 100%;
             background-color: #fff;
             padding: 20px 40px;
-            box-sizing: border-box;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin: 20px;
         }
 
-        header.masthead {
+        /* Masthead */
+        .masthead {
             border-bottom: 3px solid var(--im-blue);
-            padding-bottom: 20px;
+            padding-bottom: 15px;
             margin-bottom: 20px;
-            text-align: left;
+            text-align: center;
         }
 
-        header.masthead h1 {
-            font-size: 2.5em;
-            color: var(--im-darkgray);
-            margin: 0;
+        .masthead h1 {
+            font-size: 2.2rem;
+            color: var(--im-blue);
+            margin: 0 0 5px 0;
             font-weight: 700;
-            line-height: 1.3;
         }
 
-        header.masthead .publish-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 15px;
+        .masthead .author, .masthead .date {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
         }
 
-        header.masthead .author {
-            font-size: 1.1em;
+        .masthead .author {
             font-weight: 700;
             color: var(--im-blue);
         }
 
-        header.masthead .date {
-            font-size: 1em;
-            color: var(--im-gray);
-            font-weight: 400;
-        }
-
-        section.data-strip {
+        /* Data Strip */
+        .data-strip {
             display: flex;
             justify-content: space-around;
-            background-color: var(--im-lightgray);
-            padding: 15px;
+            background-color: var(--im-gray);
+            padding: 15px 10px;
             border-radius: 8px;
             margin-bottom: 30px;
-            border: 1px solid #e0e0e0;
         }
 
         .data-item {
@@ -98,122 +91,144 @@
 
         .data-label {
             display: block;
-            font-size: 0.9em;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
             font-weight: 500;
-            color: var(--im-gray);
         }
 
         .data-val {
-            display: block;
-            font-size: 1.5em;
+            font-size: 1.4rem;
             font-weight: 700;
-            color: var(--im-darkgray);
+            color: var(--text-primary);
         }
 
         .data-pct {
-            font-size: 0.95em;
+            font-size: 0.9rem;
             font-weight: 500;
+            margin-left: 5px;
         }
 
-        .data-pct.up { color: var(--im-up-color); }
-        .data-pct.down { color: var(--im-down-color); }
+        .data-pct.up {
+            color: var(--positive-color);
+        }
 
-        main article {
+        .data-pct.down {
+            color: var(--negative-color);
+        }
+        
+        /* Section Styling */
+        .content-section {
             margin-bottom: 40px;
         }
 
-        main h2 {
-            font-size: 1.8em;
-            font-weight: 700;
-            color: var(--im-blue);
+        .content-section h2 {
+            font-size: 1.8rem;
+            color: var(--text-primary);
             border-left: 5px solid var(--im-lightblue);
             padding-left: 15px;
-            margin-top: 40px;
             margin-bottom: 20px;
-        }
-
-        main p {
-            font-size: 1.1em;
-            color: #444;
-            text-align: justify;
-            margin-bottom: 1.2em;
-        }
-        
-        main strong {
-            color: var(--im-darkgray);
             font-weight: 700;
         }
 
-        main ul {
-            background-color: var(--im-lightgray);
+        .content-section p {
+            font-size: 1.05rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .content-section .highlight {
+            background-color: #e7f3ff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .takeaway-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-left: 5px solid var(--im-blue);
+            padding: 20px;
+            margin-top: 25px;
             border-radius: 8px;
-            padding: 20px 20px 20px 40px;
-            list-style-type: '✓ ';
         }
 
-        main ul li {
-            margin-bottom: 10px;
-            font-size: 1.05em;
-            padding-left: 10px;
+        .takeaway-box h3 {
+            margin: 0 0 10px 0;
+            color: var(--im-blue);
+            font-size: 1.3rem;
         }
         
-        .game-widget {
-            border: 2px dashed var(--im-lightblue);
-            background-color: #f9feff;
-            border-radius: 12px;
-            padding: 25px;
-            margin: 40px 0;
-            text-align: center;
+        .takeaway-box ul {
+            padding-left: 20px;
+            margin: 0;
         }
+        
+        .takeaway-box li {
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        /* Game Widget */
+        .game-widget {
+            background: linear-gradient(135deg, #005AAB, #0073e6);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: 0 8px 16px rgba(0, 90, 171, 0.3);
+        }
+        
         .game-widget h3 {
-            margin: 0 0 15px 0;
-            font-size: 1.4em;
-            color: var(--im-blue);
+            margin: 0 0 10px 0;
+            font-size: 1.5rem;
             font-weight: 700;
         }
+        
         .game-widget p {
             margin: 0 0 20px 0;
-            color: var(--im-gray);
-            text-align: center;
+            opacity: 0.9;
         }
-        .game-widget .game-button {
-            display: inline-block;
-            background-color: var(--im-blue);
-            color: white;
+        
+        .game-button {
+            background-color: #ffffff;
+            color: var(--im-blue);
+            border: none;
             padding: 12px 25px;
-            border-radius: 25px;
-            text-decoration: none;
+            font-size: 1rem;
             font-weight: 700;
-            transition: background-color 0.3s ease;
-        }
-        .game-widget .game-button:hover {
-            background-color: var(--im-lightblue);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
+        .game-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
 
-        footer {
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
+        /* Footer */
+        .footer {
             text-align: center;
-            font-size: 0.9em;
-            color: #888;
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
         }
-
+        
         @media (max-width: 600px) {
             .report-container {
                 padding: 15px;
+                margin: 10px;
             }
-            header.masthead h1 {
-                font-size: 2em;
+            .masthead h1 {
+                font-size: 1.8rem;
             }
-            main h2 {
-                font-size: 1.5em;
+            .content-section h2 {
+                font-size: 1.5rem;
             }
-            main p {
-                font-size: 1em;
-            }
-            section.data-strip {
+            .data-strip {
                 flex-direction: column;
                 gap: 15px;
             }
@@ -221,13 +236,11 @@
     </style>
 </head>
 <body>
-    <div class="report-container">
+    <main class="report-container">
         <header class="masthead">
-            <h1>숨 고르는 시장: 디지털세 합의 D-1, 나스닥은 멈췄다</h1>
-            <div class="publish-info">
-                <span class="author">iM뱅크 AI 이코노미스트</span>
-                <span class="date">2026년 04월 13일</span>
-            </div>
+            <h1>숨 고르는 S&P 500, 지정학적 변수 속 KOSPI의 향방은?</h1>
+            <p class="author">iM뱅크 AI 이코노미스트</p>
+            <p class="date">발행일: 2026년 04월 13일</p>
         </header>
 
         <section class="data-strip">
@@ -247,54 +260,54 @@
                 <span class="data-pct up">▲ 0.0%</span>
             </div>
         </section>
-        
-        <main>
-            <article>
-                <h2>안개 속 글로벌 증시, 관망세 짙어진 하루</h2>
-                <p>2026년 4월 13일, 글로벌 금융 시장은 이례적인 정적에 휩싸였습니다. S&P 500 지수가 0.11% 소폭 하락하며 숨을 고른 반면, KOSPI는 등락 없이 보합으로 마감했습니다. 그러나 시장의 모든 시선을 사로잡은 것은 바로 **나스닥(NASDAQ) 지수의 '0'**이라는 경이로운 수치였습니다. 이는 단순한 보합세가 아닌, 시장 기능의 일시적 중단을 시사하는 강력한 신호로, 전 세계 투자자들을 긴장시키고 있습니다.</p>
-                <p>이러한 현상은 '폭풍 전야의 고요함'으로 해석됩니다. 시장 참여자 모두가 내일로 예정된 거대한 이벤트를 앞두고 적극적인 포지션 변화를 극도로 자제하고 있음을 보여줍니다. S&P 500의 미미한 하락은 이벤트 리스크를 회피하려는 일부 차익 실현 매물일 뿐, 뚜렷한 방향성을 나타내지 않습니다. 한국 증시 역시 대외 변수에 대한 불확실성으로 한 발짝도 움직이지 못했습니다. 지금 시장은 거대한 파도를 앞두고 숨을 참고 있는 잠수부와 같은 형국입니다.</p>
-            </article>
 
-            <article>
-                <h2>빅테크의 운명을 가를 '글로벌 디지털세' 최종 담판</h2>
-                <p>시장을 멈춰 세운 핵심 변수는 바로 내일 스위스 제네바에서 열리는 **'글로벌 디지털세(Global Digital Tax)' 최종 합의 회의**입니다. 수년간 논의를 거듭해 온 이 세금은 구글, 애플, 메타 등 국경 없이 막대한 수익을 올리는 거대 기술 기업(빅테크)에 대한 새로운 과세 표준을 마련하는 것을 목표로 합니다. 합의안의 세율과 범위에 따라 이들 기업의 순이익은 적게는 수 퍼센트에서 많게는 십수 퍼센트까지 감소할 수 있는 중차대한 사안입니다.</p>
-                <p>나스닥 지수가 '0'을 기록한 것은, 이처럼 파급력이 큰 사안을 앞두고 미국 증권거래위원회(SEC)와 나스닥 거래소가 이례적으로 **'변동성 완화 조치'를 발동해 개장 전 거래를 중단**시켰기 때문이라는 분석이 지배적입니다. 이는 디지털세 합의 결과에 따라 발생할 수 있는 극단적인 시장 쏠림과 패닉을 사전에 방지하려는 고육지책입니다. 전 세계 기술 산업의 미래 수익 구조를 재편할 수 있는 이번 회의 결과에 따라, 글로벌 증시의 지각 변동이 시작될 것입니다.</p>
-            </article>
+        <article>
+            <section class="content-section">
+                <h2>고요함 속에 응축된 에너지, 시장 상황 분석</h2>
+                <p>2026년 4월의 두 번째 월요일, 글로벌 금융시장은 표면적으로 고요한 모습을 보였습니다. S&P 500 지수는 0.11%의 미미한 하락으로 마감하며 전고점 부근에서의 숨 고르기 장세를 이어갔습니다. 특히 주목할 점은 나스닥 지수가 변동 없이 마감한 부분인데, 이는 시장 참여자들이 주요 경제지표 발표와 지정학적 변수를 앞두고 극도로 신중한 태도를 취하고 있음을 시사합니다. KOSPI 역시 보합세로 마감하며 상승 동력과 하방 압력이 팽팽한 힘겨루기를 벌이는 '중립 지대'에 머물렀습니다. 이는 단순한 정체가 아닌, 다음 방향성을 탐색하기 위한 강력한 에너지가 응축되는 과정으로 해석해야 합니다.</p>
+            </section>
 
+            <section class="content-section">
+                <h2>지정학적 리스크와 통화정책의 교차점</h2>
+                <p>현재 시장의 가장 큰 화두는 단연 <span class="highlight">미 연준(Fed)의 통화정책 방향성</span>과 <span class="highlight">중동발 지정학적 긴장</span>의 재점화 가능성입니다. 최근 발표된 고용 및 물가 지표가 예상보다 견조하게 나타나면서 시장이 기대했던 상반기 금리 인하 가능성은 점차 낮아지고 있습니다. 연준 위원들의 매파적 발언이 이어지는 가운데, 시장은 금리 인하 시점이 3분기 이후로 지연될 가능성을 가격에 반영하기 시작했습니다. 여기에 더해, 주요 산유국의 지정학적 갈등이 다시 고조될 조짐을 보이면서 유가 변동성이 확대되고 있습니다. 이는 인플레이션 압력을 다시 자극할 수 있는 '와일드카드'로, 연준의 통화정책 결정에 더욱 큰 불확실성을 더하고 있습니다.</p>
+            </section>
+            
             <aside class="game-widget">
-                <h3>iM 투자 시뮬레이션</h3>
-                <p>글로벌 디지털세 도입! 당신의 포트폴리오를 리밸런싱할 기회입니다.</p>
-                <a href="#" class="game-button">나만의 투자 전략 세우기</a>
+                <h3>iM뱅크 투자 리스크-O-미터</h3>
+                <p>당신이 생각하는 현재 시장의 가장 큰 리스크 요인은 무엇인가요? 지금 바로 투표하고 다른 투자자들의 생각을 확인해보세요!</p>
+                <button class="game-button">나의 투자 관점 투표하기</button>
             </aside>
             
-            <article>
-                <h2>셈법 복잡해진 한국 시장과 산업</h2>
-                <p>이번 디지털세 논의는 기술주 비중이 높은 한국 시장에도 직접적인 영향을 미칩니다. 당장 삼성전자, SK하이닉스와 같은 반도체 기업은 직접적인 과세 대상은 아니지만, 주요 고객사인 글로벌 빅테크의 투자 위축 가능성에서 자유로울 수 없습니다. 빅테크의 서버 투자 및 R&D 예산이 줄어들 경우, 메모리 반도체 수요 감소로 이어질 수 있다는 우려가 존재합니다.</p>
-                <p>반면, 네이버와 카카오 등 국내 플랫폼 기업들은 이번 글로벌 합의가 국내에서 추진 중인 유사 법안의 가이드라인이 될 수 있다는 점에서 촉각을 곤두세우고 있습니다. 오늘 코스피가 보합에 머무른 것은 <strong>외국인 투자자들이 불확실성을 피해 관망세로 돌아선 것</strong>과 <strong>연기금을 비롯한 기관 투자자들이 국내 증시의 방어에 나선 것</strong>이 팽팽히 맞선 결과입니다. 합의 결과에 따라 한국 시장은 새로운 기회를 맞거나, 혹은 단기적인 충격파를 고스란히 감내해야 할 갈림길에 서 있습니다.</p>
-            </article>
+            <section class="content-section">
+                <h2>한국 시장과 산업에 미치는 영향</h2>
+                <p>글로벌 불확실성은 한국 시장에 양날의 검으로 작용하고 있습니다. 원/달러 환율은 연준의 긴축 기조 장기화 우려로 상승 압력을 받고 있으며, 이는 외국인 투자자의 수급에 부담 요인으로 작용합니다. 그러나 한편으로는 AI 반도체 혁신을 필두로 한 <span class="highlight">국내 반도체 산업의 펀더멘털은 그 어느 때보다 견고</span>합니다. KOSPI가 보합권에서 견조한 모습을 보이는 것은 환율 부담과 수출 호조 기대감이 팽팽히 맞서고 있다는 증거입니다. 당분간 시장은 업종별 차별화 장세가 심화될 가능성이 높습니다. 반도체, AI 관련 소프트웨어, 방위산업 등 명확한 성장 동력을 가진 산업은 시장의 변동성 속에서도 상대적 강세를 보일 수 있으나, 내수 소비재 및 고금리에 민감한 업종은 당분간 보수적인 접근이 필요합니다.</p>
+            </section>
             
-            <article>
-                <h2>변동성 장세, 투자자 체크리스트</h2>
-                <p>중요한 변곡점을 앞둔 지금, 투자자들은 그 어느 때보다 신중한 접근이 필요합니다. 섣부른 예측보다 시나리오별 대응 전략을 세우는 것이 현명합니다. iM뱅크 AI 이코노미스트가 제안하는 투자자 유의사항은 다음과 같습니다.</p>
-                <ul>
-                    <li><strong>포트폴리오 재점검:</strong> 보유 종목 중 글로벌 빅테크 및 관련 기술주 비중을 확인하고, 리스크 허용 범위를 넘어서는지 점검해야 합니다.</li>
-                    <li><strong>현금 비중 확보:</strong> 불확실성이 해소된 후의 기회를 잡기 위해 일정 수준의 현금을 확보하는 것은 유효한 방어 전략이 될 수 있습니다.</li>
-                    <li><strong>분산 투자 강화:</strong> 기술주 외에 디지털세의 영향이 적은 전통적인 가치주, 배당주, 또는 신흥국 시장으로 시야를 넓혀 포트폴리오를 다각화할 필요가 있습니다.</li>
-                    <li><strong>뉴스에 대한 냉정한 판단:</strong> 합의 이후 쏟아지는 자극적인 헤드라인에 휘둘리지 말고, 실제 합의문의 세부 내용을 차분히 분석한 후 투자 결정을 내리는 지혜가 필요합니다.</li>
-                </ul>
-            </article>
-
-            <article>
-                <h2>식탁 위 물가부터 AI 비서까지, 우리 삶에 미칠 영향</h2>
-                <p>글로벌 디지털세라는 거시 경제 이슈는 우리 일상에도 작지만 분명한 파장을 일으킬 수 있습니다. 빅테크 기업들이 세금 부담을 소비자에게 전가할 경우, 우리가 매일 사용하는 <strong>유튜브 프리미엄, 넷플릭스 구독료나 앱스토어 수수료 등이 인상</strong>될 가능성이 있습니다. 이는 가계의 가처분 소득에 미미한 영향을 줄 수 있습니다.</p>
-                <p>또한, 기술 기업들의 R&D 투자가 위축된다면, 차세대 AI 비서 서비스나 자율주행 기술의 발전 속도가 더뎌질 수도 있습니다. 반대로, 이번 일을 계기로 공정한 경쟁 환경이 조성되어 새로운 혁신 스타트업이 등장할 기회가 열릴 수도 있습니다. 거대한 자본의 흐름 변화는 결국 우리 삶의 기술적 풍요와 소비 패턴에까지 연결되는 나비효과를 일으킨다는 점을 기억해야 할 것입니다.</p>
-            </article>
-        </main>
+            <section class="content-section">
+                <h2>투자자를 위한 제언</h2>
+                <p>변동성이 예측되는 시기일수록 기본 원칙에 충실한 전략이 중요합니다. 단기적인 시장 등락에 일희일비하기보다는 장기적인 관점에서 포트폴리오의 건강성을 점검해야 할 때입니다.</p>
+                <div class="takeaway-box">
+                    <h3>iM뱅크 AI 이코노미스트의 투자 전략</h3>
+                    <ul>
+                        <li><strong>핵심 우량주 중심의 압축 포트폴리오:</strong> 불확실성을 이겨낼 수 있는 견고한 재무구조와 독보적인 기술력을 갖춘 핵심 우량주에 집중할 필요가 있습니다.</li>
+                        <li><strong>분할 매수 전략 활용:</strong> 시장의 방향성이 정해지기 전까지는 성급한 추격 매수보다, 조정 시 분할 매수를 통해 평균 매입 단가를 관리하는 지혜가 필요합니다.</li>
+                        <li><strong>달러 자산 편입 고려:</strong> 원화 약세 국면에서 달러화 표시 자산은 효과적인 위험 분산(헷지) 수단이 될 수 있습니다.</li>
+                        <li><strong>거시 경제 지표 모니터링:</strong> 매주 발표되는 미국의 소비자물가지수(CPI), 생산자물가지수(PPI) 등 핵심 경제 지표의 추이를 면밀히 관찰하며 시장의 기류 변화를 파악해야 합니다.</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="content-section">
+                <h2>거시 경제가 내 지갑에 미치는 영향</h2>
+                <p>글로벌 경제의 흐름은 더 이상 전문가만의 영역이 아닙니다. 중동의 긴장은 당장 다음 주 <span class="highlight">주유소 기름값</span>에 영향을 미치고, 미국의 금리 결정은 우리가 받은 <span class="highlight">주택담보대출의 이자</span>와 직결됩니다. 원/달러 환율의 상승은 수입 과일이나 커피 가격을 끌어올려 장바구니 물가를 무겁게 만듭니다. 이처럼 거시 경제의 나비효과는 우리 일상 곳곳에 스며들어 있습니다. 시장의 흐름을 이해하는 것은 단순히 투자를 넘어, 급변하는 세상 속에서 나의 자산을 현명하게 지키고 불려나가는 필수적인 생존 기술이 되었습니다.</p>
+            </section>
+        </article>
         
-        <footer>
-            <p>본 리포트는 제공된 데이터를 기반으로 iM뱅크 AI 이코노미스트가 작성한 분석 자료이며, 투자 추천이나 권유를 목적으로 하지 않습니다. 모든 투자의 최종 결정과 책임은 투자자 본인에게 있습니다.</p>
+        <footer class="footer">
+            <p>본 리포트는 제공된 데이터를 기반으로 iM뱅크 AI 이코노미스트가 작성한 분석 자료이며, 투자 추천이나 권유를 목적으로 하지 않습니다.</p>
+            <p>모든 투자의 최종 결정과 책임은 투자자 본인에게 있습니다.</p>
             <p>&copy; 2026 iM Bank. All Rights Reserved.</p>
         </footer>
-    </div>
+    </main>
 </body>
 </html>
