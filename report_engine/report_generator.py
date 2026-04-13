@@ -34,6 +34,34 @@ class ReportGenerator:
         }
         t = themes[sentiment]
         
+        # 🎯 핵심: 데이터 대시보드(Data Strip)를 파이썬에서 직접 생성 (AI 조작 방지)
+        def get_trend(pct): return f'{"▲" if pct >= 0 else "▼"} {abs(pct)}%'
+        def get_cls(pct): return "up" if pct >= 0 else "down"
+        
+        sp = market_data.get("S&P 500", {"price": 0, "pct": 0})
+        nas = market_data.get("Nasdaq", {"price": 0, "pct": 0})
+        kos = market_data.get("KOSPI", {"price": 0, "pct": 0})
+        
+        data_strip_html = f"""
+        <section class="data-strip">
+            <div class="data-item">
+                <span class="data-label">S&P 500</span>
+                <span class="data-val">{sp['price']}</span>
+                <span class="data-pct {get_cls(sp['pct'])}">{get_trend(sp['pct'])}</span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">NASDAQ</span>
+                <span class="data-val">{nas['price']}</span>
+                <span class="data-pct {get_cls(nas['pct'])}">{get_trend(nas['pct'])}</span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">KOSPI</span>
+                <span class="data-val">{kos['price']}</span>
+                <span class="data-pct {get_cls(kos['pct'])}">{get_trend(kos['pct'])}</span>
+            </div>
+        </section>
+        """
+
         css_framework = f"""
 <style>
 :root {{
@@ -100,43 +128,26 @@ body {{ font-family: 'Pretendard', -apple-system, sans-serif; background: var(--
 """
 
         prompt = f"""
-당신은 대한민국 최고의 금융 분석 시스템을 총괄하는 **'iM뱅크 AI 이코노미스트'**입니다. 
-밤사이 글로벌 데이터를 바탕으로, 최고 품질의 에디토리얼 리포트를 HTML로 제작해 주세요.
+당신은 iM뱅크의 최고 투자전략가이자 **'iM뱅크 AI 이코노미스트'**입니다. 
+제공된 데이터를 바탕으로 전문 지식과 대중성을 모두 갖춘 대한민국 최고 수준의 에디토리얼 리포트를 제작하세요.
 
 ### 🎯 필수 포함 레이어 및 작성 규칙 (절대 준수):
 
-1. **명의 및 날짜 명시**: 
-   - 모든 발행 명의는 오직 **'iM뱅크 AI 이코노미스트'**로만 작성하세요.
-   - 마스트헤드 제목 바로 아래에 발행일 **({today_kr})**을 반드시 명시하세요.
+1. **명의 및 날짜 명시**: 모든 발행 명의는 오직 **'iM뱅크 AI 이코노미스트'**로만 작성하고, 발행일 **({today_kr})**을 마스트헤드에 명시하세요.
 
-2. **한글 소제목 전용**: 모든 섹션의 제목은 오직 **'한글'**로만 작성하세요. (영어 병기 절대 금지)
+2. **데이터 대시보드 강제 삽입 (중요)**:
+   - 마스트헤드(header)가 끝난 직후에 반드시 아래 제공된 정확한 데이터 대시보드 코드를 **글자 하나 바꾸지 말고 그대로** 삽입하세요.
+   {data_strip_html}
 
-3. **금융 지표 대시보드 복구 (CRITICAL)**:
-   - 마스트헤드 직후에 반드시 `<section class="data-strip">`을 배치하여 주요 시장 지표(S&P 500, 나스닥, KOSPI 등)를 시각화하세요.
+3. **한글 소제목 전용**: 모든 섹션의 제목은 오직 **'한글'**로만 작성하세요.
 
-4. **5대 심층 분석 레이어**:
-   - 시장 상황 해설, 정치경제적 배경, 한국 시장/산업 영향, 투자자 유의사항, 실생활 나비효과를 풍부하게 서술하세요.
+4. **5대 심층 분석**: 시장 상황, 정치경제 배경, 한국 시장/산업 영향, 투자자 유의사항, 실생활 나비효과를 풍부하게 서술하세요.
 
-5. **게임 위젯 삽입 (MUST)**: 
-   - 반드시 **두 번째 섹션과 세 번째 섹션 사이**에 아래 코드를 삽입하세요.
-   ```html
-   <div id="im-live-game" class="game-embed-card">
-       <span class="game-embed-label">iM Special Challenge</span>
-       <div class="game-embed-title">오늘의 KOSPI, 당신의 선택은?</div>
-       <div class="voting-options">
-           <a href="https://im-ai-market-report.vercel.app/history?vote=UP" class="vote-link up">▲ UP (상승)</a>
-           <a href="https://im-ai-market-report.vercel.app/history?vote=DOWN" class="vote-link down">▼ DOWN (하락)</a>
-       </div>
-       <div class="game-footer-note">
-          버튼을 클릭하면 iM뱅크 예측 시스템에 즉시 반영됩니다.<br>
-          <a href="https://im-ai-market-report.vercel.app/history" style="color:var(--im-gold); text-decoration:underline; margin-top:10px; display:inline-block;">나의 전체 도전 기록 확인하기</a>
-       </div>
-   </div>
-   ```
+5. **게임 위젯 삽입 (MUST)**: 반드시 두 번째 섹션과 세 번째 섹션 사이에 게임 위젯 코드를 삽입하세요.
 
-6. **내비게이션 및 OG 태그**: 상하단 내비게이션 {nav_html} 삽입 및 `<head>` 내 OG 태그를 완벽하게 작성하세요. 이미지 URL: `https://im-ai-market-report.vercel.app/api/og?date={encoded_date}&title=[리포트 제목]`
-
-모든 CSS는 `<style>` 태그에 포함하고, 출력은 오직 `<!DOCTYPE html>`로 시작해야 합니다.
+### 💻 출력 요구사항:
+- `<head>` 내 OG 태그 완벽 작성. 이미지 URL: `https://im-ai-market-report.vercel.app/api/og?date={encoded_date}&title=[리포트 제목]`
+- 모든 CSS는 `<style>` 태그에 포함하고, 출력은 오직 `<!DOCTYPE html>`로 시작해야 합니다.
 """
 
         response = self.model.generate_content(prompt)
