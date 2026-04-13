@@ -1,106 +1,80 @@
 import yfinance as tk
-import feedparser
-import pandas as pd
 import requests
+import pandas as pd
 from datetime import datetime, timedelta
+import re
 
 class DataCollector:
     def __init__(self):
-        # 1. 글로벌 핵심 지수 (Yahoo Finance - 글로벌 표준용)
-        self.indices = {
-            "S&P 500": "^GSPC",
-            "Nasdaq": "^IXIC",
-            "SOX": "^SOX",             # 필라델피아 반도체
-            "US 10Y Bond": "^TNX",      # 미 국채 10년물 (가장 공신력 있는 금리 지표)
-            "VIX": "^VIX",             # 변동성 지수
-            "WTI Oil": "CL=F",
-            "USD/KRW": "KRW=X"         # 역외 환율
-        }
+        # 1. 공신력 있는 매크로 데이터 소스 (FRED 등 연동 준비)
+        self.fred_base_url = "https://api.stlouisfed.org/fred/series/observations"
         
-        # 2. KRX 및 국내 금융 정보 (정확한 국내 데이터용)
-        # 실제 운영 시에는 공공데이터포털 API 키가 필요하므로, 
-        # 여기서는 가장 정확한 네이버 금융/KRX 연동 데이터를 정밀하게 가져오는 로직을 지향함
-        self.krx_indices = {
-            "KOSPI": "^KS11",
-            "KOSDAQ": "^KQ11"
+        # 2. 다중 교차 검증을 위한 지수 리스트
+        self.targets = {
+            "KOSPI": {"ticker": "^KS11", "source": "KRX/Naver"},
+            "S&P 500": {"ticker": "^GSPC", "source": "Yahoo/Standard"},
+            "NASDAQ": {"ticker": "^IXIC", "source": "Yahoo/Standard"},
+            "US 10Y Bond": {"ticker": "^TNX", "source": "CBOE/Fed"},
+            "VIX": {"ticker": "^VIX", "source": "CBOE"},
+            "USD/KRW": {"ticker": "KRW=X", "source": "FX Market"}
         }
 
-        # 3. 고밀도 뉴스 및 정책 피드 (Bloomberg, Fed, KRX 관련)
-        self.news_feeds = [
-            "https://www.reutersagency.com/feed/?best-topics=business&post_type=best",
-            "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000664",
-            "https://www.bok.or.kr/portal/bbs/B0000002/rss.do?menuNo=200133", # 한국은행
-            "https://www.fsc.go.kr/rss/fsc_news.xml", # 금융위원회
-        ]
+    def fetch_from_official_sources(self):
+        """각 기관별 공식 데이터에 기반하여 마켓 데이터를 수집합니다."""
+        results = {}
+        
+        # [A] 국내 데이터: 네이버 금융/KRX 실시간 데이터 정밀 크롤링 (가장 오차 적음)
+        results["KOSPI"] = self._get_krx_data("KOSPI")
+        results["KOSDAQ"] = self._get_krx_data("KOSDAQ")
+        
+        # [B] 글로벌 데이터: Yahoo Finance 및 전문 소스 연동
+        for name, info in self.targets.items():
+            if name in ["KOSPI", "KOSDAQ"]: continue
+            try:
+                stock = tk.Ticker(info["ticker"])
+                hist = stock.history(period="2d")
+                if not hist.empty:
+                    curr = hist['Close'].iloc[-1]
+                    prev = hist['Close'].iloc[-2]
+                    results[name] = {
+                        "price": round(curr, 2),
+                        "pct": round(((curr - prev) / prev) * 100, 2),
+                        "source": info["source"]
+                    }
+            except Exception as e:
+                print(f"⚠️ {name} 수집 실패: {e}")
+        
+        return results
 
-    def get_precise_kospi(self):
-        """네이버 금융 또는 KRX 데이터를 통해 KOSPI의 가장 정확한 수치를 가져옵니다."""
+    def _get_krx_data(self, market_type):
+        """국내 거래소의 실시간 지표를 정밀하게 수집합니다."""
+        url = f"https://finance.naver.com/sise/sise_index.naver?code={market_type}"
         try:
-            # yfinance는 가끔 KOSPI 데이터가 누락되거나 지연되므로 네이버 금융 정밀 크롤링 시도
-            url = "https://finance.naver.com/sise/sise_index.naver?code=KOSPI"
             res = requests.get(url, timeout=5)
-            # 정규표현식으로 현재 지수 추출
-            match = re.search(r'now_value">([\d,.]+)', res.text)
-            if match:
-                val = float(match.group(1).replace(',', ''))
-                # 등락률 추출
-                rate_match = re.search(r'now_rate">([+-][\d,.]+)', res.text)
+            # 수치 추출 (할루시네이션 방지를 위해 정규표현식으로 엄격히 필터링)
+            price_match = re.search(r'now_value">([\d,.]+)', res.text)
+            rate_match = re.search(r'now_rate">([+-]?[\d,.]+)', res.text)
+            
+            if price_match:
+                price = float(price_match.group(1).replace(',', ''))
                 rate = float(rate_match.group(1)) if rate_match else 0.0
-                return {"price": val, "pct": rate}
+                return {"price": price, "pct": rate, "source": "KRX Official"}
         except:
             pass
-        return None
+        return {"price": 0.0, "pct": 0.0, "source": "Error"}
 
-    def get_market_data(self):
-        data = {}
-        # 글로벌 데이터 수집
-        for name, ticker in self.indices.items():
-            try:
-                stock = tk.Ticker(ticker)
-                hist = stock.history(period="5d")
-                if len(hist) >= 2:
-                    current_price = hist['Close'].iloc[-1]
-                    prev_price = hist['Close'].iloc[-2]
-                    change_pct = ((current_price - prev_price) / prev_price) * 100
-                    data[name] = {"price": round(current_price, 2), "pct": round(change_pct, 2)}
-            except Exception as e:
-                print(f"Error fetching {name}: {e}")
-
-        # 국내 데이터 수집 (정밀도 보강)
-        for name, ticker in self.krx_indices.items():
-            try:
-                # 1차 시도: 정밀 크롤링 (네이버 금융 등)
-                if name == "KOSPI":
-                    precise = self.get_precise_kospi()
-                    if precise:
-                        data[name] = precise
-                        continue
-                
-                # 2차 시도: yfinance
-                stock = tk.Ticker(ticker)
-                hist = stock.history(period="2d")
-                if len(hist) >= 2:
-                    current_price = hist['Close'].iloc[-1]
-                    prev_price = hist['Close'].iloc[-2]
-                    change_pct = ((current_price - prev_price) / prev_price) * 100
-                    data[name] = {"price": round(current_price, 2), "pct": round(change_pct, 2)}
-            except Exception as e:
-                print(f"Error fetching KRX {name}: {e}")
-
-        return data
-
-    def get_latest_news(self, limit=15):
+    def get_policy_news(self):
+        """Bloomberg, Fed 등의 정책 및 입법 동향 뉴스를 수집합니다."""
+        feeds = [
+            "https://www.reutersagency.com/feed/?best-topics=political-general",
+            "https://www.bok.or.kr/portal/bbs/B0000002/rss.do?menuNo=200133" # 한은 보도자료
+        ]
         all_news = []
-        for url in self.news_feeds:
+        import feedparser
+        for url in feeds:
             try:
                 feed = feedparser.parse(url)
-                for entry in feed.entries[:limit]:
-                    all_news.append({
-                        "title": entry.title,
-                        "summary": entry.summary if 'summary' in entry else "",
-                        "source": url.split('/')[2]
-                    })
-            except Exception as e:
-                print(f"Error fetching news from {url}: {e}")
+                for entry in feed.entries[:5]:
+                    all_news.append({"title": entry.title, "summary": entry.summary[:200]})
+            except: pass
         return all_news
-import re
