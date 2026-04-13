@@ -1,68 +1,49 @@
-import requests
-import re
-import feedparser
-from datetime import datetime
 import yfinance as tk
+import requests
+import feedparser
+from datetime import datetime, timedelta
+import re
 
 class DataCollector:
     def __init__(self):
-        # 공신력 있는 데이터 소스 URL
-        self.sources = {
-            "KOSPI": "https://finance.naver.com/sise/sise_index.naver?code=KOSPI",
-            "KOSDAQ": "https://finance.naver.com/sise/sise_index.naver?code=KOSDAQ",
-            "USD/KRW": "https://finance.naver.com/marketindex/exchangeDetail.naver?marketindexCd=FX_USDKRW"
+        self.targets = {
+            "KOSPI": "^KS11",
+            "NASDAQ": "^IXIC",
+            "S&P 500": "^GSPC",
+            "US 10Y Bond": "^TNX",
+            "USD/KRW": "KRW=X",
+            "VIX": "^VIX"
         }
 
-    def fetch_realtime_krx(self):
-        """리포트 생성 시점에 KRX 기반 실시간 데이터를 직접 찾아 확인합니다."""
+    def fetch_market_data(self):
+        """실시간 등락률을 수집합니다."""
         results = {}
-        for name, url in self.sources.items():
-            try:
-                res = requests.get(url, timeout=10, headers={'User-Agent': 'Mozilla/5.0'})
-                # 실시간 지수/가격 추출 (정규표현식으로 웹페이지 내 실제 수치 타겟팅)
-                if "index" in url:
-                    val_match = re.search(r'now_value">([\d,.]+)', res.text)
-                    diff_match = re.search(r'now_rate">([+-]?[\d,.]+)', res.text)
-                else:
-                    val_match = re.search(r'value">([\d,.]+)', res.text)
-                    diff_match = re.search(r'rate">([+-]?[\d,.]+)', res.text)
-
-                if val_match:
-                    price = float(val_match.group(1).replace(',', ''))
-                    pct = float(diff_match.group(1)) if diff_match else 0.0
-                    results[name] = {"price": price, "pct": pct, "source": "Official Market Data"}
-            except Exception as e:
-                print(f"⚠️ {name} 실시간 데이터 조회 실패: {e}")
-                results[name] = {"price": 0.0, "pct": 0.0, "source": "Fetch Error"}
-        
-        # 글로벌 지표 (미 국채, VIX 등) - 최신 세션 데이터 수집
-        global_targets = {"S&P 500": "^GSPC", "NASDAQ": "^IXIC", "US 10Y Bond": "^TNX", "VIX": "^VIX"}
-        for name, ticker in global_targets.items():
+        for name, ticker in self.targets.items():
             try:
                 stock = tk.Ticker(ticker)
-                hist = stock.history(period="1d")
-                if not hist.empty:
-                    results[name] = {
-                        "price": round(hist['Close'].iloc[-1], 2),
-                        "pct": round(((hist['Close'].iloc[-1] - hist['Open'].iloc[0]) / hist['Open'].iloc[0]) * 100, 2),
-                        "source": "Global Exchange"
-                    }
-            except: pass
-            
+                hist = stock.history(period="2d")
+                if not hist.empty and len(hist) >= 2:
+                    curr = hist['Close'].iloc[-1]
+                    prev = hist['Close'].iloc[-2]
+                    pct = ((curr - prev) / prev) * 100
+                    results[name] = {"price": round(curr, 2), "pct": round(pct, 2)}
+                else:
+                    results[name] = {"price": 0.0, "pct": 0.0}
+            except:
+                results[name] = {"price": 0.0, "pct": 0.0}
         return results
 
-    def get_official_news(self):
-        """정부기관 및 공신력 있는 외신(Fed, KRX 뉴스 등)에서 정책 데이터를 수집합니다."""
+    def fetch_news(self):
+        """정치경제 뉴스 수집"""
         feeds = [
-            "https://www.bok.or.kr/portal/bbs/B0000002/rss.do?menuNo=200133", # 한국은행
-            "https://www.fsc.go.kr/rss/fsc_news.xml", # 금융위원회
-            "https://www.reutersagency.com/feed/?best-topics=business"
+            "https://www.reutersagency.com/feed/?best-topics=business",
+            "https://www.bok.or.kr/portal/bbs/B0000002/rss.do?menuNo=200133"
         ]
-        all_news = []
+        news = []
         for url in feeds:
             try:
-                feed = feedparser.parse(url)
-                for entry in feed.entries[:5]:
-                    all_news.append({"title": entry.title, "summary": entry.summary[:300]})
+                f = feedparser.parse(url)
+                for e in f.entries[:5]:
+                    news.append({"title": e.title, "summary": e.summary[:200]})
             except: pass
-        return all_news
+        return news
