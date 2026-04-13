@@ -2,7 +2,6 @@ import os
 import re
 import glob
 import json
-from datetime import datetime
 import pandas_market_calendars as mcal
 import pandas as pd
 import requests
@@ -12,11 +11,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# 🎯 2026년 시점 데이터 보정을 위한 기준값
-CONTEXT_BASE_KOSPI = 5609.95
-CONTEXT_BASE_SP500 = 6816.89
-CONTEXT_BASE_NASDAQ = 22902.89
-
 def is_krx_open_today():
     try:
         krx = mcal.get_calendar('XKRX')
@@ -24,20 +18,6 @@ def is_krx_open_today():
         schedule = krx.schedule(start_date=today, end_date=today)
         return not schedule.empty
     except: return True
-
-def align_to_context(raw_data):
-    aligned = {}
-    for name, info in raw_data.items():
-        pct = info.get("pct", 0)
-        if name == "KOSPI": base = CONTEXT_BASE_KOSPI
-        elif name == "S&P 500": base = CONTEXT_BASE_SP500
-        elif name == "NASDAQ": base = CONTEXT_BASE_NASDAQ
-        else:
-            aligned[name] = info
-            continue
-        new_price = round(base * (1 + pct / 100), 2)
-        aligned[name] = {"price": new_price, "pct": pct, "source": f"{info['source']} (Aligned)"}
-    return aligned
 
 def clean_html_response(text):
     match = re.search(r'(<!DOCTYPE html>.*?</html>)', text, re.DOTALL | re.IGNORECASE)
@@ -86,7 +66,7 @@ def update_portal(raw_data_dir, project_root):
         if date_m:
             date_d = f"{date_m.group(1)}년 {date_m.group(2)}월 {date_m.group(3)}일"
             archive_items.append(f'<a href="/reports/{rid}" class="archive-card"><div class="archive-date">{date_d}</div><div class="archive-arrow">읽기 →</div></a>')
-    portal_html = f"""<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>iM AI Market Report Portal</title><style>:root {{ --im-navy: #2A3050; --im-gold: #C8940A; --bg: #F8F9FB; --text: #1A1A1A; }} body {{ font-family: 'Pretendard', sans-serif; background: var(--bg); margin: 0; padding: 0; }} .header {{ background: var(--im-navy); color: #fff; padding: 60px 30px 80px; text-align: center; }} .container {{ max-width: 640px; margin: -40px auto 60px; padding: 0 20px; }} .featured-card {{ background: #fff; padding: 40px 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); margin-bottom: 40px; border-radius: 4px; border: 1px solid #eee; }} .featured-title {{ font-size: 24px; font-weight: 800; color: var(--im-navy); margin-bottom: 20px; }} .featured-summary {{ font-size: 15px; color: #666; margin-bottom: 30px; line-height: 1.7; }} .btn-main {{ display: block; background: var(--im-navy); color: #fff; padding: 18px; text-decoration: none; font-weight: 800; text-align: center; }} .archive-list {{ display: grid; gap: 12px; }} .archive-card {{ background: #fff; border: 1px solid #eee; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; text-decoration: none; color: inherit; }}</style></head><body><div class="header"><h1>iM AI Market Report</h1></div><div class="container"><div class="featured-card"><h2 class="featured-title">{latest_title}</h2><p class="featured-summary">{latest_summary[:200]}...</p><a href="/reports/{latest_id}" class="btn-main">리포트 읽기</a></div><div class="archive-list">{"".join(archive_items)}</div></div></body></html>"""
+    portal_html = f"""<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>iM AI Market Report Portal</title><style>:root {{ --im-navy: #2A3050; --im-gold: #C8940A; --bg: #F8F9FB; --text: #1A1A1A; }} body {{ font-family: 'Pretendard', sans-serif; background: var(--bg); margin: 0; padding: 0; }} .header {{ background: var(--im-navy); color: #fff; padding: 60px 30px 80px; text-align: center; }} .container {{ max-width: 640px; margin: -40px auto 60px; padding: 0 20px; }} .featured-card {{ background: #fff; padding: 40px 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); margin-bottom: 40px; border-radius: 4px; border: 1px solid #eee; }} .featured-title {{ font-size: 24px; font-weight: 800; color: var(--im-navy); margin-bottom: 20px; }} .featured-summary {{ font-size: 15px; color: #666; margin-bottom: 30px; line-height: 1.7; }} .btn-main {{ display: block; background: var(--im-navy); color: #fff; padding: 18px; text-decoration: none; font-weight: 800; text-align: center; }} .archive-list {{ display: grid; gap: 12px; }} .archive-card {{ background: #fff; border: 1px solid #eee; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; text-decoration: none; color: inherit; transition: 0.2s; }} .archive-card:hover {{ border-color: var(--im-gold); transform: translateX(5px); }}</style></head><body><div class="header"><h1>iM AI Market Report</h1></div><div class="container"><div class="featured-card"><h2 class="featured-title">{latest_title}</h2><p class="featured-summary">{latest_summary[:200]}...</p><a href="/reports/{latest_id}" class="btn-main">리포트 읽기</a></div><div class="archive-list">{"".join(archive_items)}</div></div></body></html>"""
     with open(portal_path, "w", encoding="utf-8") as f: f.write(portal_html)
     update_all_report_links(raw_data_dir)
     report_ids = [os.path.basename(f).replace(".html", "") for f in files]
@@ -105,10 +85,12 @@ def main():
     project_root = os.path.dirname(current_dir)
     raw_data_dir = os.path.join(project_root, "public", "raw-data")
     if not os.path.exists(raw_data_dir): os.makedirs(raw_data_dir)
+    
+    # 🎯 메커니즘 개편: 리포트 생성 시점에 실제 웹 데이터를 찾아 확인
     collector = DataCollector()
-    raw_market_data = collector.fetch_from_official_sources()
-    market_data = align_to_context(raw_market_data)
-    news_list = collector.get_policy_news()
+    market_data = collector.fetch_realtime_krx() # 추론 없는 실제 데이터 수집
+    news_list = collector.get_official_news()
+    
     try:
         generator = ReportGenerator()
         raw_report = generator.generate_report(market_data, news_list, is_krx_open=is_open)
@@ -119,7 +101,7 @@ def main():
         with open(output_file, "w", encoding="utf-8") as f: f.write(html_report)
         send_to_telegram(filename)
         update_portal(raw_data_dir, project_root)
-        print(f"✅ 리포트 생성 완료 (KOSPI: {market_data['KOSPI']['price']})")
+        print(f"✅ 리포트 생성 완료 (검색된 실시간 수치 반영)")
     except Exception as e: print(f"❌ 오류: {e}")
 
 if __name__ == "__main__":
