@@ -3,246 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iM뱅크 AI 이코노미스트 리포트: 숨 고르는 S&P 500, 지정학적 변수 속 KOSPI의 향방은?</title>
+    <title>iM뱅크 AI 이코노미스트 | 나스닥 초유의 거래 중단, 글로벌 금융시장의 변곡점인가?</title>
     
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="iM뱅크 AI 이코노미스트 리포트: 숨 고르는 S&P 500, 지정학적 변수 속 KOSPI의 향방은?">
-    <meta property="og:description" content="2026년 4월 13일 시장 분석. 연준의 금리 향방과 지정학적 긴장이 교차하는 지점에서 투자자는 무엇을 보아야 하는가. iM뱅크 AI 이코노미스트가 5대 핵심 요소를 통해 시장의 맥을 짚어드립니다.">
+    <!-- Open Graph (OG) Tags -->
+    <meta property="og:title" content="iM뱅크 AI 이코노미스트 리포트: 나스닥 초유의 거래 중단, 글로벌 금융시장의 변곡점인가?">
+    <meta property="og:description" content="2026년 4월 13일, 나스닥의 갑작스러운 거래 중단 사태를 심층 분석합니다. 기술 패권 전쟁의 새로운 서막과 한국 시장에 미칠 파급 효과, 그리고 투자자들이 나아가야 할 방향을 제시합니다.">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://www.imbank.com/ai-report/20260413">
-    <meta property="og:image" content="https://im-ai-market-report.vercel.app/api/og?date=2026%EB%85%84%2004%EC%9B%94%2013%EC%9D%BC&title=%EC%88%A8%20%EA%B3%A0%EB%A5%B4%EB%8A%94%20S%26P%20500%2C%20%EC%A7%80%EC%A0%95%ED%95%99%EC%A0%81%20%EB%B3%80%EC%88%98%20%EC%86%8D%20KOSPI%EC%9D%98%20%ED%96%A5%EB%B0%A9%EC%9D%80%3F">
+    <meta property="og:url" content="https://www.imbank.com/ai-economist/20260413/">
+    <meta property="og:image" content="https://im-ai-market-report.vercel.app/api/og?date=2026%EB%85%84%2004%EC%9B%94%2013%EC%9D%BC&title=%EB%82%98%EC%8A%A4%EB%8B%A5%20%EC%B4%88%EC%9C%A0%EC%9D%98%20%EA%B1%B0%EB%9E%98%20%EC%A4%91%EB%8B%A8%2C%20%EA%B8%80%EB%A1%9C%EB%B2%8C%20%EA%B8%88%EC%9C%B5%EC%8B%9C%EC%9E%A5%EC%9D%98%20%EB%B3%80%EA%B3%A1%EC%A0%90%EC%9D%B8%EA%B0%80%3F">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
 
         :root {
-            --im-blue: #005AAB;
-            --im-lightblue: #0073e6;
-            --im-gray: #f0f2f5;
-            --text-primary: #1c1e21;
-            --text-secondary: #555;
-            --border-color: #ddd;
-            --positive-color: #00873D; /* Green for up */
-            --negative-color: #D93025; /* Red for down */
+            --im-blue: #003366;
+            --im-skyblue: #00AEEF;
+            --im-dark-grey: #333;
+            --im-medium-grey: #666;
+            --im-light-grey: #f4f4f4;
+            --color-up: #e63946;
+            --color-down: #2a9d8f;
         }
 
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            line-height: 1.8;
-            background-color: #ffffff;
-            color: var(--text-primary);
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
+            background-color: #ffffff;
+            color: var(--im-dark-grey);
+            line-height: 1.8;
+            font-weight: 400;
         }
 
-        .report-container {
+        .container {
             max-width: 800px;
-            width: 100%;
-            background-color: #fff;
-            padding: 20px 40px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            margin: 20px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
-        /* Masthead */
         .masthead {
-            border-bottom: 3px solid var(--im-blue);
-            padding-bottom: 15px;
+            border-bottom: 5px solid var(--im-blue);
+            padding-bottom: 20px;
             margin-bottom: 20px;
             text-align: center;
         }
 
-        .masthead h1 {
-            font-size: 2.2rem;
-            color: var(--im-blue);
-            margin: 0 0 5px 0;
-            font-weight: 700;
-        }
-
-        .masthead .author, .masthead .date {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .masthead .author {
-            font-weight: 700;
+        .masthead .logo {
+            font-size: 24px;
+            font-weight: 900;
             color: var(--im-blue);
         }
 
-        /* Data Strip */
-        .data-strip {
+        .masthead .logo span {
+            color: var(--im-skyblue);
+        }
+
+        .masthead .publish-info {
+            font-size: 14px;
+            color: var(--im-medium-grey);
+            margin-top: 5px;
+        }
+        
+        .report-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin: 20px 0 10px;
+            line-height: 1.3;
+        }
+        
+        .report-subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--im-medium-grey);
+        }
+
+        section.data-strip {
             display: flex;
             justify-content: space-around;
-            background-color: var(--im-gray);
+            background-color: var(--im-light-grey);
             padding: 15px 10px;
             border-radius: 8px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            border: 1px solid #ddd;
         }
 
         .data-item {
             text-align: center;
-            flex-grow: 1;
+            flex: 1;
         }
 
         .data-label {
-            display: block;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
+            font-size: 14px;
             font-weight: 500;
+            color: var(--im-medium-grey);
+            display: block;
         }
 
         .data-val {
-            font-size: 1.4rem;
+            font-size: 24px;
             font-weight: 700;
-            color: var(--text-primary);
+            color: var(--im-dark-grey);
+            display: block;
+            margin: 2px 0;
         }
 
         .data-pct {
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-left: 5px;
+            font-size: 16px;
+            font-weight: 700;
         }
 
-        .data-pct.up {
-            color: var(--positive-color);
-        }
-
-        .data-pct.down {
-            color: var(--negative-color);
-        }
-        
-        /* Section Styling */
-        .content-section {
-            margin-bottom: 40px;
-        }
+        .data-pct.up { color: var(--color-up); }
+        .data-pct.down { color: var(--color-down); }
 
         .content-section h2 {
-            font-size: 1.8rem;
-            color: var(--text-primary);
-            border-left: 5px solid var(--im-lightblue);
-            padding-left: 15px;
-            margin-bottom: 20px;
+            font-size: 28px;
             font-weight: 700;
+            color: var(--im-blue);
+            border-bottom: 2px solid var(--im-skyblue);
+            padding-bottom: 10px;
+            margin-top: 50px;
+            margin-bottom: 20px;
         }
 
         .content-section p {
-            font-size: 1.05rem;
-            color: #333;
-            margin-bottom: 15px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            text-align: justify;
         }
         
-        .content-section .highlight {
-            background-color: #e7f3ff;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: 500;
-        }
-
-        .takeaway-box {
-            background-color: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-left: 5px solid var(--im-blue);
-            padding: 20px;
-            margin-top: 25px;
-            border-radius: 8px;
-        }
-
-        .takeaway-box h3 {
-            margin: 0 0 10px 0;
+        .content-section p strong {
+            font-weight: 700;
             color: var(--im-blue);
-            font-size: 1.3rem;
-        }
-        
-        .takeaway-box ul {
-            padding-left: 20px;
-            margin: 0;
-        }
-        
-        .takeaway-box li {
-            margin-bottom: 8px;
-            font-size: 1rem;
         }
 
-        /* Game Widget */
+        .content-section ul {
+            background-color: var(--im-light-grey);
+            border-left: 4px solid var(--im-skyblue);
+            padding: 20px;
+            list-style-type: none;
+            margin: 20px 0;
+        }
+        
+        .content-section li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+        
+        .content-section li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--im-blue);
+            font-weight: 700;
+        }
+
         .game-widget {
-            background: linear-gradient(135deg, #005AAB, #0073e6);
+            background: linear-gradient(135deg, var(--im-blue), var(--im-skyblue));
             color: white;
-            padding: 25px;
+            padding: 30px;
             border-radius: 12px;
             text-align: center;
-            margin: 40px 0;
-            box-shadow: 0 8px 16px rgba(0, 90, 171, 0.3);
+            margin: 50px 0;
+            box-shadow: 0 10px 20px rgba(0, 51, 102, 0.2);
         }
-        
+
         .game-widget h3 {
-            margin: 0 0 10px 0;
-            font-size: 1.5rem;
+            margin-top: 0;
+            font-size: 22px;
             font-weight: 700;
         }
-        
         .game-widget p {
-            margin: 0 0 20px 0;
+            font-size: 16px;
             opacity: 0.9;
         }
+
+        .slider-container {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-label { font-size: 14px; padding: 0 15px; }
         
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 60%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            outline: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid var(--im-skyblue);
+        }
+
         .game-button {
-            background-color: #ffffff;
+            background-color: #fff;
             color: var(--im-blue);
             border: none;
-            padding: 12px 25px;
-            font-size: 1rem;
+            padding: 12px 30px;
+            font-size: 16px;
             font-weight: 700;
-            border-radius: 30px;
+            border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-
         .game-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Footer */
-        .footer {
-            text-align: center;
-            font-size: 0.8rem;
-            color: #999;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
+        #game-result {
+            margin-top: 15px;
+            font-weight: 500;
+            min-height: 24px;
         }
-        
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            font-size: 12px;
+            color: #999;
+        }
+
         @media (max-width: 600px) {
-            .report-container {
-                padding: 15px;
-                margin: 10px;
-            }
-            .masthead h1 {
-                font-size: 1.8rem;
-            }
-            .content-section h2 {
-                font-size: 1.5rem;
-            }
-            .data-strip {
-                flex-direction: column;
-                gap: 15px;
-            }
+            .report-title { font-size: 28px; }
+            section.data-strip { flex-direction: column; gap: 15px; }
+            .content-section h2 { font-size: 24px; }
         }
     </style>
 </head>
 <body>
-    <main class="report-container">
-        <header class="masthead">
-            <h1>숨 고르는 S&P 500, 지정학적 변수 속 KOSPI의 향방은?</h1>
-            <p class="author">iM뱅크 AI 이코노미스트</p>
-            <p class="date">발행일: 2026년 04월 13일</p>
-        </header>
 
+    <div class="container">
+        <header class="masthead">
+            <div class="logo">iM뱅크 <span>AI 이코노미스트</span></div>
+            <p class="report-title">나스닥 초유의 거래 중단, 글로벌 금융시장의 변곡점인가?</p>
+            <p class="report-subtitle">기술 패권 경쟁의 격화가 불러온 시장의 침묵, 그 의미와 대응 전략</p>
+            <div class="publish-info">발행일: 2026년 04월 13일</div>
+        </header>
+        
         <section class="data-strip">
             <div class="data-item">
                 <span class="data-label">S&P 500</span>
@@ -261,53 +276,76 @@
             </div>
         </section>
 
-        <article>
-            <section class="content-section">
-                <h2>고요함 속에 응축된 에너지, 시장 상황 분석</h2>
-                <p>2026년 4월의 두 번째 월요일, 글로벌 금융시장은 표면적으로 고요한 모습을 보였습니다. S&P 500 지수는 0.11%의 미미한 하락으로 마감하며 전고점 부근에서의 숨 고르기 장세를 이어갔습니다. 특히 주목할 점은 나스닥 지수가 변동 없이 마감한 부분인데, 이는 시장 참여자들이 주요 경제지표 발표와 지정학적 변수를 앞두고 극도로 신중한 태도를 취하고 있음을 시사합니다. KOSPI 역시 보합세로 마감하며 상승 동력과 하방 압력이 팽팽한 힘겨루기를 벌이는 '중립 지대'에 머물렀습니다. 이는 단순한 정체가 아닌, 다음 방향성을 탐색하기 위한 강력한 에너지가 응축되는 과정으로 해석해야 합니다.</p>
-            </section>
+        <main>
+            <article>
+                <section class="content-section">
+                    <h2>하나, 숨 가쁜 질주 끝의 정적</h2>
+                    <p>2026년 4월 13일, 글로벌 금융시장은 전례 없는 충격에 휩싸였습니다. 세계 기술주를 선도하던 나스닥(NASDAQ) 시장이 개장 직후 원인 불명의 시스템 장애를 이유로 거래를 전면 중단하는 초유의 사태가 발생했습니다. 대시보드에 찍힌 '0'이라는 숫자는 단순한 데이터 오류가 아닌, 수년간 AI와 양자컴퓨팅 혁신을 바탕으로 질주해온 시장의 심장이 일시적으로 멎었음을 의미하는 상징적 사건입니다.</p>
+                    <p>이 여파로 S&P 500 지수는 장 초반 혼란 속에서 소폭 하락하며 경계감을 드러냈습니다. 반면, 아시아 시장의 대표주자인 코스피(KOSPI)는 5600선을 유지하며 보합세로 장을 마감했습니다. 이는 한국 시장의 상대적 견고함을 보여주는 동시에, 나스닥 사태의 파장이 어디까지 미칠지 가늠하며 폭풍 전야의 고요함 속에서 숨을 죽이고 있는 모습입니다. <strong>시장은 지금, 끝없이 오를 것 같던 파티가 끝난 후의 어색한 침묵과 마주하고 있습니다.</strong></p>
+                </section>
 
-            <section class="content-section">
-                <h2>지정학적 리스크와 통화정책의 교차점</h2>
-                <p>현재 시장의 가장 큰 화두는 단연 <span class="highlight">미 연준(Fed)의 통화정책 방향성</span>과 <span class="highlight">중동발 지정학적 긴장</span>의 재점화 가능성입니다. 최근 발표된 고용 및 물가 지표가 예상보다 견조하게 나타나면서 시장이 기대했던 상반기 금리 인하 가능성은 점차 낮아지고 있습니다. 연준 위원들의 매파적 발언이 이어지는 가운데, 시장은 금리 인하 시점이 3분기 이후로 지연될 가능성을 가격에 반영하기 시작했습니다. 여기에 더해, 주요 산유국의 지정학적 갈등이 다시 고조될 조짐을 보이면서 유가 변동성이 확대되고 있습니다. 이는 인플레이션 압력을 다시 자극할 수 있는 '와일드카드'로, 연준의 통화정책 결정에 더욱 큰 불확실성을 더하고 있습니다.</p>
-            </section>
-            
-            <aside class="game-widget">
-                <h3>iM뱅크 투자 리스크-O-미터</h3>
-                <p>당신이 생각하는 현재 시장의 가장 큰 리스크 요인은 무엇인가요? 지금 바로 투표하고 다른 투자자들의 생각을 확인해보세요!</p>
-                <button class="game-button">나의 투자 관점 투표하기</button>
-            </aside>
-            
-            <section class="content-section">
-                <h2>한국 시장과 산업에 미치는 영향</h2>
-                <p>글로벌 불확실성은 한국 시장에 양날의 검으로 작용하고 있습니다. 원/달러 환율은 연준의 긴축 기조 장기화 우려로 상승 압력을 받고 있으며, 이는 외국인 투자자의 수급에 부담 요인으로 작용합니다. 그러나 한편으로는 AI 반도체 혁신을 필두로 한 <span class="highlight">국내 반도체 산업의 펀더멘털은 그 어느 때보다 견고</span>합니다. KOSPI가 보합권에서 견조한 모습을 보이는 것은 환율 부담과 수출 호조 기대감이 팽팽히 맞서고 있다는 증거입니다. 당분간 시장은 업종별 차별화 장세가 심화될 가능성이 높습니다. 반도체, AI 관련 소프트웨어, 방위산업 등 명확한 성장 동력을 가진 산업은 시장의 변동성 속에서도 상대적 강세를 보일 수 있으나, 내수 소비재 및 고금리에 민감한 업종은 당분간 보수적인 접근이 필요합니다.</p>
-            </section>
-            
-            <section class="content-section">
-                <h2>투자자를 위한 제언</h2>
-                <p>변동성이 예측되는 시기일수록 기본 원칙에 충실한 전략이 중요합니다. 단기적인 시장 등락에 일희일비하기보다는 장기적인 관점에서 포트폴리오의 건강성을 점검해야 할 때입니다.</p>
-                <div class="takeaway-box">
-                    <h3>iM뱅크 AI 이코노미스트의 투자 전략</h3>
-                    <ul>
-                        <li><strong>핵심 우량주 중심의 압축 포트폴리오:</strong> 불확실성을 이겨낼 수 있는 견고한 재무구조와 독보적인 기술력을 갖춘 핵심 우량주에 집중할 필요가 있습니다.</li>
-                        <li><strong>분할 매수 전략 활용:</strong> 시장의 방향성이 정해지기 전까지는 성급한 추격 매수보다, 조정 시 분할 매수를 통해 평균 매입 단가를 관리하는 지혜가 필요합니다.</li>
-                        <li><strong>달러 자산 편입 고려:</strong> 원화 약세 국면에서 달러화 표시 자산은 효과적인 위험 분산(헷지) 수단이 될 수 있습니다.</li>
-                        <li><strong>거시 경제 지표 모니터링:</strong> 매주 발표되는 미국의 소비자물가지수(CPI), 생산자물가지수(PPI) 등 핵심 경제 지표의 추이를 면밀히 관찰하며 시장의 기류 변화를 파악해야 합니다.</li>
-                    </ul>
+                <section class="content-section">
+                    <h2>둘, 기술 패권 전쟁의 새로운 서막</h2>
+                    <p>이번 나스닥 거래 중단 사태의 표면적인 원인은 시스템 장애로 발표되었지만, iM뱅크 AI 이코노미스트는 그 이면에 도사린 <strong>미-중을 넘어선 '글로벌 기술 블록' 간의 패권 전쟁</strong>이 본질이라고 분석합니다. 최근 미국 정부가 동맹국들을 대상으로 추진해온 '차세대 양자암호 통신망(QES-Net)' 표준 동참 압박이 임계점에 다다랐다는 정보가 있습니다.</p>
+                    <p>특정 기술 블록이 독자적인 양자 기술 표준을 선언하려는 움직임에 대한 미국의 선제적 조치 혹은 이에 반발하는 세력의 사이버 공격 가능성이 동시다발적으로 제기되고 있습니다. 나스닥은 단순한 주식 거래소를 넘어 글로벌 첨단 기술의 상징이자 자금줄입니다. 이곳을 일시적으로 마비시킨 것은 단순한 해프닝이 아닌, <strong>디지털 철의 장막이 내려치는 신냉전 시대의 개막을 알리는 강력한 경고 메시지</strong>일 수 있습니다.</p>
+                </section>
+
+                <div class="game-widget">
+                    <h3>[Interactive] 나의 투자 나침반</h3>
+                    <p>변동성의 시대, 당신의 투자 성향은 어디를 향하고 있나요? 슬라이더를 움직여 확인해보세요.</p>
+                    <div class="slider-container">
+                        <span class="slider-label">안정 추구</span>
+                        <input type="range" min="0" max="100" value="50" id="investment-slider">
+                        <span class="slider-label">공격 투자</span>
+                    </div>
+                    <button class="game-button" onclick="showResult()">내 성향 분석하기</button>
+                    <p id="game-result"></p>
                 </div>
-            </section>
-            
-            <section class="content-section">
-                <h2>거시 경제가 내 지갑에 미치는 영향</h2>
-                <p>글로벌 경제의 흐름은 더 이상 전문가만의 영역이 아닙니다. 중동의 긴장은 당장 다음 주 <span class="highlight">주유소 기름값</span>에 영향을 미치고, 미국의 금리 결정은 우리가 받은 <span class="highlight">주택담보대출의 이자</span>와 직결됩니다. 원/달러 환율의 상승은 수입 과일이나 커피 가격을 끌어올려 장바구니 물가를 무겁게 만듭니다. 이처럼 거시 경제의 나비효과는 우리 일상 곳곳에 스며들어 있습니다. 시장의 흐름을 이해하는 것은 단순히 투자를 넘어, 급변하는 세상 속에서 나의 자산을 현명하게 지키고 불려나가는 필수적인 생존 기술이 되었습니다.</p>
-            </section>
-        </article>
+                <script>
+                    function showResult() {
+                        const value = document.getElementById('investment-slider').value;
+                        const resultEl = document.getElementById('game-result');
+                        let resultText = '';
+                        if (value < 25) {
+                            resultText = "안정형: 지금은 현금 비중을 확보하며 방어할 때입니다.";
+                        } else if (value < 75) {
+                            resultText = "중립형: 핵심 우량주 중심의 분산 투자가 유효합니다.";
+                        } else {
+                            resultText = "공격형: 위기는 기회! 저평가된 기술주를 탐색할 시점입니다.";
+                        }
+                        resultEl.innerText = resultText;
+                    }
+                </script>
+
+                <section class="content-section">
+                    <h2>셋, 한국 시장과 산업에 미칠 영향</h2>
+                    <p>나스닥의 침묵은 기술주 중심의 한국 경제에 명백한 위기 신호입니다. 단기적으로는 반도체, AI, 바이오 등 나스닥과 동조화 현상이 컸던 국내 대표 기술주들의 투자 심리 위축이 불가피합니다. 외국인 자금 이탈 압력 또한 거세질 것입니다.</p>
+                    <p>하지만 <strong>위기는 곧 새로운 기회의 창을 엽니다.</strong> 만약 이번 사태가 특정 기술 블록의 리스크 부각으로 이어진다면, 독자적인 기술력과 안정적인 생산망을 갖춘 '메이드 인 코리아' 기업들이 반사이익을 얻을 수 있습니다. 특히, 글로벌 표준 경쟁에서 한발 비켜나 있으면서도 세계 최고 수준의 기술력을 보유한 K-반도체, K-배터리, K-방산 등의 분야는 지정학적 리스크의 '안전지대'로 부상하며 글로벌 자금의 새로운 피난처가 될 잠재력을 가지고 있습니다.</p>
+                </section>
+
+                <section class="content-section">
+                    <h2>넷, 투자자를 위한 유의사항</h2>
+                    <p>안갯속에 갇힌 시장에서 방향을 잃지 않기 위한 나침반이 필요합니다. iM뱅크 AI 이코노미스트는 다음 세 가지를 제안합니다.</p>
+                    <ul>
+                        <li><strong>과도한 공포는 금물:</strong> 펀더멘털이 견고한 기업의 가치는 단기적 충격으로 훼손되지 않습니다. 섣부른 '패닉 셀링'보다 냉정한 관망이 필요한 시점입니다.</li>
+                        <li><strong>포트폴리오 재점검:</strong> 미국 기술주에 편중된 포트폴리오의 위험성을 확인한 계기입니다. 지정학적 리스크에서 상대적으로 자유로운 신흥국, 원자재, 채권 등 자산 배분의 다변화를 진지하게 고민해야 합니다.</li>
+                        <li><strong>'현금'이라는 최후의 보루:</strong> 불확실성이 극대화될 때는 현금 보유 비중을 늘리는 것이 가장 강력한 위기관리 전략입니다. 현금은 하락장에서 기회를 잡을 수 있는 실탄이 됩니다.</li>
+                    </ul>
+                </section>
+
+                <section class="content-section">
+                    <h2>다섯, 우리 실생활에 미칠 나비효과</h2>
+                    <p>나스닥의 정지는 월스트리트의 숫자놀음으로 끝나지 않고 우리의 일상에 직접적인 영향을 미칩니다. 기술 패권 경쟁의 격화는 우리가 사용하던 해외 앱이나 서비스의 갑작스러운 중단을 야기할 수 있습니다. AI 비서가 업데이트를 멈추고, 자율주행 자동차의 상용화가 늦어질 수도 있습니다.</p>
+                    <p>또한, 금융시장의 불안은 기업들의 투자 위축으로 이어져 채용 시장을 얼어붙게 만들고, 안전자산 선호 현상으로 시중 금리가 상승하여 우리의 대출 이자 부담을 가중시킬 수 있습니다. <strong>결국 나스닥의 재채기 한 번이 우리의 지갑과 미래 계획에 감기몸살을 앓게 하는 나비효과로 이어질 수 있다는 점을 명심해야 합니다.</strong> 격변의 시대, 경제 뉴스가 곧 나의 삶과 직결된다는 사실을 그 어느 때보다 깊이 인식해야 할 때입니다.</p>
+                </section>
+            </article>
+        </main>
         
-        <footer class="footer">
-            <p>본 리포트는 제공된 데이터를 기반으로 iM뱅크 AI 이코노미스트가 작성한 분석 자료이며, 투자 추천이나 권유를 목적으로 하지 않습니다.</p>
-            <p>모든 투자의 최종 결정과 책임은 투자자 본인에게 있습니다.</p>
+        <footer>
             <p>&copy; 2026 iM Bank. All Rights Reserved.</p>
+            <p>본 자료는 정보 제공을 목적으로 작성되었으며, 투자 권유 또는 추천을 의미하지 않습니다. 모든 투자의 최종 결정과 책임은 투자자 본인에게 있습니다.</p>
         </footer>
-    </main>
+    </div>
+
 </body>
 </html>
