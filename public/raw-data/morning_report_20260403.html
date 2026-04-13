@@ -1,226 +1,497 @@
+```html
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta property="og:title" content="지정학적 파고와 기술주의 역설: 미국 시장 혼조 속 호르무즈 해협 봉쇄 위협의 그림자">
-    <meta property="og:image" content="https://im-ai-market-report.vercel.app/api/og?date=2026년 04월 13일&title=지정학적 파고와 기술주의 역설: 미국 시장 혼조 속 호르무즈 해협 봉쇄 위협의 그림자">
-    <meta property="og:type" content="article">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>iM뱅크 오늘의 리포트: 지정학적 파고와 기술주의 역설</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iM뱅크 데일리 리포트: 지정학적 긴장감 고조, 기술주 강세 속 시장의 향방은?</title>
+    <meta property="og:title" content="iM뱅크 데일리 리포트: 지정학적 긴장감 고조, 기술주 강세 속 시장의 향방은?">
+    <meta property="og:description" content="중동의 지정학적 리스크가 유가를 급등시키며 시장에 부담을 주는 가운데, 반도체 중심의 기술주는 강세를 보이며 혼조세를 연출하고 있습니다. iM뱅크가 제공하는 심층 분석 리포트를 확인하세요.">
+    <meta property="og:image" content="https://im-ai-market-report.vercel.app/api/og?date=2026%EB%85%84%2004%EC%9B%94%2013%EC%9D%BC&title=%EC%A7%80%EC%A0%95%ED%95%99%EC%A0%81%20%EA%B8%B4%EC%9E%A5%EA%B0%90%20%EA%B3%A0%EC%A1%B0%2C%20%EA%B8%B0%EC%88%A0%EC%A3%BC%20%EA%B0%95%EC%84%B8%20%EC%86%8D%20%EC%8B%9C%EC%9E%A5%EC%9D%98%20%ED%96%A5%EB%B0%A9%EC%9D%80%3F">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --im-navy: #2A3050; --im-blue: #3A4568; --im-gold: #C8940A;
-            --black: #111111; --white: #FFFFFF; --bg: #F9FAFB;
-            --border: #E8E8E8; --muted: #777777; --red: #C62828;
-            --blue-down: #1565C0; --lnavy: #F4F6F9;
-            --header-bg: #FFFFFF; --header-text: #111111;
-            --footer-bg: #F9FAFB; --data-bg: #2A3050;
+            --im-blue: #003366;
+            --im-gold: #B8860B;
+            --im-dark-grey: #333;
+            --im-grey: #666;
+            --im-light-grey: #f4f4f4;
+            --color-up: #e53935;
+            --color-down: #1e88e5;
+            --color-neutral: #555;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Pretendard', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.85; -webkit-font-smoothing: antialiased; word-break: keep-all; }
-        .wrap { width: 100%; max-width: 680px; margin: 0 auto; background: var(--white); min-height: 100vh; box-shadow: 0 0 40px rgba(0, 0, 0, 0.03); }
-        .masthead { padding: 60px 40px 45px; background: var(--header-bg); color: var(--header-text); border-bottom: 1px solid var(--black); }
-        .brand-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-        .brand-logo { font-size: 18px; font-weight: 900; color: inherit; }
-        .brand-label { font-family: Georgia, serif; font-size: 11px; font-style: italic; color: var(--im-gold); padding-left: 10px; border-left: 1px solid var(--border); }
-        .ai-tag { font-size: 9px; font-weight: 700; color: inherit; opacity: 0.6; border: 1px solid currentColor; padding: 2px 6px; text-transform: uppercase; }
-        .masthead-title { font-size: 32px; font-weight: 800; line-height: 1.3; letter-spacing: -1.5px; margin-bottom: 25px; }
-        .summary-lead { font-size: 17px; font-weight: 500; opacity: 0.9; margin-top: 25px; line-height: 1.75; padding-left: 20px; border-left: 3px solid var(--im-gold); }
-        .issue-meta { display: flex; justify-content: space-between; align-items: flex-end; font-size: 13px; opacity: 0.7; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; margin-top: 20px; }
-        .data-strip { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--data-bg); color: #fff; }
-        .data-item { padding: 22px 15px; text-align: center; border-right: 1px solid rgba(255, 255, 255, 0.1); }
-        .data-item:last-child { border-right: none; }
-        .data-label { font-size: 10px; font-weight: 700; color: rgba(255, 255, 255, 0.5); text-transform: uppercase; margin-bottom: 6px; display: block; }
-        .data-val { font-size: 18px; font-weight: 700; }
-        .section { padding: 55px 40px; border-bottom: 1px solid var(--border); }
-        .section-num { font-family: Georgia, serif; font-size: 42px; color: #EFEFEF; line-height: 1; margin-bottom: -12px; display: block; }
-        .section-title { font-size: 24px; font-weight: 800; color: var(--im-navy); margin-bottom: 30px; letter-spacing: -0.8px; border-bottom: 2px solid var(--im-navy); display: inline-block; padding-bottom: 4px; }
-        .content-body { font-size: 16.5px; color: #222; text-align: justify; }
-        .content-body p { margin-bottom: 24px; }
-        .callout-box { background: var(--lnavy); padding: 30px; margin: 35px 0; border-radius: 4px; border-left: 4px solid var(--im-navy); }
-        .tech-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        .tech-table th { font-size: 11px; color: var(--muted); text-align: left; padding: 10px 0; border-bottom: 2px solid var(--im-navy); text-transform: uppercase; }
-        .tech-table td { padding: 12px 0; font-size: 14.5px; border-bottom: 1px solid var(--border); }
-        .pull-quote { font-family: Georgia, serif; font-size: 22px; font-style: italic; color: var(--im-gold); text-align: center; padding: 40px 0; line-height: 1.5; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 40px 0; }
-        .game-embed-card { margin: 50px 0; padding: 40px; background: var(--lnavy); border: 1px solid var(--border); border-radius: 4px; text-align: center; }
-        .game-embed-label { font-size: 11px; font-weight: 800; color: var(--im-gold); text-transform: uppercase; margin-bottom: 15px; display: block; }
-        .game-embed-title { font-size: 22px; font-weight: 800; color: var(--im-navy); margin-bottom: 25px; }
-        .voting-options { display: flex; gap: 15px; justify-content: center; }
-        .vote-link { flex: 1; max-width: 180px; padding: 18px; border-radius: 2px; text-decoration: none; font-weight: 800; font-size: 16px; color: #fff; transition: 0.3s; }
-        .vote-link.up { background: var(--red); }
-        .vote-link.down { background: var(--blue-down); }
-        .game-footer-note { font-size: 12px; color: var(--muted); margin-top: 20px; }
-        .report-nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: #fff; border-bottom: 1px solid var(--border); }
-        .report-nav.bottom { border-bottom: none; border-top: 1px solid var(--border); margin-top: 40px; }
-        .nav-link { font-size: 13px; font-weight: 700; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 5px; }
-        .nav-link:hover { color: var(--im-navy); }
-        .nav-list-btn { font-size: 14px; font-weight: 800; color: var(--im-navy); text-decoration: none; border: 1px solid var(--im-navy); padding: 6px 16px; border-radius: 20px; }
-        .footer { padding: 60px 40px; background: var(--footer-bg); font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
-        .footer-brand { font-weight: 900; color: var(--im-navy); font-size: 16px; margin-bottom: 15px; display: block; }
-        .disclaimer { background: #fff; padding: 25px; border: 1px solid var(--border); line-height: 1.8; margin-bottom: 30px; color: #888; }
-        .up { color: #FF5252; }
-        .down { color: #448AFF; }
-        @media (max-width: 600px) { .masthead, .section { padding: 45px 24px; } .masthead-title { font-size: 28px; } }
+
+        body {
+            font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: var(--im-dark-grey);
+            line-height: 1.6;
+        }
+
+        .report-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px 30px;
+        }
+
+        /* Navigation Bar */
+        .report-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: var(--im-light-grey);
+            border-bottom: 1px solid #ddd;
+        }
+
+        .report-nav .nav-list-btn {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--im-blue);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            transition: all 0.2s ease-in-out;
+        }
+        
+        .report-nav .nav-list-btn:hover {
+            background-color: var(--im-blue);
+            color: #fff;
+            border-color: var(--im-blue);
+        }
+        
+        nav.report-nav:last-of-type {
+            border-top: 1px solid #ddd;
+            border-bottom: none;
+            margin-top: 30px;
+        }
+
+        /* Masthead */
+        .masthead {
+            border-bottom: 3px solid var(--im-blue);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .masthead .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--im-blue);
+        }
+        
+        .masthead .report-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 10px 0;
+            color: var(--im-dark-grey);
+        }
+
+        .masthead .publish-info {
+            font-size: 14px;
+            color: var(--im-grey);
+        }
+
+        /* Report Section */
+        .report-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--im-blue);
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--im-gold);
+            margin-bottom: 20px;
+        }
+
+        p, .summary-text {
+            font-size: 16px;
+            color: #444;
+            margin-bottom: 1.2em;
+        }
+        
+        /* Market Data Grid */
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .market-card {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: left;
+            transition: box-shadow 0.2s;
+        }
+        
+        .market-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .market-card .index-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--im-grey);
+            margin-bottom: 5px;
+        }
+
+        .market-card .price {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .market-card .change-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .up { color: var(--color-up); }
+        .down { color: var(--color-down); }
+        .neutral { color: var(--color-neutral); }
+        
+        /* News Analysis Section */
+        .news-item {
+            background-color: var(--im-light-grey);
+            border-left: 4px solid var(--im-gold);
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .news-item .news-title {
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--im-blue);
+            margin-bottom: 5px;
+        }
+
+        .news-item .news-summary {
+            font-size: 15px;
+            color: var(--im-dark-grey);
+        }
+        
+        /* Stock Table */
+        .stock-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .stock-table th, .stock-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .stock-table th {
+            background-color: var(--im-light-grey);
+            font-weight: 500;
+            color: var(--im-dark-grey);
+        }
+        
+        .stock-table td {
+            font-size: 15px;
+        }
+        
+        .stock-table td:nth-child(1) { font-weight: 500; }
+        .stock-table td:nth-child(2) { text-align: right; }
+        .stock-table td:nth-child(3) { text-align: right; font-weight: 700; }
+        
+        /* Game Widget */
+        .game-embed-card {
+            background: linear-gradient(135deg, var(--im-blue), #004a8d);
+            border-radius: 12px;
+            padding: 25px 30px;
+            margin: 40px 0;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(0, 51, 102, 0.3);
+        }
+
+        .game-embed-label {
+            display: inline-block;
+            background-color: var(--im-gold);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .game-embed-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .voting-options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .vote-link {
+            flex-grow: 1;
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.2s ease-in-out;
+            border: 2px solid transparent;
+        }
+
+        .vote-link.up {
+            background-color: var(--color-up);
+        }
+        
+        .vote-link.up:hover {
+            background-color: #fff;
+            color: var(--color-up);
+            border-color: var(--color-up);
+        }
+
+        .vote-link.down {
+            background-color: var(--color-down);
+        }
+        
+        .vote-link.down:hover {
+            background-color: #fff;
+            color: var(--color-down);
+            border-color: var(--color-down);
+        }
+        
+        .game-footer-note {
+            font-size: 13px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        .report-footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 12px;
+            color: var(--im-grey);
+        }
     </style>
 </head>
 <body>
-
-<nav class="report-nav">
+    <nav class="report-nav">
     <a href="/reports/morning_report_20260402" class="nav-link">← 이전 리포트</a>
     <a href="/reports/index.html" class="nav-list-btn">목록으로</a>
     <a href="/reports/morning_report_20260404" class="nav-link">다음 리포트 →</a>
 </nav>
 
-<div class="wrap">
-    <header class="masthead">
-        <div class="brand-row">
-            <div class="brand-logo">iM뱅크</div>
-            <div class="brand-label">AI Market Report <span class="ai-tag">AI Powered</span></div>
-        </div>
-        <h1 class="masthead-title">지정학적 파고와 기술주의 역설: 미국 시장 혼조 속 호르무즈 해협 봉쇄 위협의 그림자</h1>
-        <p class="summary-lead">글로벌 금융 시장은 지정학적 긴장 고조와 개별 섹터의 상이한 움직임 속에서 복합적인 양상을 보였습니다. 미국 시장은 다우존스와 S&P 500이 하락세를 보인 반면, 나스닥과 필라델피아 반도체 지수(SOX)는 기술주의 강세에 힘입어 상승 마감하며 엇갈린 흐름을 연출했습니다. 특히, 이란과의 평화 협상 결렬 후 트럼프 대통령이 호르무즈 해협 봉쇄를 시사한 소식은 국제 유가를 비롯한 원자재 시장에 잠재적인 충격을 예고하며, 시장의 핵심 리스크로 부상하고 있습니다. 이러한 복잡한 환경 속에서 투자자들은 신중한 접근이 요구됩니다.</p>
-        <div class="issue-meta">
-            <span>발행시각: 2026년 04월 13일 06:27 AM KST</span>
-            <span>KRX 개장 여부: 영업일</span>
-            <span>시장 심리: NEUTRAL</span>
-        </div>
-    </header>
+    <div class="report-container">
+        <header class="masthead">
+            <div class="logo">iM뱅크 데일리 마켓 리포트</div>
+            <h1 class="report-title">지정학적 긴장감 고조, 기술주 강세 속 시장의 향방은?</h1>
+            <div class="publish-info">
+                발행시각: 2026년 04월 13일 08:59 AM KST | 금융분석시스템 에디터팀
+            </div>
+        </header>
 
-    <div class="data-strip">
-        <div class="data-item">
-            <span class="data-label">S&P 500</span>
-            <span class="data-val">6,816.89 <span class="down">(-0.11%)</span></span>
-        </div>
-        <div class="data-item">
-            <span class="data-label">Nasdaq</span>
-            <span class="data-val">22,902.89 <span class="up">(+0.35%)</span></span>
-        </div>
-        <div class="data-item">
-            <span class="data-label">Dow Jones</span>
-            <span class="data-val">47,916.57 <span class="down">(-0.56%)</span></span>
-        </div>
-        <div class="data-item">
-            <span class="data-label">KOSPI</span>
-            <span class="data-val">5,858.87 <span class="up">(+1.40%)</span></span>
-        </div>
-        <div class="data-item">
-            <span class="data-label">USD/KRW</span>
-            <span class="data-val">1,483.09 <span class="up">(+0.67%)</span></span>
-        </div>
-        <div class="data-item">
-            <span class="data-label">WTI Oil</span>
-            <span class="data-val">96.57 <span class="down">(-1.33%)</span></span>
-        </div>
+        <main>
+            <section class="report-section">
+                <h2 class="section-title">글로벌 증시 브리핑</h2>
+                <div class="summary-text">
+                    지난 밤 뉴욕 증시는 지정학적 리스크 부각과 기술주 강세가 엇갈리며 혼조세로 마감했습니다. 이란과 미국 간의 긴장감이 고조되면서 국제 유가가 급등, 다우존스와 S&P 500 지수는 하락 압력을 받았습니다. 반면, 필라델피아 반도체 지수(SOX)가 2% 이상 급등하는 등 기술주 중심의 나스닥은 상승 마감하며 시장 내 차별화 장세가 뚜렷해지는 양상을 보였습니다. 금일 개장한 코스피는 전일 미국 기술주 훈풍에 힘입어 강한 상승세로 출발했습니다.
+                </div>
+                <div class="market-grid">
+                    <div class="market-card">
+                        <div class="index-name">S&P 500</div>
+                        <div class="price">6,816.89</div>
+                        <div class="change-info down">
+                            <span>-7.77</span>
+                            <span>-0.11%</span>
+                        </div>
+                    </div>
+                    <div class="market-card">
+                        <div class="index-name">Nasdaq</div>
+                        <div class="price">22,902.89</div>
+                        <div class="change-info up">
+                            <span>+80.47</span>
+                            <span>+0.35%</span>
+                        </div>
+                    </div>
+                    <div class="market-card">
+                        <div class="index-name">Dow Jones</div>
+                        <div class="price">47,916.57</div>
+                        <div class="change-info down">
+                            <span>-269.23</span>
+                            <span>-0.56%</span>
+                        </div>
+                    </div>
+                     <div class="market-card">
+                        <div class="index-name">KOSPI</div>
+                        <div class="price">5,858.87</div>
+                        <div class="change-info up">
+                            <span>+80.86</span>
+                            <span>+1.40%</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="report-section">
+                <h2 class="section-title">주요 경제지표 동향</h2>
+                <div class="summary-text">
+                    가장 주목할 지표는 국제 유가(WTI)의 폭등입니다. 미국이 호르무즈 해협 봉쇄 가능성을 언급하며 중동의 긴장감이 최고조에 달하자, 유가는 하루 만에 8.8% 이상 급등하며 105달러를 돌파했습니다. 이는 인플레이션 우려를 다시 자극하는 요인입니다. 안전자산 선호 심리와 지정학적 리스크는 달러 강세로 이어져 원/달러 환율은 1,480원을 넘어섰습니다. 변동성 지수(VIX)는 소폭 하락했으나, 유가 급등세가 지속될 경우 다시 상승할 가능성이 높습니다.
+                </div>
+                 <div class="market-grid">
+                    <div class="market-card">
+                        <div class="index-name">USD/KRW</div>
+                        <div class="price">1,483.09</div>
+                        <div class="change-info up">
+                            <span>+9.81</span>
+                            <span>+0.67%</span>
+                        </div>
+                    </div>
+                    <div class="market-card">
+                        <div class="index-name">WTI Oil</div>
+                        <div class="price">$105.10</div>
+                        <div class="change-info up">
+                            <span>+8.53</span>
+                            <span>+8.83%</span>
+                        </div>
+                    </div>
+                    <div class="market-card">
+                        <div class="index-name">US 10Y Bond</div>
+                        <div class="price">4.32%</div>
+                        <div class="change-info up">
+                            <span>+0.02</span>
+                            <span>+0.56%</span>
+                        </div>
+                    </div>
+                    <div class="market-card">
+                        <div class="index-name">VIX</div>
+                        <div class="price">19.23</div>
+                        <div class="change-info down">
+                            <span>-0.26</span>
+                            <span>-1.33%</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div id="im-live-game" class="game-embed-card">
+                <span class="game-embed-label">iM Special Challenge</span>
+                <div class="game-embed-title">오늘의 KOSPI, 당신의 선택은?</div>
+                <div class="voting-options">
+                    <a href="https://im-ai-market-report.vercel.app/history?vote=UP" class="vote-link up">▲ UP (상승)</a>
+                    <a href="https://im-ai-market-report.vercel.app/history?vote=DOWN" class="vote-link down">▼ DOWN (하락)</a>
+                </div>
+                <div class="game-footer-note">
+                   버튼을 클릭하면 iM뱅크 예측 시스템에 즉시 반영됩니다.<br>
+                   <a href="https://im-ai-market-report.vercel.app/history" style="color:var(--im-gold); text-decoration:underline; margin-top:10px; display:inline-block;">나의 전체 도전 기록 확인하기</a>
+                </div>
+            </div>
+
+            <section class="report-section">
+                <h2 class="section-title">지정학적 리스크 분석 및 시장 전망</h2>
+                <div class="summary-text">
+                    현재 시장을 관통하는 가장 핵심적인 변수는 지정학적 리스크입니다. 특히 미국과 이란의 갈등이 세계 경제의 동맥인 호르무즈 해협으로 집중되면서, 그 파급효과가 즉각적으로 나타나고 있습니다.
+                </div>
+                <div class="news-item">
+                    <div class="news-title">호르무즈 해협 봉쇄 위협과 유가 쇼크</div>
+                    <div class="news-summary">
+                        트럼프 전 대통령이 이란과의 평화 협상 결렬 후 호르무즈 해협 봉쇄를 선언한 것이 WTI 유가를 8% 이상 폭등시킨 직접적인 원인입니다. 전 세계 원유 수송량의 상당 부분을 차지하는 이 해협의 봉쇄는 단순한 유가 상승을 넘어 글로벌 공급망 교란과 스태그플레이션(경기 침체 속 물가 상승) 우려를 심화시킬 수 있습니다. 이는 에너지 의존도가 높은 국가들의 증시에 상당한 부담으로 작용할 전망입니다.
+                    </div>
+                </div>
+                 <div class="news-item">
+                    <div class="news-title">미-중 갈등 및 연준 정책 불확실성</div>
+                    <div class="news-summary">
+                        미-중 관계 또한 시진핑 주석이 10년 만에 대만 야당 지도자와 회동하는 등 긴장감이 흐르고 있습니다. 이는 장기적으로 반도체 등 핵심 산업의 공급망 리스크를 자극할 수 있습니다. 동시에, 트럼프 행정부의 차기 연준 의장 후보로 거론되는 케빈 워시의 지명 청문회가 지연되면서 통화 정책의 방향성에 대한 불확실성도 가중되고 있습니다.
+                    </div>
+                </div>
+            </section>
+
+            <section class="report-section">
+                <h2 class="section-title">주요 섹터 및 종목 동향</h2>
+                <div class="summary-text">
+                   거시 경제의 불확실성에도 불구하고 기술, 특히 반도체 섹터는 독자적인 강세 흐름을 보였습니다. 필라델피아 반도체 지수(SOX)는 2.31% 급등하며 시장의 하방을 지지했습니다.
+                </div>
+                <table class="stock-table">
+                    <thead>
+                        <tr>
+                            <th>종목명</th>
+                            <th style="text-align: right;">종가</th>
+                            <th style="text-align: right;">등락률</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>NVIDIA (SOX)</td>
+                            <td>$188.63</td>
+                            <td class="up">+2.57%</td>
+                        </tr>
+                         <tr>
+                            <td>Tesla</td>
+                            <td>$348.95</td>
+                            <td class="up">+0.96%</td>
+                        </tr>
+                        <tr>
+                            <td>Apple</td>
+                            <td>$260.48</td>
+                            <td class="neutral">0.00%</td>
+                        </tr>
+                        <tr>
+                            <td>Microsoft</td>
+                            <td>$370.87</td>
+                            <td class="down">-0.59%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 20px;">
+                    엔비디아가 2.57% 상승하며 반도체 랠리를 주도했고, 이는 인공지능(AI) 산업의 구조적 성장에 대한 시장의 강한 믿음을 재확인시켜 주었습니다. 다만 애플은 보합, 마이크로소프트는 하락하는 등 빅테크 내부에서도 주가 흐름이 엇갈려, 펀더멘털에 기반한 선별적 투자가 중요해지는 시점입니다.
+                </p>
+            </section>
+
+            <section class="report-section">
+                <h2 class="section-title">iM뱅크 수석 에디터 코멘트</h2>
+                <p>
+                    시장은 현재 '지정학적 리스크'라는 강력한 역풍과 '기술 혁신'이라는 순풍이 맞서는 힘겨루기 국면에 있습니다. 유가 급등과 강달러 현상은 인플레이션 우려를 재점화하며 경기 전반에 부담을 주고, 특히 국내 증시에서는 외국인 수급에 부정적인 영향을 미칠 수 있습니다. 
+                </p>
+                <p>
+                    그럼에도 불구하고 AI와 반도체를 중심으로 한 기술주의 견조한 흐름은 시장의 완전한 붕괴를 막는 안전판 역할을 하고 있습니다. 투자자들은 당분간 거시 경제 지표와 중동 관련 뉴스에 대한 민감도를 높이는 한편, 실적 성장 가시성이 높은 기술 섹터에 대한 선별적 접근을 유지하는 전략이 유효해 보입니다. 단기적으로는 변동성 확대에 대비한 신중한 자세가 요구됩니다.
+                </p>
+            </section>
+        </main>
+
+        <footer class="report-footer">
+            <p>&copy; 2026 iM Bank. All rights reserved.</p>
+            <p>본 자료는 정보 제공을 목적으로 작성되었으며, 투자 권유 또는 추천을 의미하지 않습니다. 모든 투자의 최종 결정과 책임은 투자자 본인에게 있습니다.</p>
+        </footer>
     </div>
-
-    <section class="section">
-        <span class="section-num">01</span>
-        <h2 class="section-title">글로벌 시장 동향 및 주요 지수 분석: 혼조세 속의 잠재적 리스크</h2>
-        <div class="content-body">
-            <p>지난 거래일 글로벌 주요 증시는 복합적인 흐름을 보였습니다. 미국 시장은 다우존스 산업평균지수가 <span class="down">0.56% 하락한 47,916.57</span>을 기록하며 하방 압력을 받았고, S&P 500 지수 또한 <span class="down">0.11% 소폭 하락한 6,816.89</span>로 마감했습니다. 이는 광범위한 시장 전반에 걸쳐 신중한 투자 심리가 확산되었음을 시사합니다. 반면, 기술주 중심의 나스닥 종합지수는 <span class="up">0.35% 상승한 22,902.89</span>를 기록하며 시장의 역동성을 보여주었습니다. 특히, 필라델피아 반도체 지수(SOX)는 <span class="up">2.31% 급등한 8,889.83</span>을 기록하며 기술 섹터, 특히 반도체 산업의 강력한 모멘텀을 다시 한번 확인시켰습니다. 이는 AI와 고성능 컴퓨팅 수요 증가 등 구조적인 성장 동력이 여전히 유효하다는 점을 반영하는 것으로 풀이됩니다.</p>
-            <p>국내 시장에서는 코스피 지수가 <span class="up">1.40% 상승한 5,858.87</span>로 마감하며 긍정적인 모습을 보였습니다. 이는 외국인 투자자들의 순매수 유입 또는 특정 업종의 강세에 힘입은 결과로 해석될 수 있습니다. 한편, 외환 시장에서는 원/달러 환율이 <span class="up">0.67% 상승한 1,483.09원</span>을 기록하며 달러 강세 압력이 지속되고 있음을 나타냈습니다. 이는 지정학적 불확실성 증대와 맞물려 안전자산 선호 심리가 강화된 영향일 수 있습니다. 국제 유가는 WTI 기준 <span class="down">1.33% 하락한 96.57달러</span>를 기록했으나, 뒤이어 발생한 지정학적 뉴스를 고려할 때 일시적인 조정일 가능성이 높습니다. 변동성 지수(VIX)는 <span class="down">1.33% 하락한 19.23</span>을 기록하며 표면적으로는 시장의 공포 심리가 완화된 것처럼 보이지만, 이 수치는 주요 지정학적 이벤트가 본격적으로 가격에 반영되기 전의 상황일 수 있으므로 주의 깊은 관찰이 필요합니다. 미국 10년물 국채 금리는 <span class="up">0.56% 상승한 4.32%</span>를 기록하며 채권 시장에서도 인플레이션 우려 또는 연준의 금리 인상 기조에 대한 시장의 기대감이 반영되고 있음을 시사했습니다.</p>
-            <p>전반적으로 시장은 개별 섹터의 호재와 거시경제적 불확실성, 그리고 새롭게 부상하는 지정학적 리스크 사이에서 균형점을 찾기 위해 고심하는 모습입니다. 특히, 미국의 국내 정치적 이슈와 이란발 국제 정세 불안은 향후 시장의 주요 변동성 요인이 될 것으로 전망됩니다.</p>
-        </div>
-    </section>
-
-    <section class="section">
-        <span class="section-num">02</span>
-        <h2 class="section-title">지정학적 리스크 심화: 호르무즈 해협 봉쇄 위협과 국제 유가</h2>
-        <div class="content-body">
-            <p>오늘 리포트의 가장 중대한 사안은 이란과의 평화 협상이 결렬된 직후 트럼프 대통령이 호르무즈 해협 봉쇄를 시사했다는 소식입니다. 이는 글로벌 에너지 시장과 국제 무역 질서에 막대한 파장을 일으킬 수 있는 초고위험 지정학적 이벤트입니다. 호르무즈 해협은 전 세계 해상 원유 수송량의 약 20%를 차지하는 핵심 길목으로, 사우디아라비아, 이란, UAE, 쿠웨이트, 이라크 등 주요 산유국의 원유 수출이 이 해협을 통과합니다. 이 해협이 봉쇄될 경우, 국제 유가는 천정부지로 치솟고 글로벌 공급망은 심각한 교란에 직면할 수밖에 없습니다.</p>
-            <p>현재 WTI 유가가 <span class="down">1.33% 하락한 96.57달러</span>를 기록한 것은 이러한 지정학적 위험이 시장에 아직 온전히 반영되지 않았거나, 단기적인 수급 요인에 의해 가려졌을 가능성을 시사합니다. 통상적으로 중동 지역의 지정학적 긴장이 고조되면 유가는 급등하는 경향을 보여왔습니다. 이는 시장이 트럼프 대통령의 발언을 단순한 수사(rhetoric)로 간주하거나, 실제 봉쇄까지는 상당한 시일이 걸릴 것이라는 판단을 내렸을 수 있습니다. 그러나 과거 사례들을 볼 때, 이러한 종류의 위협은 언제든지 실제 행동으로 이어질 수 있으며, 그 파급력은 예측 불가능합니다.</p>
-            <div class="pull-quote">
-                "호르무즈 해협은 단순한 뱃길이 아니다. 이는 글로벌 경제의 동맥이며, 그 봉쇄 위협은 모든 시장 참여자에게 극심한 불확실성과 변동성을 안겨줄 것이다. 우리는 이 상황을 단순한 뉴스로 치부해서는 안 된다."
-            </div>
-            <p>해협 봉쇄는 유가 급등을 넘어 전 세계 물가 상승을 촉발하고, 경기 침체 우려를 심화시킬 수 있습니다. 특히, 에너지 의존도가 높은 아시아 국가들에게는 치명적인 경제적 타격으로 이어질 수 있으며, 이는 곧 글로벌 무역량 감소와 기업 실적 악화로 연결될 것입니다. 투자자들은 이란 및 미국 정부의 다음 행보를 예의주시해야 하며, 유가 관련 파생상품 시장의 급변동 가능성에 대비해야 합니다.</p>
-            <p>또한, 트럼프 대통령의 강경 발언은 재선을 앞둔 미국의 국내 정치 상황과도 무관하지 않습니다. 과거에도 트럼프 행정부는 외교적 압박을 통해 국내 지지층 결집을 시도한 바 있습니다. 그러나 이번에는 단순한 압박을 넘어 군사적 충돌 가능성까지 내포하고 있어, 그 위험성은 한층 더 심각하다고 평가됩니다. 국제 사회의 외교적 노력이 시급하며, 시장은 이러한 지정학적 리스크 프리미엄을 점진적으로 가격에 반영할 준비를 해야 할 것입니다.</p>
-        </div>
-    </section>
-
-    <div class="game-embed-card">
-        <span class="game-embed-label">iM 뱅크와 함께하는 시장 예측 게임</span>
-        <h3 class="game-embed-title">다음 주 KOSPI는 상승할까요, 하락할까요?</h3>
-        <div id="im-live-game">
-            <div class="voting-options">
-                <a href="#" class="vote-link up">상승 (+100p 이상)</a>
-                <a href="#" class="vote-link down">하락 (-100p 이하)</a>
-            </div>
-        </div>
-        <p class="game-footer-note">여러분의 예측에 참여하고, 시장의 흐름을 함께 읽어보세요!</p>
-    </div>
-
-    <section class="section">
-        <span class="section-num">03</span>
-        <h2 class="section-title">기술주 섹터의 명암과 환율 시장 동향: 달러 강세의 압력</h2>
-        <div class="content-body">
-            <p>미국 증시의 혼조세 속에서도 기술주 섹터는 명암이 엇갈리는 모습을 보였습니다. 나스닥과 SOX 지수의 강세는 여전히 기술 성장주에 대한 견고한 수요를 반영합니다. 특히, NVIDIA는 <span class="up">2.57% 상승한 188.63달러</span>를 기록하며 AI 및 고성능 컴퓨팅 분야의 독보적인 위치를 재확인했습니다. 이는 기업들의 AI 투자 확대와 데이터센터 수요 증가가 지속되고 있음을 보여줍니다. 반면, Microsoft는 <span class="down">0.59% 하락한 370.87달러</span>를 기록했고, Apple은 <span class="down">변동 없이 260.48달러</span>에 마감했습니다. Tesla는 <span class="up">0.96% 상승한 348.95달러</span>를 기록하며 전기차 시장의 경쟁 심화 속에서도 일정 부분 회복력을 보였습니다. 이러한 개별 기업들의 움직임은 전반적인 기술주 강세 속에서도 기업별 실적 전망, 신기술 개발 경쟁, 그리고 매크로 환경 변화에 따라 투자자들의 선호가 다르게 나타나고 있음을 시사합니다.</p>
-            <p>필라델피아 반도체 지수(SOX)의 급등은 반도체 산업이 글로벌 기술 혁신의 최전선에 서 있음을 증명합니다. 인공지능, 5G, 자율주행 등 미래 산업의 핵심 동력원으로서 반도체의 중요성은 계속해서 커지고 있으며, 이는 관련 기업들의 실적 개선 기대로 이어지고 있습니다. 그러나 이러한 상승세가 과열 양상을 보이는 것은 아닌지에 대한 신중한 접근도 필요합니다. 지정학적 리스크가 심화될 경우, 글로벌 공급망 불안정은 반도체 산업에도 영향을 미칠 수 있기 때문입니다.</p>
-            <table class="tech-table">
-                <thead>
-                    <tr>
-                        <th>종목</th>
-                        <th>현재가 (USD)</th>
-                        <th>변동률</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>NVIDIA</td>
-                        <td>188.63</td>
-                        <td><span class="up">+2.57%</span></td>
-                    </tr>
-                    <tr>
-                        <td>Apple</td>
-                        <td>260.48</td>
-                        <td><span class="down">-0.00%</span></td>
-                    </tr>
-                    <tr>
-                        <td>Tesla</td>
-                        <td>348.95</td>
-                        <td><span class="up">+0.96%</span></td>
-                    </tr>
-                    <tr>
-                        <td>Microsoft</td>
-                        <td>370.87</td>
-                        <td><span class="down">-0.59%</span></td>
-                    </tr>
-                </tbody>
-            </table>
-            <p>한편, 환율 시장에서는 원/달러 환율이 <span class="up">9.81원 상승한 1,483.09원</span>을 기록하며 달러 강세가 두드러졌습니다. 이는 복합적인 요인이 작용한 결과로 보입니다. 첫째, 미국의 금리 인상 기조가 장기화될 것이라는 시장의 기대감, 둘째, 지정학적 리스크 고조에 따른 안전자산으로서의 달러 선호 심리 강화, 셋째, 한국 경제의 대외 불확실성 증대 등이 복합적으로 작용했을 가능성이 있습니다. 달러 강세는 국내 기업들의 외환 부채 부담을 가중시키고 수입 물가를 상승시켜 국내 인플레이션 압력을 높일 수 있습니다. 수출 기업에는 단기적인 경쟁력 강화 요인이 될 수 있지만, 원자재 수입 의존도가 높은 산업에는 부정적인 영향을 미칠 수 있어 면밀한 모니터링이 필요합니다.</p>
-        </div>
-    </section>
-
-    <section class="section">
-        <span class="section-num">04</span>
-        <h2 class="section-title">미국 정치 불확실성과 거시 경제 전망: 불안정한 기반</h2>
-        <div class="content-body">
-            <p>미국의 국내 정치 상황 또한 시장의 불확실성을 가중시키는 요인으로 작용하고 있습니다. 특히, 스왈웰 하원의원의 성폭행 의혹과 캘리포니아 주지사 출마 지지 철회 소식은 미국 정치권의 도덕성 논란을 불러일으키며 국내 정치 불안을 야기하고 있습니다. 또한, 트럼프 전 대통령과 관련된 법적 문제들, 가령 백악관 무도회 중단에 대한 국가 안보 영향 재고 요청, 250피트 '개선문' 건설 논란, 제프리 엡스타인 피해자 청문회 개최 약속 등은 미국 사회의 이념적 갈등과 정치적 분열이 여전히 심각함을 보여줍니다.</p>
-            <p>이러한 정치적 불안정은 거시 경제 정책의 일관성 및 예측 가능성을 저해할 수 있습니다. 예를 들어, 연준 의장 인준 계획의 차질은 통화 정책 방향에 대한 불확실성을 높여 시장에 부정적인 영향을 미칠 수 있습니다. 케빈 워시의 연준 의장 지명 계획이 난관에 부딪혔다는 소식은 연준의 독립성과 향후 통화 정책 기조에 대한 시장의 우려를 키울 수 있는 대목입니다. 연준의 리더십 공백이나 정책 불확실성은 금융 시장의 변동성을 확대시키는 주된 요인이 됩니다.</p>
-            <div class="callout-box">
-                <h4>시사점: 다중 불확실성 시대의 투자 전략</h4>
-                <p>글로벌 시장은 지정학적 긴장, 국내 정치 불안, 그리고 금리 인상 압력이라는 다중의 불확실성 요인에 직면해 있습니다. 이러한 환경에서는 개별 기업의 펀더멘털을 면밀히 분석하고, 리스크 헤지 전략을 고려하는 한편, 분산 투자를 통해 포트폴리오의 안정성을 확보하는 것이 중요합니다. 특히, 지정학적 리스크는 단기적인 시장 충격을 넘어 장기적인 산업 구조 변화를 초래할 수 있으므로, 해당 리스크에 대한 노출도를 최소화하는 노력이 필요합니다.</p>
-            </div>
-            <p>더 나아가, 중국 시진핑 주석이 대만 독립의 '위협'을 언급하며 10년 만에 대만 야당 지도자와 회동한 소식은 아시아 지역의 지정학적 긴장을 다시 한번 상기시킵니다. 비록 당장 시장에 직접적인 영향을 미치지는 않았지만, 이는 미중 갈등의 잠재적 불씨로 작용할 수 있으며, 장기적으로 글로벌 공급망 재편과 기술 패권 경쟁에 영향을 미칠 수 있는 중요한 사안입니다. 호르무즈 해협 봉쇄 위협과 함께 글로벌 경제의 양대 축인 에너지 안보와 반도체 공급망이 동시에 위협받을 수 있다는 시나리오까지 고려해야 하는 복잡한 국면입니다.</p>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <span class="footer-brand">iM뱅크</span>
-        <p class="disclaimer">
-            본 리포트는 iM뱅크의 금융 분석 시스템이 제공하는 시장 데이터를 기반으로 작성된 에디토리얼이며, 투자 자문 또는 권유를 목적으로 하지 않습니다.
-            제공된 정보는 시장 상황에 따라 변경될 수 있으며, 투자 결정은 투자자 본인의 판단과 책임 하에 이루어져야 합니다.
-            iM뱅크는 본 리포트의 내용에 기반한 투자 결정으로 발생하는 어떠한 결과에 대해서도 책임을 지지 않습니다.
-        </p>
-        <p>Copyright &copy; 2026 iM Bank. All rights reserved.</p>
-    </footer>
-</div>
-
-<nav class="report-nav bottom">
-    <a href="#" class="nav-link"></a>
+    
+    <nav class="report-nav">
+    <a href="/reports/morning_report_20260402" class="nav-link">← 이전 리포트</a>
     <a href="/reports/index.html" class="nav-list-btn">목록으로</a>
-    <a href="#" class="nav-link"></a>
+    <a href="/reports/morning_report_20260404" class="nav-link">다음 리포트 →</a>
 </nav>
-
 </body>
 </html>
+```
